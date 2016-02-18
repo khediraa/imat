@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="174.0" prefWidth="569.0" style="-fx-background-color: #eee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <Text layoutX="23.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="iMat" wrappingWidth="75.45703125">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <TextField layoutX="374.0" layoutY="72.0" />
+   </children>
+</AnchorPane>

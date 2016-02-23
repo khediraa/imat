@@ -74,6 +74,9 @@ public class GreensController implements Initializable {
                 //set the title of the item
                 itemTileController.setTitle(products.get(i).getName());
 
+                // connect this product to the tile
+                itemTileController.setProduct(products.get(i));
+
                 //set the image
                 itemTileController.setImage(dataInstance.getFXImage(products.get(i)));
 

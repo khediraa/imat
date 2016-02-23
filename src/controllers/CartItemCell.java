@@ -57,8 +57,8 @@ public class CartItemCell extends ListCell<ShoppingItem> {
 
             col1Constraints.setPercentWidth(10);
             col2Constraints.setPercentWidth(25);
-            col3Constraints.setPercentWidth(25);
-            col4Constraints.setPercentWidth(25);
+            col3Constraints.setPercentWidth(35);
+            col4Constraints.setPercentWidth(30);
 
             GridPane layout = new GridPane();
 

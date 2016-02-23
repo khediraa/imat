@@ -9,10 +9,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cart" prefHeight="520.0" prefWidth="300.0" stylesheets="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartController">
+<AnchorPane fx:id="cart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="520.0" prefWidth="300.0" stylesheets="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartController">
    <children>
-      <ListView fx:id="cartListView" prefHeight="452.0" prefWidth="300.0" stylesheets="@../css/cart.css" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Text layoutX="21.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt" wrappingWidth="98.8134765625" />
-      <Text fx:id="cartTotal" layoutX="204.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.00 SEK" textAlignment="RIGHT" wrappingWidth="81.21875" />
+      <ListView fx:id="cartListView" prefHeight="421.0" prefWidth="300.0" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Text fx:id="cartTotal" layoutX="97.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt 0.00 kr" textAlignment="RIGHT" wrappingWidth="188.21875">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Text>
+      <Button layoutX="104.0" layoutY="479.0" mnemonicParsing="false" text="Till varukorgen och kassan" />
    </children>
 </AnchorPane>

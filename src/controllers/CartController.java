@@ -36,9 +36,6 @@ public class CartController implements Initializable, ShoppingCartListener {
             @Override
             public ListCell call(ListView param) {
                 CartItemCell cartItemCell = new CartItemCell();
-                //cartItemCell.addEventFilter(MouseEvent.MOUSE_CLICKED, new javafx.event.EventHandler<MouseEvent>() {
-
-                //});
                 return cartItemCell;
             }
         });
@@ -54,7 +51,5 @@ public class CartController implements Initializable, ShoppingCartListener {
             cartListView.refresh();
         }
     }
-
-
 
 }

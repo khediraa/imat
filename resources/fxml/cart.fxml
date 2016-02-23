@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,9 +9,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="cart" prefHeight="520.0" prefWidth="300.0" stylesheets="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartController">
    <children>
-      <ListView prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="cartListView" prefHeight="452.0" prefWidth="300.0" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Text layoutX="21.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt" wrappingWidth="98.8134765625" />
+      <Text fx:id="cartTotal" layoutX="204.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.00 SEK" textAlignment="RIGHT" wrappingWidth="81.21875" />
    </children>
 </AnchorPane>

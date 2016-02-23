@@ -45,9 +45,9 @@ public class GreensController implements Initializable {
         herbs.addAll(dataInstance.getProducts(ProductCategory.HERB));
 
 
-        //----- Must show subcategories
+        //Todo... ----- Must show subcategories
 
-        //----- Must create separator and set title for subcategories
+        //Todo... ----- Must create separator and set title for subcategories
         //Displaying fruits
         displayProducts(fruits);
 

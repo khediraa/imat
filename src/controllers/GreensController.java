@@ -91,4 +91,55 @@ public class GreensController implements Initializable {
             }
         }
     }
+
+    /**
+     * Clears the tile pane.
+     */
+    private void clearTilePane(){
+        tilePane.getChildren().clear();
+    }
+
+    /**
+     * Display greens.
+     */
+    private void displayGreens(){
+        displayProducts(fruits);
+        displayProducts(vegetables);
+        displayProducts(herbs);
+    }
+
+    /**
+     * Display meat products.
+     */
+    private void displayMeat(){
+        //Todo...
+    }
+
+    /**
+     * Display dairy products.
+     */
+    private void displayDairy(){
+        //Todo...
+    }
+
+    /**
+     * Display drinks.
+     */
+    private void displayDrinks(){
+        //Todo...
+    }
+
+    /**
+     * Display pantry products.
+     */
+    private void displayPantry(){
+        //Todo...
+    }
+
+    /**
+     * Display sweets.
+     */
+    private void displaySweets(){
+        //Todo...
+    }
 }

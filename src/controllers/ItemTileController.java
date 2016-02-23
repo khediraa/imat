@@ -34,12 +34,12 @@ public class ItemTileController implements Initializable {
     protected void addProductToCart() {
         IMatDataHandler im = IMatDataHandler.getInstance();
         ShoppingCart sc = im.getShoppingCart();
-        int amount = Integer.parseInt(amountField.getText());
-        sc.addProduct(this.product, amount);
-        sc.fireShoppingCartChanged(new ShoppingItem(this.product, amount), true);
+        sc.addProduct(this.product, Double.parseDouble(amountField.getText()));
     }
 
-    public void setProduct(Product p) {}
+    public void setProduct(Product p) {
+        this.product = p;
+    }
 
     public void setTitle(String title){
         this.title.setText(title);

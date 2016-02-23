@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
    <children>
       <GridPane gridLinesVisible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -29,17 +31,19 @@
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <fx:include source="Meat.fxml" fx:id="meat"/>
-                  <fx:include source="Greens.fxml" fx:id="greens"/>
-                  <fx:include source="Dairy.fxml" fx:id="dairy" />
-                  <fx:include source="Cupboard.fxml" fx:id="cupboard"/>
-                  <fx:include source="Drinks.fxml" fx:id="drinks"/>
-                  <fx:include source="Sweets.fxml" fx:id="sweets"/>
+                  <fx:include fx:id="meat" source="Meat.fxml" />
+                  <fx:include fx:id="greens" source="Greens.fxml" />
+                  <fx:include fx:id="dairy" source="Dairy.fxml" />
+                  <fx:include fx:id="cupboard" source="Cupboard.fxml" />
+                  <fx:include fx:id="drinks" source="Drinks.fxml" />
+                  <fx:include fx:id="sweets" source="Sweets.fxml" />
                </children>
             </StackPane>
-            <AnchorPane fx:id="cart" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <AnchorPane fx:id="cart" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                <fx:include source="Cart.fxml" />
+            </AnchorPane>
          </children>
       </GridPane>
-       <fx:include fx:id="header" source="Header.fxml"/>
+       <fx:include fx:id="header" source="Header.fxml" />
    </children>
 </AnchorPane>

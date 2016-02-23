@@ -1,6 +1,8 @@
 package controllers;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -44,21 +46,39 @@ public class CartItemCell extends ListCell<ShoppingItem> {
             this.item = item;
 
             ColumnConstraints col1Constraints = new ColumnConstraints();
+            ColumnConstraints col2Constraints = new ColumnConstraints();
+            ColumnConstraints col3Constraints = new ColumnConstraints();
+            ColumnConstraints col4Constraints = new ColumnConstraints();
+
+            col1Constraints.setPercentWidth(10);
+            col2Constraints.setPercentWidth(25);
+            col3Constraints.setPercentWidth(25);
+            col4Constraints.setPercentWidth(25);
 
             GridPane layout = new GridPane();
 
             layout.getColumnConstraints().add(col1Constraints);
+            layout.getColumnConstraints().add(col2Constraints);
+            layout.getColumnConstraints().add(col3Constraints);
+            layout.getColumnConstraints().add(col4Constraints);
             layout.setHgap(10);
             layout.setVgap(10);
             layout.setPadding(new Insets(5,5,5,5));
 
             Image productImage = dataInstance.getFXImage(item.getProduct(), 100, 100);
             Text productName = new Text(item.getProduct().getName());
-            Text amount = new Text(item.getAmount() + " st");
+            Text amount = new Text((int)item.getAmount() + " st");
+            Text total = new Text(item.getTotal() + " kr");
+            Button removeBtn = new Button("Ta bort");
 
-            layout.add(new ImageView(productImage),0,0);
+            layout.add(amount,0,0);
             layout.add(productName,1,0);
-            layout.add(amount,2,0);
+            layout.add(total,2,0);
+            layout.add(removeBtn,3,0);
+
+
+
+
 
             setGraphic(layout);
 

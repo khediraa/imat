@@ -1,16 +1,15 @@
 package controllers;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -51,8 +50,11 @@ public class CartController implements Initializable, ShoppingCartListener {
 
         if(cartEvent.isAddEvent()) {
             cartListView.getItems().add(cartEvent.getShoppingItem());
+        } else {
+            cartListView.refresh();
         }
     }
+
 
 
 }

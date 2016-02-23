@@ -1,5 +1,9 @@
 package controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -8,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -65,25 +70,33 @@ public class CartItemCell extends ListCell<ShoppingItem> {
             layout.setVgap(10);
             layout.setPadding(new Insets(5,5,5,5));
 
-            Image productImage = dataInstance.getFXImage(item.getProduct(), 100, 100);
             Text productName = new Text(item.getProduct().getName());
             Text amount = new Text((int)item.getAmount() + " st");
             Text total = new Text(item.getTotal() + " kr");
+
+            // Remove btn
             Button removeBtn = new Button("Ta bort");
+            removeBtn.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    removeItem();
+                }
+            });
 
             layout.add(amount,0,0);
             layout.add(productName,1,0);
             layout.add(total,2,0);
             layout.add(removeBtn,3,0);
 
-
-
-
-
             setGraphic(layout);
 
             addedBefore = true;
         }
+    }
+
+    private void removeItem() {
+        IMatDataHandler.getInstance().getShoppingCart().removeItem(item);
+        this.getListView().getItems().remove(this.item);
     }
 
 }

@@ -64,7 +64,7 @@ public class GreensController implements Initializable {
      * in the list, and then adding them to the tilePane.
      */
     private void displayProducts(List<Product> products){
-        for(int i=0; i<products.size(); i++){
+        for(Product product : products){
             try{
                 //Loading the node itemTile and its controller
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/ItemTile.fxml"));
@@ -72,16 +72,16 @@ public class GreensController implements Initializable {
                 ItemTileController itemTileController = loader.getController();
 
                 //set the title of the item
-                itemTileController.setTitle(products.get(i).getName());
+                itemTileController.setTitle(product.getName());
 
                 // connect this product to the tile
-                itemTileController.setProduct(products.get(i));
+                itemTileController.setProduct(product);
 
                 //set the image
-                itemTileController.setImage(dataInstance.getFXImage(products.get(i)));
+                itemTileController.setImage(dataInstance.getFXImage(product));
 
                 //set the price
-                itemTileController.setPriceAndUnit(products.get(i).getPrice(), products.get(i).getUnit());
+                itemTileController.setPriceAndUnit(product.getPrice(), product.getUnit());
 
                 //add the itemTile to the tilePane
                 tilePane.getChildren().add(itemTile);

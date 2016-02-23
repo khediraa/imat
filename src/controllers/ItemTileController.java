@@ -24,17 +24,24 @@ public class ItemTileController implements Initializable {
     @FXML ImageView image;
     @FXML TextField amountField;
     private Product product;
+    private ShoppingCart shoppingCart;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        IMatDataHandler im = IMatDataHandler.getInstance();
+        this.shoppingCart = im.getShoppingCart();
     }
 
     @FXML
     protected void addProductToCart() {
-        IMatDataHandler im = IMatDataHandler.getInstance();
-        ShoppingCart sc = im.getShoppingCart();
-        sc.addProduct(this.product, Double.parseDouble(amountField.getText()));
+        double amount = Double.parseDouble(amountField.getText());
+        ShoppingItem matchingItem = getMatchingItemInCart();
+        if(matchingItem != null) {
+            matchingItem.setAmount(matchingItem.getAmount() + amount);
+            this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
+        } else {
+            this.shoppingCart.addProduct(this.product, amount);
+        }
     }
 
     public void setProduct(Product p) {
@@ -51,5 +58,14 @@ public class ItemTileController implements Initializable {
 
     public void setImage(Image imgView){
         image.setImage(imgView);
+    }
+
+    private ShoppingItem getMatchingItemInCart() {
+        for(ShoppingItem cartItem : this.shoppingCart.getItems()) {
+           if(cartItem.getProduct().equals(product)) {
+               return cartItem;
+           }
+        }
+        return null;
     }
 }

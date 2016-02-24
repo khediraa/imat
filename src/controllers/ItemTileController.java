@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,7 @@ public class ItemTileController implements Initializable {
     @FXML Label title, price;
     @FXML Button addProductBtn;
     @FXML ImageView image;
-    @FXML TextField amountField;
+    @FXML Spinner amountField;
     @FXML Label addUnit;
     private Product product;
     private ShoppingCart shoppingCart;
@@ -37,13 +38,13 @@ public class ItemTileController implements Initializable {
     @FXML
     protected void addProductToCart() {
 
-        String amountText = amountField.getText();
+        String amountText = amountField.getEditor().getText();
         double amount = 1.0;
 
         if (Utils.isValidDouble(amountText)) {
             amount = Double.parseDouble(amountText);
         } else {
-            amountField.setText("1");
+            amountField.getEditor().setText("1");
         }
 
         ShoppingItem matchingItem = getMatchingItemInCart();
@@ -67,7 +68,7 @@ public class ItemTileController implements Initializable {
         this.addUnit.setText(unitSuffix);
 
         if (unitSuffix.equals("kg")) {
-            amountField.setText("1.00");
+            amountField.getEditor().setText("1.00");
         }
     }
 

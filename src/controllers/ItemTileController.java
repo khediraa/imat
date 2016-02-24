@@ -11,6 +11,7 @@ import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingCart;
 import se.chalmers.ait.dat215.project.ShoppingItem;
+import utils.Utils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ public class ItemTileController implements Initializable {
     @FXML Button addProductBtn;
     @FXML ImageView image;
     @FXML TextField amountField;
+    @FXML Label addUnit;
     private Product product;
     private ShoppingCart shoppingCart;
 
@@ -34,7 +36,16 @@ public class ItemTileController implements Initializable {
 
     @FXML
     protected void addProductToCart() {
-        double amount = Double.parseDouble(amountField.getText());
+
+        String amountText = amountField.getText();
+        double amount = 1.0;
+
+        if (Utils.isValidDouble(amountText)) {
+            amount = Double.parseDouble(amountText);
+        } else {
+            amountField.setText("1");
+        }
+
         ShoppingItem matchingItem = getMatchingItemInCart();
         if(matchingItem != null) {
             matchingItem.setAmount(matchingItem.getAmount() + amount);
@@ -50,6 +61,14 @@ public class ItemTileController implements Initializable {
 
     public void setTitle(String title){
         this.title.setText(title);
+    }
+
+    public void setUnitSuffix(String unitSuffix) {
+        this.addUnit.setText(unitSuffix);
+
+        if (unitSuffix.equals("kg")) {
+            amountField.setText("1.00");
+        }
     }
 
     public void setPriceAndUnit(Double price, String unit){

@@ -80,8 +80,11 @@ public class GreensController implements Initializable {
                 //set the image
                 itemTileController.setImage(dataInstance.getFXImage(product));
 
+
                 //set the price
                 itemTileController.setPriceAndUnit(product.getPrice(), product.getUnit());
+
+                itemTileController.setUnitSuffix(product.getUnitSuffix());
 
                 //add the itemTile to the tilePane
                 tilePane.getChildren().add(itemTile);

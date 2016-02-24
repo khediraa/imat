@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="cart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="520.0" prefWidth="300.0" stylesheets="" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartController">
+<AnchorPane fx:id="cart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="520.0"
+            prefWidth="300.0" stylesheets="" AnchorPane.topAnchor="0.0"
+            AnchorPane.bottomAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.CartController">
    <children>
-      <ListView fx:id="cartListView" prefHeight="421.0" prefWidth="300.0" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Text fx:id="cartTotal" layoutX="97.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt 0.00 kr" textAlignment="RIGHT" wrappingWidth="188.21875">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Text>
-      <Button layoutX="104.0" layoutY="479.0" mnemonicParsing="false" text="Till varukorgen och kassan" />
+      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <ListView fx:id="cartListView" GridPane.vgrow="ALWAYS" />
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
+               <children>
+                  <Text fx:id="cartTotal" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt 0.00 kr" textAlignment="RIGHT" wrappingWidth="188.21875">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Button mnemonicParsing="false" text="Till varukorgen och kassan" />
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

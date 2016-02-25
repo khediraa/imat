@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,13 +17,24 @@ import java.util.ResourceBundle;
  */
 public class RootController implements Initializable{
     @FXML private HeaderController headerController;
-    @FXML private AnchorPane meat, greens, dairy, cupboard, drinks, sweets;
+    @FXML private AnchorPane root, meat, greens, dairy, cupboard, drinks, sweets;
+    @FXML private Pane homePage;
     List<AnchorPane> anchorPanes = new ArrayList<>();
+    Number rootWidth;
+    Number rootHeight;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         anchorPanes.add(meat); anchorPanes.add(greens); anchorPanes.add(dairy);
         anchorPanes.add(cupboard); anchorPanes.add(drinks); anchorPanes.add(sweets);
+
+        root.widthProperty().addListener((observable, oldValue, newValue) -> {
+            rootWidth = newValue;
+        });
+
+        root.heightProperty().addListener((observable, oldValue, newValue) -> {
+            rootHeight = newValue;
+        });
 
         //Adding the navigational eventhandler to every button
         for(AnchorPane anchorPane : anchorPanes) {
@@ -36,5 +48,13 @@ public class RootController implements Initializable{
      */
     private EventHandler<ActionEvent> anchorPaneToFront(AnchorPane anchorPane) {
         return event -> anchorPane.toFront();
+    }
+
+    public Number getRootWidth(){
+        return rootWidth;
+    }
+
+    public Number getRootHeight(){
+        return rootHeight;
     }
 }

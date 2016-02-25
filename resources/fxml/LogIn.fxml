@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="306.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Användarnamn">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="305.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lösenord">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="306.0" layoutY="191.0" prefHeight="25.0" prefWidth="200.0" />
+      <PasswordField layoutX="306.0" layoutY="285.0" prefHeight="25.0" prefWidth="200.0" />
+      <Text layoutX="306.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logga in">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Button layoutX="588.0" layoutY="396.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Logga in" />
+      <Text layoutX="306.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Är du inte medlemm än? Registrera dig här" wrappingWidth="282.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

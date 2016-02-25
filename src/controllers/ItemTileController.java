@@ -40,11 +40,10 @@ public class ItemTileController implements Initializable {
         IMatDataHandler im = IMatDataHandler.getInstance();
         this.shoppingCart = im.getShoppingCart();
 
+
         amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-
-                // select spinner text on foxus
                 if(newValue) {
                     Platform.runLater(new Runnable() {
                         @Override
@@ -52,6 +51,8 @@ public class ItemTileController implements Initializable {
                             amountField.selectAll();
                         }
                     });
+                } else {
+                    setProductAmount(formatAmountInput(amountField.getText()));
                 }
             }
         });
@@ -60,87 +61,78 @@ public class ItemTileController implements Initializable {
         // when pressing enter while editing format the input
         amountField.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
-                double amount = formatAmountInput(amountField);
-                amountField.setText(String.valueOf(amount));
+                setProductAmount(formatAmountInput(amountField.getText()));
                 e.consume();
+                amountField.getParent().requestFocus();
             }
         });
-
-        amountField.setOnKeyPressed(event -> {
-
-            double oldAmount = Double.parseDouble(amountField.getText());
-            double newAmount = oldAmount + 1;
-
-            switch (event.getCode()) {
-                case UP:
-                    newAmount = oldAmount + 1;
-                    break;
-                case DOWN:
-                    newAmount = oldAmount - 1;
-                    break;
-            }
-
-
-            amountField.setText(String.valueOf(newAmount));
-        });
-
 
     }
 
-    private double formatAmountInput(TextField editor) {
+    private double formatAmountInput(String amountString) {
         double amount = 0;
+
+        amountString = amountString.replace(',', '.');
 
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
-        DecimalFormat df = new DecimalFormat("#.00", dfs);
+        DecimalFormat df = new DecimalFormat("0.0", dfs);
 
-        if (Utils.isValidDouble(editor.getText())) {
-            amount = Double.parseDouble(editor.getText());
+        if (Utils.isValidDouble(amountString)) {
+            amount = Double.parseDouble(amountString);
         }
 
-        String test = df.format(amount);
-        amountField.setText(test);
+        String formatedText = df.format(amount);
+        amountField.setText(formatedText);
 
         return amount;
     }
+
+
 
     private void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
             amountField.setText(String.valueOf(matchingItem.getAmount()));
         } else {
-            amountField.setText("0");
+            amountField.setText(String.valueOf(formatAmountInput("0")));
         }
+    }
+
+    private void setProductAmount(double amount) {
+        ShoppingItem matchingItem = getMatchingItemInCart();
+        if(matchingItem == null && amount <= 0) return;
+
+        if(matchingItem == null) {
+            this.shoppingCart.addProduct(this.product, amount);
+        } else {
+            if (amount <= 0) {
+                matchingItem.setAmount(0);
+                this.shoppingCart.removeItem(matchingItem);
+            } else {
+                matchingItem.setAmount(amount);
+                this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
+            }
+        }
+        refreshAmountField();
     }
 
     @FXML
     protected void addProductToCart() {
-
-        ShoppingItem matchingItem = getMatchingItemInCart();
-        if(matchingItem != null) {
-            matchingItem.setAmount(matchingItem.getAmount() + 1);
-            this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
+        if (getMatchingItemInCart() == null) {
+            setProductAmount(1);
         } else {
-            this.shoppingCart.addProduct(this.product, 1);
+            setProductAmount(getMatchingItemInCart().getAmount() + 1);
         }
-
-        refreshAmountField();
     }
 
     @FXML
     protected void removeFromCart() {
-        ShoppingItem matchingItem = getMatchingItemInCart();
-        if(matchingItem != null) {
-            if (matchingItem.getAmount() - 1 == 0) {
-                matchingItem.setAmount(0);
-                this.shoppingCart.removeItem(matchingItem);
-            } else {
-                matchingItem.setAmount(matchingItem.getAmount() - 1);
-            }
-            this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
+        if (getMatchingItemInCart() == null) {
+            return;
+        } else {
+            setProductAmount(getMatchingItemInCart().getAmount() - 1);
         }
-
-        refreshAmountField();
     }
 
     public void setProduct(Product p) {

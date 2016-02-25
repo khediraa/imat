@@ -1,4 +1,5 @@
 package controllers;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
 public class CartController implements Initializable, ShoppingCartListener {
 
     @FXML ListView cartListView;
+    ObservableList<ShoppingItem> cartList = FXCollections.observableArrayList();
     @FXML Text cartTotal;
 
     private ShoppingCart cartInstance;
@@ -29,6 +31,8 @@ public class CartController implements Initializable, ShoppingCartListener {
     public void initialize(URL location, ResourceBundle resources) {
         // initialize Shopping controllers.Cart listener
         this.cartInstance = IMatDataHandler.getInstance().getShoppingCart();
+
+        cartListView.setItems(cartList);
         this.cartInstance.addShoppingCartListener(this);
 
         // set CartItemCell to new cell type for our list view
@@ -43,19 +47,18 @@ public class CartController implements Initializable, ShoppingCartListener {
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
-
         cartTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
 
         if(cartEvent.isAddEvent()) {
-            cartListView.getItems().add(cartEvent.getShoppingItem());
+            System.out.println("add bro");
+            cartList.add(cartEvent.getShoppingItem());
         } else {
-
-            if (cartEvent.getShoppingItem().getAmount() == 0) {
-                cartListView.getItems().remove(cartEvent.getShoppingItem());
+            if (cartEvent.getShoppingItem().getAmount() <= 0) {
+                cartList.remove(cartEvent.getShoppingItem());
             }
-
-            cartListView.refresh();
         }
+
+        cartListView.refresh();
     }
 
 }

@@ -43,11 +43,17 @@ public class CartController implements Initializable, ShoppingCartListener {
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
+
         cartTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
 
         if(cartEvent.isAddEvent()) {
             cartListView.getItems().add(cartEvent.getShoppingItem());
         } else {
+
+            if (cartEvent.getShoppingItem().getAmount() == 0) {
+                cartListView.getItems().remove(cartEvent.getShoppingItem());
+            }
+
             cartListView.refresh();
         }
     }

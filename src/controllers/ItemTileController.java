@@ -28,8 +28,9 @@ import java.util.ResourceBundle;
 public class ItemTileController implements Initializable {
     @FXML Label title, price;
     @FXML Button addProductBtn;
+    @FXML Button removeProductBtn;
     @FXML ImageView image;
-    @FXML Spinner amountField;
+    @FXML TextField amountField;
     @FXML Label addUnit;
     private Product product;
     private ShoppingCart shoppingCart;
@@ -39,12 +40,7 @@ public class ItemTileController implements Initializable {
         IMatDataHandler im = IMatDataHandler.getInstance();
         this.shoppingCart = im.getShoppingCart();
 
-        SpinnerValueFactory.DoubleSpinnerValueFactory svf = new SpinnerValueFactory.DoubleSpinnerValueFactory(1.00, 99.00, 1.00);
-
-        svf.setAmountToStepBy(0.5);
-        amountField.setValueFactory(svf);
-
-        amountField.getEditor().focusedProperty().addListener(new ChangeListener<Boolean>() {
+        amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 
@@ -53,7 +49,7 @@ public class ItemTileController implements Initializable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            amountField.getEditor().selectAll();
+                            amountField.selectAll();
                         }
                     });
                 }
@@ -61,32 +57,38 @@ public class ItemTileController implements Initializable {
         });
 
 
-
         // when pressing enter while editing format the input
-        amountField.getEditor().addEventFilter(KeyEvent.ANY, e->{
+        amountField.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
-                double amount = formatAmountInput(amountField.getEditor());
-                amountField.getEditor().setText(String.valueOf(amount));
+                double amount = formatAmountInput(amountField);
+                amountField.setText(String.valueOf(amount));
                 e.consume();
             }
         });
 
-        amountField.getEditor().setOnKeyPressed(event -> {
+        amountField.setOnKeyPressed(event -> {
+
+            double oldAmount = Double.parseDouble(amountField.getText());
+            double newAmount = oldAmount + 1;
+
             switch (event.getCode()) {
                 case UP:
-                    amountField.increment(1);
+                    newAmount = oldAmount + 1;
                     break;
                 case DOWN:
-                    amountField.decrement(1);
+                    newAmount = oldAmount - 1;
                     break;
             }
+
+
+            amountField.setText(String.valueOf(newAmount));
         });
 
 
     }
 
     private double formatAmountInput(TextField editor) {
-        double amount = 1;
+        double amount = 0;
 
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
@@ -97,24 +99,48 @@ public class ItemTileController implements Initializable {
         }
 
         String test = df.format(amount);
-        amountField.getEditor().setText(test);
+        amountField.setText(test);
 
         return amount;
+    }
+
+    private void refreshAmountField() {
+        ShoppingItem matchingItem = getMatchingItemInCart();
+        if (matchingItem != null) {
+            amountField.setText(String.valueOf(matchingItem.getAmount()));
+        } else {
+            amountField.setText("0");
+        }
     }
 
     @FXML
     protected void addProductToCart() {
 
-        String amountText = amountField.getEditor().getText();
-        double amount = formatAmountInput(amountField.getEditor());
-
         ShoppingItem matchingItem = getMatchingItemInCart();
         if(matchingItem != null) {
-            matchingItem.setAmount(matchingItem.getAmount() + amount);
+            matchingItem.setAmount(matchingItem.getAmount() + 1);
             this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
         } else {
-            this.shoppingCart.addProduct(this.product, amount);
+            this.shoppingCart.addProduct(this.product, 1);
         }
+
+        refreshAmountField();
+    }
+
+    @FXML
+    protected void removeFromCart() {
+        ShoppingItem matchingItem = getMatchingItemInCart();
+        if(matchingItem != null) {
+            if (matchingItem.getAmount() - 1 == 0) {
+                matchingItem.setAmount(0);
+                this.shoppingCart.removeItem(matchingItem);
+            } else {
+                matchingItem.setAmount(matchingItem.getAmount() - 1);
+            }
+            this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
+        }
+
+        refreshAmountField();
     }
 
     public void setProduct(Product p) {
@@ -127,10 +153,6 @@ public class ItemTileController implements Initializable {
 
     public void setUnitSuffix(String unitSuffix) {
         this.addUnit.setText(unitSuffix);
-
-        if (unitSuffix.equals("kg")) {
-            amountField.getEditor().setText("1.00");
-        }
     }
 
     public void setPriceAndUnit(Double price, String unit){

@@ -32,7 +32,6 @@ public class CartItemCell extends ListCell<ShoppingItem> {
 
     public CartItemCell() {
         super();
-
         addedBefore = false;
     }
 
@@ -43,7 +42,6 @@ public class CartItemCell extends ListCell<ShoppingItem> {
 
         ListView lw = getListView();
         lw.getItems();
-
         if (empty || item == null) {
             setText(null);
             setGraphic(null);
@@ -71,7 +69,7 @@ public class CartItemCell extends ListCell<ShoppingItem> {
             layout.setPadding(new Insets(5,5,5,5));
 
             Text productName = new Text(item.getProduct().getName());
-            Text amount = new Text((int)item.getAmount() + " st");
+            Text amount = new Text(item.getAmount() + " " + item.getProduct().getUnitSuffix());
             Text total = new Text(item.getTotal() + " kr");
 
             // Remove btn

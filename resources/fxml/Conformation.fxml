@@ -22,7 +22,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="598.0" layoutY="407.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Till Handla" />
+      <Button fx:id="toShopButton" layoutX="598.0" layoutY="407.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Till Handla" />
       <Text layoutX="471.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Steg 3 av 3" />
    </children>
 </AnchorPane>

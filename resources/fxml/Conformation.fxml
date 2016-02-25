@@ -5,7 +5,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="365.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tack för ditt köp!">
@@ -24,5 +23,6 @@
          </font>
       </Text>
       <Button layoutX="598.0" layoutY="407.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Till Handla" />
+      <Text layoutX="471.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Steg 3 av 3" />
    </children>
 </AnchorPane>

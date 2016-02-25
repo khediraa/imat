@@ -54,6 +54,9 @@ public class HeaderController implements Initializable{
             buttonEvents.put(button.getId(), new MultiEvent<>());
             addEventToButton(button.getId(), "move", move());
             button.setOnAction(buttonEvents.get(button.getId()));
+            if(!firstClick){
+                removeEventFromButton(button.getId(),"move");
+            }
         }
     }
 
@@ -67,6 +70,12 @@ public class HeaderController implements Initializable{
     public void addEventToButton(String btnName, String evtName, EventHandler<ActionEvent> event){
         if(buttonEvents.get(btnName) != null){
             buttonEvents.get(btnName).addEvent(evtName, event);
+        }
+    }
+
+    public void removeEventFromButton(String btnName, String evtName){
+        if(buttonEvents.containsKey(btnName)){
+            buttonEvents.get(btnName).removeEvent(evtName);
         }
     }
 

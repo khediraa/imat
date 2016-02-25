@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -141,22 +140,22 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <TextField prefHeight="31.0" prefWidth="162.0">
+                                    <TextField prefHeight="31.0" prefWidth="162.0" promptText="XXXX">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField prefHeight="31.0" prefWidth="162.0" GridPane.columnIndex="1">
+                                    <TextField prefHeight="31.0" prefWidth="162.0" promptText="XXXX" GridPane.columnIndex="1">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField prefHeight="31.0" prefWidth="162.0" GridPane.columnIndex="2">
+                                    <TextField prefHeight="31.0" prefWidth="162.0" promptText="XXXX" GridPane.columnIndex="2">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
                                     </TextField>
-                                    <TextField prefHeight="31.0" prefWidth="162.0" GridPane.columnIndex="3">
+                                    <TextField prefHeight="31.0" prefWidth="162.0" promptText="XXXX" GridPane.columnIndex="3">
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
@@ -168,7 +167,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                            <children>
                               <Label text="Datum" />
-                              <TextField />
+                              <TextField promptText="mm/åå" />
                            </children>
                            <padding>
                               <Insets right="10.0" />
@@ -188,7 +187,7 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <Label text="CVC" />
-                              <TextField />
+                              <TextField promptText="XXX" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1">

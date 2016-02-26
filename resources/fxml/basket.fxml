@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basket" prefHeight="514.0" prefWidth="970.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="basket" fx:controller="controllers.BasketController" prefHeight="514.0" prefWidth="970.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ListView fx:id="basketListView" layoutX="120.0" layoutY="97.0" prefHeight="275.0" prefWidth="731.0" />
       <Text layoutX="119.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varukorgen">

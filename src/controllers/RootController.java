@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.beans.PropertyChangeEvent;
@@ -22,9 +23,11 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private HeaderController headerController;
     @FXML private MainPageController mainPageController;
     @FXML private CartController cartController;
+    @FXML private BasketController basketController;
     @FXML private AnchorPane root, meat, greens, dairy, cupboard, drinks, sweets;
     @FXML private AnchorPane mainPage;
     @FXML private AnchorPane basket;
+    @FXML private GridPane shop;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     @Override
@@ -48,7 +51,9 @@ public class RootController implements Initializable, PropertyChangeListener {
             }
         });
 
+        // Add as observer to the sub views
         cartController.addObserver(this);
+        basketController.addObserver(this);
 
         //DOESN'T WORK
 
@@ -82,6 +87,14 @@ public class RootController implements Initializable, PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        basket.toFront();
+        switch(evt.getPropertyName()) {
+            case "to-basket":
+                basket.toFront();
+                break;
+            case "to-shop":
+                shop.toFront();
+                break;
+        }
+
     }
 }

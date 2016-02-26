@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,10 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPage" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: tan;"
-            xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane fx:id="mainPage" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: tan;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainPageController">
    <children>
-      <AnchorPane fx:id="header" minHeight="-Infinity" prefHeight="140.0" prefWidth="1100.0" stylesheets="@../css/header.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="340.0">
+      <AnchorPane fx:id="header" minHeight="-Infinity" prefHeight="140.0" prefWidth="1100.0" stylesheets="@../css/header.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="380.0">
          <children>
             <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
@@ -31,33 +26,20 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1">
                      <children>
-                        <Separator maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="110.0" />
-                        <Button mnemonicParsing="false">
-                           <graphic>
-                              <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button mnemonicParsing="false">
-                           <graphic>
-                              <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
+                        <Separator maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="100.0" />
+                        <VBox alignment="TOP_CENTER" spacing="10.0">
+                           <children>
+                              <Region prefHeight="90.0" prefWidth="90.0" />
+                              <Label text="MIN HISTORIK" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" spacing="10.0">
+                           <children>
+                              <Region prefHeight="90.0" prefWidth="90.0" />
+                              <Label text="MITT KONTO" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
                      </children>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
                   </HBox>
                   <HBox alignment="CENTER" spacing="15.0">
                      <children>

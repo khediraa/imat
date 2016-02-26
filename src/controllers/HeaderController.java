@@ -1,6 +1,9 @@
 package controllers;
 
 import javafx.animation.PathTransition;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -25,12 +29,13 @@ public class HeaderController implements Initializable{
     @FXML AnchorPane header;
     @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg;
     @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn;
+    private AnchorPane otherPane;
 
     private List<ImageView> images = new ArrayList<>();
     private List<Button> buttons = new ArrayList<>();
     private Map<String,MultiEvent<ActionEvent>> buttonEvents = new HashMap<>();
 
-    boolean firstClick = true;
+    private boolean firstClick = true;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,14 +57,17 @@ public class HeaderController implements Initializable{
         //and setting their actions.
         for(Button button : buttons){
             buttonEvents.put(button.getId(), new MultiEvent<>());
-            addEventToButton(button.getId(), "move", move());
+            //addEventToButton(button.getId(), "move", move());
             button.setOnAction(buttonEvents.get(button.getId()));
-            if(!firstClick){
-                removeEventFromButton(button.getId(),"move");
-            }
         }
     }
 
+    /**
+     * Returns if first click has been clicked.
+     */
+    public boolean isFirstClick(){
+        return firstClick;
+    }
 
     /**
      * Adds a specified eventhandler to this button
@@ -82,7 +90,7 @@ public class HeaderController implements Initializable{
     /**
      * Makes the header move upwards.
      */
-    private EventHandler<ActionEvent> move(){
+    /*private EventHandler<ActionEvent> move(){
         return event -> {
             if(firstClick){
                 Path path = new Path();
@@ -94,6 +102,38 @@ public class HeaderController implements Initializable{
             }
             firstClick = false;
         };
+    }*/
+
+    private EventHandler<ActionEvent> MOVE_PANES;
+
+    public void sendOtherPane(AnchorPane pane) {
+        this.otherPane = pane;
+    }
+
+    private void movePane(AnchorPane pane, double fromX, double fromY, double toX, double toY, double ms) {
+        Path path = new Path();
+        path.getElements().add(new MoveTo(fromX, fromY));
+        path.getElements().add(new LineTo(toX, toY));
+
+        PathTransition pathTransition = new PathTransition(Duration.millis(ms),path,pane);
+        pathTransition.play();
+    }
+
+    public void setupMovePaneAction(EventHandler<ActionEvent> e) {
+        MOVE_PANES = event -> {
+            movePane(header, header.getWidth()/2, 100, header.getWidth()/2, -230, 800);
+            movePane(otherPane, otherPane.getWidth()/2, otherPane.getHeight()/2, otherPane.getWidth()/2, -otherPane
+                    .getHeight()/2 + 40, 800);
+
+            System.out.println(otherPane.getWidth()/2);
+            for (Button b : buttons){
+                b.setOnAction(e);
+            }
+        };
+
+        for(Button b : buttons){
+            b.setOnAction(MOVE_PANES);
+        }
     }
 
 }

@@ -2,15 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="520.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationController">
+<BorderPane fx:id="registrationPane" prefHeight="520.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationController">
    <center>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="302.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Registrera ett konto">
                <font>
@@ -18,12 +18,12 @@
                </font>
             </Label>
             <Label text="Användarnamn" />
-            <TextField />
+            <TextField fx:id="userName" />
             <Label text="Ange lösenord" />
-            <TextField />
+            <PasswordField fx:id="password" />
             <Label text="Ange lösenord igen" />
-            <TextField />
-            <Button mnemonicParsing="false" text="Registrera dig" />
+            <PasswordField fx:id="passwordAgain" />
+            <Button fx:id="registerButton" mnemonicParsing="false" text="Registrera dig" />
          </children>
       </VBox>
    </center>

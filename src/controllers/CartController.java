@@ -57,7 +57,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         toCartBtn.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                pcs.firePropertyChange("Change view", null, false);
+                pcs.firePropertyChange("to-basket", null, false);
             }
         });
 
@@ -69,7 +69,6 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         cartTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
 
         if(cartEvent.isAddEvent()) {
-            System.out.println("add bro");
             cartList.add(cartEvent.getShoppingItem());
         } else {
             if (cartEvent.getShoppingItem().getAmount() <= 0) {

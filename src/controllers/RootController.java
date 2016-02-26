@@ -17,29 +17,42 @@ import java.util.ResourceBundle;
  */
 public class RootController implements Initializable{
     @FXML private HeaderController headerController;
+    @FXML private MainPageController mainPageController;
     @FXML private AnchorPane root, meat, greens, dairy, cupboard, drinks, sweets;
-    @FXML private Pane homePage;
+    @FXML private AnchorPane mainPage;
     List<AnchorPane> anchorPanes = new ArrayList<>();
-    Number rootWidth;
-    Number rootHeight;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         anchorPanes.add(meat); anchorPanes.add(greens); anchorPanes.add(dairy);
         anchorPanes.add(cupboard); anchorPanes.add(drinks); anchorPanes.add(sweets);
 
+        headerController.sendOtherPane(mainPage);
+
+        greens.toFront();
+
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
-            rootWidth = newValue;
+            if(headerController.isFirstClick()){
+                mainPageController.setWidth(newValue.doubleValue());
+            }
         });
 
         root.heightProperty().addListener((observable, oldValue, newValue) -> {
-            rootHeight = newValue;
+            if (headerController.isFirstClick()){
+                mainPageController.setHeight(newValue.doubleValue());
+            }
         });
+
+
+        //DOESN'T WORK
 
         //Adding the navigational eventhandler to every button
         for(AnchorPane anchorPane : anchorPanes) {
-            headerController.addEventToButton(anchorPane.getId() + "Btn",
-                    "to front", anchorPaneToFront(anchorPane));
+
+            //Adding the navigation between stackpanes
+            headerController.setupMovePaneAction(anchorPaneToFront(anchorPane));
+            //Moving the main-page upwards
+
         }
     }
 
@@ -47,14 +60,12 @@ public class RootController implements Initializable{
      * Stacks this anchorpane on top.
      */
     private EventHandler<ActionEvent> anchorPaneToFront(AnchorPane anchorPane) {
-        return event -> anchorPane.toFront();
+        return event -> greens.toFront();
     }
 
-    public Number getRootWidth(){
-        return rootWidth;
-    }
-
-    public Number getRootHeight(){
-        return rootHeight;
+    private EventHandler<ActionEvent> mainPageUpwards() {
+        return event -> {
+            //Todo...
+        };
     }
 }

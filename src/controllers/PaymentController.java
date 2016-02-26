@@ -14,31 +14,29 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * By Therese Sturesson
+ * By: Therese Sturesson
  * Date: 2016-02-24
- * Project: imat26
+ * project: imat26
  */
+public class PaymentController implements Initializable, ShoppingCartListener, IObservable {
 
-public class BasketController implements Initializable, ShoppingCartListener, IObservable {
-
-    @FXML private Button backToShopButton;
-    @FXML private Button toPayButton;
-
+    @FXML private Button backToBasketButton;
+    @FXML private Button confirmButton;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        backToShopButton.setOnAction(new EventHandler<ActionEvent>() {
+        backToBasketButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                pcs.firePropertyChange("to-shop", true, false);
+                pcs.firePropertyChange("back-to-basket", true, false);
             }
         });
 
-        toPayButton.setOnAction(new EventHandler<ActionEvent>() {
+        confirmButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                pcs.firePropertyChange("to-payment", true, false);
+                pcs.firePropertyChange("confirm-order", true, false);
             }
         });
     }
@@ -50,11 +48,11 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
 
     @Override
     public void addObserver(PropertyChangeListener observer) {
-        this.pcs.addPropertyChangeListener(observer);
+        pcs.addPropertyChangeListener(observer);
     }
 
     @Override
     public void removeObserver(PropertyChangeListener observer) {
-        this.pcs.removePropertyChangeListener(observer);
+        pcs.removePropertyChangeListener(observer);
     }
 }

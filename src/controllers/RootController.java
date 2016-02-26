@@ -24,9 +24,13 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private MainPageController mainPageController;
     @FXML private CartController cartController;
     @FXML private BasketController basketController;
+    @FXML private PaymentController paymentController;
+    @FXML private ConformationController conformationController;
     @FXML private AnchorPane root, meat, greens, dairy, cupboard, drinks, sweets;
     @FXML private AnchorPane mainPage;
     @FXML private AnchorPane basket;
+    @FXML private AnchorPane payment;
+    @FXML private AnchorPane conformation;
     @FXML private GridPane shop;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
@@ -54,6 +58,8 @@ public class RootController implements Initializable, PropertyChangeListener {
         // Add as observer to the sub views
         cartController.addObserver(this);
         basketController.addObserver(this);
+        paymentController.addObserver(this);
+        conformationController.addObserver(this);
 
         //DOESN'T WORK
 
@@ -85,6 +91,8 @@ public class RootController implements Initializable, PropertyChangeListener {
         };
     }
 
+
+    // Changes views!
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch(evt.getPropertyName()) {
@@ -93,6 +101,15 @@ public class RootController implements Initializable, PropertyChangeListener {
                 break;
             case "to-shop":
                 shop.toFront();
+                break;
+            case "to-payment":
+                payment.toFront();
+                break;
+            case "back-to-basket":
+                basket.toFront();
+                break;
+            case "confirm-order":
+                conformation.toFront();
                 break;
         }
 

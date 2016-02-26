@@ -19,7 +19,9 @@
       </GridPane>
       <StackPane layoutX="-0.5" layoutY="179.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
          <children>
-             <fx:include fx:id="basket" source="Basket.fxml" />
+            <fx:include fx:id="basket" source="Basket.fxml" />
+            <fx:include fx:id="payment" source="Payment.fxml" />
+            <fx:include fx:id="conformation" source="Conformation.fxml" />
             <GridPane fx:id="shop" gridLinesVisible="true">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

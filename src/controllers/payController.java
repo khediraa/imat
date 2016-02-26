@@ -5,5 +5,5 @@ package controllers;
  * Date: 2016-02-24
  * project: imat26
  */
-public class PayController {
+public class payController {
 }

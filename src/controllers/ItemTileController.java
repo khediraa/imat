@@ -1,18 +1,25 @@
 package controllers;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
 import se.chalmers.ait.dat215.project.ShoppingCart;
 import se.chalmers.ait.dat215.project.ShoppingItem;
+import utils.Utils;
 
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ResourceBundle;
 
 /**
@@ -21,8 +28,10 @@ import java.util.ResourceBundle;
 public class ItemTileController implements Initializable {
     @FXML Label title, price;
     @FXML Button addProductBtn;
+    @FXML Button removeProductBtn;
     @FXML ImageView image;
     @FXML TextField amountField;
+    @FXML Label addUnit;
     private Product product;
     private ShoppingCart shoppingCart;
 
@@ -30,17 +39,99 @@ public class ItemTileController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         IMatDataHandler im = IMatDataHandler.getInstance();
         this.shoppingCart = im.getShoppingCart();
+
+
+        amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(newValue) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            amountField.selectAll();
+                        }
+                    });
+                } else {
+                    setProductAmount(formatAmountInput(amountField.getText()));
+                }
+            }
+        });
+
+
+        // when pressing enter while editing format the input
+        amountField.addEventFilter(KeyEvent.ANY, e->{
+            if(e.getCode().equals(KeyCode.ENTER)) {
+                setProductAmount(formatAmountInput(amountField.getText()));
+                e.consume();
+                amountField.getParent().requestFocus();
+            }
+        });
+
+    }
+
+    private double formatAmountInput(String amountString) {
+        double amount = 0;
+
+        amountString = amountString.replace(',', '.');
+
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("0.0", dfs);
+
+        if (Utils.isValidDouble(amountString)) {
+            amount = Double.parseDouble(amountString);
+        }
+
+        String formatedText = df.format(amount);
+        amountField.setText(formatedText);
+
+        return amount;
+    }
+
+
+
+    private void refreshAmountField() {
+        ShoppingItem matchingItem = getMatchingItemInCart();
+        if (matchingItem != null) {
+            amountField.setText(String.valueOf(matchingItem.getAmount()));
+        } else {
+            amountField.setText(String.valueOf(formatAmountInput("0")));
+        }
+    }
+
+    private void setProductAmount(double amount) {
+        ShoppingItem matchingItem = getMatchingItemInCart();
+        if(matchingItem == null && amount <= 0) return;
+
+        if(matchingItem == null) {
+            this.shoppingCart.addProduct(this.product, amount);
+        } else {
+            if (amount <= 0) {
+                matchingItem.setAmount(0);
+                this.shoppingCart.removeItem(matchingItem);
+            } else {
+                matchingItem.setAmount(amount);
+                this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
+            }
+        }
+        refreshAmountField();
     }
 
     @FXML
     protected void addProductToCart() {
-        double amount = Double.parseDouble(amountField.getText());
-        ShoppingItem matchingItem = getMatchingItemInCart();
-        if(matchingItem != null) {
-            matchingItem.setAmount(matchingItem.getAmount() + amount);
-            this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
+        if (getMatchingItemInCart() == null) {
+            setProductAmount(1);
         } else {
-            this.shoppingCart.addProduct(this.product, amount);
+            setProductAmount(getMatchingItemInCart().getAmount() + 1);
+        }
+    }
+
+    @FXML
+    protected void removeFromCart() {
+        if (getMatchingItemInCart() == null) {
+            return;
+        } else {
+            setProductAmount(getMatchingItemInCart().getAmount() - 1);
         }
     }
 
@@ -50,6 +141,10 @@ public class ItemTileController implements Initializable {
 
     public void setTitle(String title){
         this.title.setText(title);
+    }
+
+    public void setUnitSuffix(String unitSuffix) {
+        this.addUnit.setText(unitSuffix);
     }
 
     public void setPriceAndUnit(Double price, String unit){

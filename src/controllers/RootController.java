@@ -25,23 +25,22 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private CartController cartController;
     @FXML private BasketController basketController;
     @FXML private PaymentController paymentController;
+    @FXML private ShopController shopController;
     @FXML private ConformationController conformationController;
-    @FXML private AnchorPane root, meat, greens, dairy, cupboard, drinks, sweets;
+    @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
     @FXML private AnchorPane basket;
     @FXML private AnchorPane payment;
     @FXML private AnchorPane conformation;
-    @FXML private GridPane shop;
+    @FXML private GridPane shopGrid;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        anchorPanes.add(meat); anchorPanes.add(greens); anchorPanes.add(dairy);
-        anchorPanes.add(cupboard); anchorPanes.add(drinks); anchorPanes.add(sweets);
+
+        anchorPanes.add(root);
 
         headerController.sendOtherPane(mainPage);
-
-        greens.toFront();
 
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
             if(headerController.isFirstClick()){
@@ -60,25 +59,14 @@ public class RootController implements Initializable, PropertyChangeListener {
         basketController.addObserver(this);
         paymentController.addObserver(this);
         conformationController.addObserver(this);
-
-        //DOESN'T WORK
-
-        //Adding the navigational eventhandler to every button
-        for(AnchorPane anchorPane : anchorPanes) {
-
-            //Adding the navigation between stackpanes
-            headerController.setupMovePaneAction(anchorPaneToFront(anchorPane));
-            //Moving the main-page upwards
-
-        }
+        headerController.addObserver(this);
     }
-
 
     /**
      * Stacks this anchorpane on top.
      */
     private EventHandler<ActionEvent> anchorPaneToFront(AnchorPane anchorPane) {
-        return event -> greens.toFront();
+        return event -> shopGrid.toFront();
     }
 
     private EventHandler<ActionEvent> toCartView() {
@@ -91,8 +79,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         };
     }
 
-
-    // Changes views!
+    // Button Events
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch(evt.getPropertyName()) {
@@ -100,8 +87,8 @@ public class RootController implements Initializable, PropertyChangeListener {
                 basket.toFront();
                 basketController.refreshView();
                 break;
-            case "to-shop":
-                shop.toFront();
+            case "to-":
+                shopGrid.toFront();
                 cartController.refreshView();
                 break;
             case "to-payment":
@@ -112,6 +99,36 @@ public class RootController implements Initializable, PropertyChangeListener {
                 break;
             case "confirm-order":
                 conformation.toFront();
+                break;
+            case "set-category-meat":
+                cartController.refreshView();
+                shopController.displayMeat();
+                shopGrid.toFront();
+                break;
+            case "set-category-greens":
+                cartController.refreshView();
+                shopController.displayGreens();
+                shopGrid.toFront();
+                break;
+            case "set-category-dairy":
+                cartController.refreshView();
+                shopController.displayDairy();
+                shopGrid.toFront();
+                break;
+            case "set-category-pantry":
+                cartController.refreshView();
+                shopController.displayPantry();
+                shopGrid.toFront();
+                break;
+            case "set-category-drinks":
+                cartController.refreshView();
+                shopController.displayDrinks();
+                shopGrid.toFront();
+                break;
+            case "set-category-sweets":
+                cartController.refreshView();
+                shopController.displaySweets();
+                shopGrid.toFront();
                 break;
         }
 

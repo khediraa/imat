@@ -98,9 +98,11 @@ public class RootController implements Initializable, PropertyChangeListener {
         switch(evt.getPropertyName()) {
             case "to-basket":
                 basket.toFront();
+                basketController.refreshView();
                 break;
             case "to-shop":
                 shop.toFront();
+                cartController.refreshView();
                 break;
             case "to-payment":
                 payment.toFront();

@@ -22,7 +22,7 @@
             <fx:include fx:id="basket" source="Basket.fxml" />
             <fx:include fx:id="payment" source="Payment.fxml" />
             <fx:include fx:id="conformation" source="Conformation.fxml" />
-            <GridPane fx:id="shop" gridLinesVisible="true">
+            <GridPane fx:id="shopGrid" gridLinesVisible="true">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="-Infinity" minWidth="300.0" prefWidth="300.0" />
@@ -33,12 +33,7 @@
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <fx:include fx:id="meat" source="Meat.fxml" />
-                        <fx:include fx:id="greens" source="Greens.fxml" />
-                        <fx:include fx:id="dairy" source="Dairy.fxml" />
-                        <fx:include fx:id="cupboard" source="Cupboard.fxml" />
-                        <fx:include fx:id="drinks" source="Drinks.fxml" />
-                        <fx:include fx:id="sweets" source="Sweets.fxml" />
+                        <fx:include fx:id="shop" source="Shop.fxml" />
                      </children>
                   </StackPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">

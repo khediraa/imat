@@ -63,7 +63,6 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
     }
 
-
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
         cartTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
@@ -77,6 +76,10 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         }
 
         cartListView.refresh();
+    }
+
+    public void refreshView() {
+        cartList.setAll(cartInstance.getItems());
     }
 
     @Override

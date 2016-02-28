@@ -87,7 +87,7 @@ public class RootController implements Initializable, PropertyChangeListener {
                 basket.toFront();
                 basketController.refreshView();
                 break;
-            case "to-":
+            case "to-shop":
                 shopGrid.toFront();
                 cartController.refreshView();
                 break;

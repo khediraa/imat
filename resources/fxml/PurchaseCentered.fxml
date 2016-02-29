@@ -18,7 +18,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="myProfilePane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MyProfileController">
+
+<BorderPane fx:id="payment" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="1000.0">
          <children>
@@ -234,12 +235,12 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" text="Tillbaka" GridPane.halignment="RIGHT">
+                              <Button fx:id="backToBasketButton" mnemonicParsing="false" text="Tillbaka" GridPane.halignment="RIGHT">
                                  <GridPane.margin>
                                     <Insets right="233.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="Bekräfta köp" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                              <Button fx:id="confirmButton" mnemonicParsing="false" text="Bekräfta köp" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                                  <GridPane.margin>
                                     <Insets left="203.0" />
                                  </GridPane.margin>

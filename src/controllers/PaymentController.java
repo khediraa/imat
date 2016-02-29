@@ -33,18 +33,12 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        backToBasketButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                pcs.firePropertyChange("back-to-basket", true, false);
-            }
+        backToBasketButton.setOnAction(event -> {
+            pcs.firePropertyChange("back-to-basket", true, false);
         });
 
-        confirmButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        confirmButton.setOnAction(event -> {
                 pcs.firePropertyChange("confirm-order", true, false);
-            }
         });
 
         billChoice.setOnAction(event -> {cardPayment.setDisable(true);});

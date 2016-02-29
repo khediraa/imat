@@ -57,7 +57,6 @@ public class ItemTileController implements Initializable {
             }
         });
 
-
         // when pressing enter while editing format the input
         amountField.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
@@ -87,7 +86,11 @@ public class ItemTileController implements Initializable {
         return amount;
     }
 
-
+    public void setAmountFormat() {
+        if(this.product.getUnitSuffix().equals("kg")) {
+            amountField.setText("0.0");
+        }
+    }
 
     private void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
@@ -144,7 +147,7 @@ public class ItemTileController implements Initializable {
         if (unitSuffix.equals("förp")) {
             unitSuffix = "fp";
         }
-        if (unitSuffix.equals("burk") && unitSuffix.equals("påse")) {
+        if (unitSuffix.equals("burk") || unitSuffix.equals("påse")) {
             unitSuffix = "st";
         }
         this.addUnit.setText(unitSuffix);

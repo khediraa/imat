@@ -26,6 +26,7 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private BasketController basketController;
     @FXML private PaymentController paymentController;
     @FXML private ShopController shopController;
+    @FXML private LogInController logInPaneController;
     @FXML private ConformationController conformationController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
@@ -35,6 +36,7 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private GridPane shopGrid;
     @FXML private StackPane mainContainer;
     @FXML private BorderPane logInPane;
+    @FXML private BorderPane myProfilePane;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
@@ -45,10 +47,6 @@ public class RootController implements Initializable, PropertyChangeListener {
         headerController.sendOtherPane(mainPage);
 
         loginModal = new Modal(logInPane, root);
-
-        //loginButton.setOnAction(event -> purchaseHistoryPane.show());
-        //purchaseHistoryPaneController.setCloseAction(() -> purchaseHistoryPane.hide());
-
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
             if(headerController.isFirstClick()){
                 mainPageController.setWidth(newValue.doubleValue());
@@ -67,23 +65,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         paymentController.addObserver(this);
         conformationController.addObserver(this);
         headerController.addObserver(this);
-    }
-
-    /**
-     * Stacks this anchorpane on top.
-     */
-    private EventHandler<ActionEvent> anchorPaneToFront(AnchorPane anchorPane) {
-        return event -> shopGrid.toFront();
-    }
-
-    private EventHandler<ActionEvent> toCartView() {
-        return event -> basket.toFront();
-    }
-
-    private EventHandler<ActionEvent> mainPageUpwards() {
-        return event -> {
-            //Todo...
-        };
+        logInPaneController.addObserver(this);
     }
 
     // Button Events
@@ -139,6 +121,11 @@ public class RootController implements Initializable, PropertyChangeListener {
                 break;
 
             case "login-modal":
+                loginModal.toggleModal();
+                break;
+
+            case "to-my-profile":
+                myProfilePane.toFront();
                 loginModal.toggleModal();
                 break;
         }

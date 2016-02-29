@@ -1,15 +1,11 @@
 package utils;
 
-import com.sun.org.apache.regexp.internal.RE;
 import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 

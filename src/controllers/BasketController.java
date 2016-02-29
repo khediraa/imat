@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
@@ -29,8 +30,8 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
     @FXML private Button backToShopButton;
     @FXML private Button toPayButton;
     @FXML private ListView basketListView;
-    @FXML private Text basketTotal;
-    @FXML private ShoppingCart cartInstance;
+    @FXML private Label basketTotal;
+    private ShoppingCart cartInstance;
     ObservableList<ShoppingItem> cartList = FXCollections.observableArrayList();
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);

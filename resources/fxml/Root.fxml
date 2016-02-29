@@ -21,7 +21,6 @@
          <children>
             <fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity" maxHeight="-Infinity" source="LoginPage.fxml" />
             <fx:include fx:id="basket" source="BasketCentered.fxml" />
-
             <fx:include fx:id="payment" source="PurchaseCentered.fxml" />
             <fx:include fx:id="conformation" source="Conformation.fxml" />
             <GridPane fx:id="shopGrid" gridLinesVisible="true">

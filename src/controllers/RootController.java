@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -29,8 +30,8 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private ConformationController conformationController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
-    @FXML private AnchorPane basket;
-    @FXML private AnchorPane payment;
+    @FXML private BorderPane basket;
+    @FXML private BorderPane payment;
     @FXML private AnchorPane conformation;
     @FXML private GridPane shopGrid;
     List<AnchorPane> anchorPanes = new ArrayList<>();

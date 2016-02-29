@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="basket" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BasketController">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0">
          <children>
@@ -29,7 +29,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <ListView prefHeight="250.0" prefWidth="200.0" />
+                  <ListView fx:id="basketListView" prefHeight="250.0" prefWidth="200.0" />
                   <HBox alignment="CENTER_RIGHT">
                      <children>
                         <Label text="Totalt: ">
@@ -37,7 +37,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label text="pris ">
+                        <Label fx:id="basketTotal" text="pris ">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -58,8 +58,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="Fortsätt handla" />
-                        <Button mnemonicParsing="false" text="Betala" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <Button fx:id="backToShopButton" mnemonicParsing="false" text="Fortsätt handla" />
+                        <Button fx:id="toPayButton" mnemonicParsing="false" text="Betala" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                      </children>
                   </GridPane>
                </children>

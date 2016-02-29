@@ -11,7 +11,7 @@
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button fx:id="purchaseHistoryButton" layoutX="85.0" layoutY="270.0" mnemonicParsing="false" text="Köphistorik" />
+            <Button fx:id="toPurchaseHistoryButton" layoutX="85.0" layoutY="270.0" mnemonicParsing="false" text="Köphistorik" />
             <Label layoutX="85.0" layoutY="79.0" styleClass="title" text="Tack för ditt köp!" />
             <TextFlow layoutX="85.0" layoutY="121.0" prefHeight="122.0" prefWidth="411.0">
                <children>

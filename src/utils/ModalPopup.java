@@ -72,6 +72,5 @@ public class ModalPopup extends FlowPane {
         fade = (FadeTransition) disappearAnimation;
         fade.setFromValue(1);
         fade.setToValue(0);
-
     }
 }

@@ -1,10 +1,12 @@
 package controllers;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 import utils.ModalPopup;
 
 import java.beans.PropertyChangeEvent;
@@ -138,6 +140,12 @@ public class RootController implements Initializable, PropertyChangeListener {
 
             case "login-modal":
                 logInPane.toFront();
+                FadeTransition appearAnimation;
+                appearAnimation = new FadeTransition(Duration.millis(300), logInPane);
+                FadeTransition fade = appearAnimation;
+                fade.setFromValue(0);
+                fade.setToValue(1);
+                appearAnimation.play();
                 break;
         }
 

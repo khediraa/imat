@@ -52,7 +52,7 @@ public class HeaderController implements Initializable, IObservable {
 
         // Open modal for profile btn
         myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
-            System.out.println(123123);
+            pcs.firePropertyChange("login-modal", true, false);
         });
 
         //Masking all button-images to circles

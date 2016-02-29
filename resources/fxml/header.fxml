@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -13,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="header" minHeight="-Infinity" prefHeight="140.0" prefWidth="1100.0" style="-fx-background-color: tan;" stylesheets="@../css/header.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="340.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
+<AnchorPane fx:id="header" minHeight="-Infinity" prefHeight="140.0" prefWidth="1100.0" style="-fx-background-color: tan;" stylesheets="@../css/header.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="340.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -40,7 +46,7 @@
                   </Button>
                   <Button mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="myProfileBtn" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                      <padding>
                         <Insets right="-1.0" top="-1.0" />

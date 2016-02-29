@@ -7,11 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
-import utils.ModalPopup;
+import utils.Modal;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +37,14 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private BorderPane logInPane;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
+    private Modal loginModal;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        ModalPopup.initialize(mainContainer, root);
-
         anchorPanes.add(root);
         headerController.sendOtherPane(mainPage);
+
+        loginModal = new Modal(logInPane, root);
 
         //loginButton.setOnAction(event -> purchaseHistoryPane.show());
         //purchaseHistoryPaneController.setCloseAction(() -> purchaseHistoryPane.hide());
@@ -139,13 +139,7 @@ public class RootController implements Initializable, PropertyChangeListener {
                 break;
 
             case "login-modal":
-                logInPane.toFront();
-                FadeTransition appearAnimation;
-                appearAnimation = new FadeTransition(Duration.millis(300), logInPane);
-                FadeTransition fade = appearAnimation;
-                fade.setFromValue(0);
-                fade.setToValue(1);
-                appearAnimation.play();
+                loginModal.toggleModal();
                 break;
         }
 

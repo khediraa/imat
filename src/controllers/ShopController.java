@@ -81,6 +81,8 @@ public class ShopController implements Initializable {
 
                 itemTileController.setUnitSuffix(product.getUnitSuffix());
 
+                itemTileController.setAmountFormat();
+
                 //add the itemTile to the tilePane
                 tilePane.getChildren().add(itemTile);
 

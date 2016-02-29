@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 public class ConfirmationController implements Initializable, ShoppingCartListener, IObservable {
 
     @FXML private Button toShopButton;
+    @FXML private Button toPurchaseHistoryButton;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -31,6 +32,10 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
             public void handle(ActionEvent event) {
                 pcs.firePropertyChange("to-shop", true, false);
             }
+        });
+
+        toPurchaseHistoryButton.setOnAction(event -> {
+            //Todo...
         });
     }
 

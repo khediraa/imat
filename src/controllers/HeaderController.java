@@ -35,7 +35,6 @@ public class HeaderController implements Initializable, IObservable {
 
     private List<ImageView> images = new ArrayList<>();
     private List<Button> buttons = new ArrayList<>();
-    private Map<String,MultiEvent<ActionEvent>> buttonEvents = new HashMap<>();
 
     private boolean firstClick = true;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -77,6 +76,7 @@ public class HeaderController implements Initializable, IObservable {
     private EventHandler<ActionEvent> pickCategory = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
+
             Button buttonClicked = (Button)event.getSource();
             String btnId = buttonClicked.getId();
 

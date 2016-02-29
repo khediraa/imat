@@ -127,7 +127,7 @@
                         <Separator orientation="VERTICAL" prefHeight="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
                         <VBox prefHeight="380.0" prefWidth="400.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="50.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" selected="true" text="Kortbetalning">
+                              <RadioButton fx:id="cardChoice" mnemonicParsing="false" selected="true" text="Kortbetalning">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -135,7 +135,7 @@
                                     <ToggleGroup fx:id="typeOfPayment" />
                                  </toggleGroup>
                               </RadioButton>
-                          <AnchorPane maxHeight="200.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <AnchorPane fx:id="cardPayment" maxHeight="200.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <GridPane layoutX="50.4" layoutY="-5.6" prefHeight="196.0" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columnConstraints>
@@ -214,10 +214,13 @@
                                        </padding>
                                     </GridPane>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets left="30.0" />
+                                 </VBox.margin>
                               </AnchorPane>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="Posten faktura, 30 kr." toggleGroup="$typeOfPayment" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <RadioButton fx:id="billChoice" mnemonicParsing="false" text="Posten faktura, 30 kr." toggleGroup="$typeOfPayment" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                        <font>
                                           <Font size="24.0" />
                                        </font>

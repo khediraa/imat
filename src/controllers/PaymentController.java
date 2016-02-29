@@ -5,6 +5,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 
@@ -22,6 +25,10 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
 
     @FXML private Button backToBasketButton;
     @FXML private Button confirmButton;
+    @FXML private AnchorPane cardPayment;
+    @FXML private ToggleGroup typeOfPayment;
+    @FXML private RadioButton cardChoice;
+    @FXML private RadioButton billChoice;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
@@ -39,6 +46,10 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
                 pcs.firePropertyChange("confirm-order", true, false);
             }
         });
+
+        billChoice.setOnAction(event -> {cardPayment.setDisable(true);});
+        cardChoice.setOnAction(event -> cardPayment.setDisable(false));
+
     }
 
     @Override

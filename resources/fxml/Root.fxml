@@ -17,9 +17,8 @@
           <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
         </rowConstraints>
       </GridPane>
-      <StackPane layoutX="-0.5" layoutY="179.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
+      <StackPane fx:id="mainContainer" layoutX="-0.5" layoutY="179.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
          <children>
-            <fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity" maxHeight="-Infinity" source="LoginPage.fxml" />
             <fx:include fx:id="basket" source="Basket.fxml" />
             <fx:include fx:id="payment" source="Payment.fxml" />
             <fx:include fx:id="conformation" source="Conformation.fxml" />
@@ -42,6 +41,8 @@
                   </AnchorPane>
                </children>
             </GridPane>
+
+             <fx:include fx:id="logInPane" source="LoginPage.fxml" />
          </children>
       </StackPane>
        <fx:include fx:id="mainPage" source="MainPage.fxml" />

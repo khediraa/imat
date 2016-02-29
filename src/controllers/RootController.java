@@ -4,9 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import utils.ModalPopup;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -33,12 +32,20 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private AnchorPane payment;
     @FXML private AnchorPane conformation;
     @FXML private GridPane shopGrid;
+    @FXML private StackPane mainContainer;
+    @FXML private BorderPane logInPane;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        ModalPopup.initialize(mainContainer, root);
+
         anchorPanes.add(root);
         headerController.sendOtherPane(mainPage);
+
+        //loginButton.setOnAction(event -> purchaseHistoryPane.show());
+        //purchaseHistoryPaneController.setCloseAction(() -> purchaseHistoryPane.hide());
 
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
             if(headerController.isFirstClick()){
@@ -127,6 +134,10 @@ public class RootController implements Initializable, PropertyChangeListener {
                 cartController.refreshView();
                 shopController.displaySweets();
                 shopGrid.toFront();
+                break;
+
+            case "login-modal":
+                logInPane.toFront();
                 break;
         }
 

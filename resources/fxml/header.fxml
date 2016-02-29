@@ -44,9 +44,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="myProfileBtn" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fx:id="myProfileBtn" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                      <padding>
                         <Insets right="-1.0" top="-1.0" />

@@ -51,7 +51,9 @@ public class HeaderController implements Initializable, IObservable {
         images.add(cupboardImg); images.add(drinksImg); images.add(sweetsImg);
 
         // Open modal for profile btn
-        myProfileBtn.addEventHandler();
+        myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            System.out.println(123123);
+        });
 
         //Masking all button-images to circles
         for(ImageView image : images){

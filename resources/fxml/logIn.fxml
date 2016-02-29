@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Text layoutX="306.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Användarnamn">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="305.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lösenord">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="userNameLogIn" layoutX="306.0" layoutY="191.0" prefHeight="25.0" prefWidth="200.0" />
-      <PasswordField fx:id="passwordLogIn" layoutX="306.0" layoutY="285.0" prefHeight="25.0" prefWidth="200.0" />
-      <Text layoutX="306.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logga in">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Text>
-      <Button fx:id="logInButton" layoutX="588.0" layoutY="396.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Logga in" />
-      <Text fx:id="registerText" layoutX="306.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Är du inte medlemm än? Registrera dig här" wrappingWidth="282.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-   </children>
-</AnchorPane>
+<BorderPane fx:id="logInPane" prefHeight="520.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogInController">
+   <center>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Logga in">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label text="Användarnamn" />
+            <TextField fx:id="userName" promptText="Användarnamn" />
+            <Label text="Lösenord" />
+            <PasswordField fx:id="password" promptText="**********" />
+            <Button fx:id="logInButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="300.0" text="Logga in">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="forgotPasswordLink" text="Glömt lösenord?" />
+            <Region prefHeight="72.0" prefWidth="272.0" />
+            <Label text="Inget konto?" />
+            <Button fx:id="toRegistrationPaneButton" mnemonicParsing="false" text="Skapa konto" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

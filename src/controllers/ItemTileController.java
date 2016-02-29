@@ -66,7 +66,6 @@ public class ItemTileController implements Initializable {
                 amountField.getParent().requestFocus();
             }
         });
-
     }
 
     private double formatAmountInput(String amountString) {
@@ -117,8 +116,7 @@ public class ItemTileController implements Initializable {
         refreshAmountField();
     }
 
-    @FXML
-    protected void addProductToCart() {
+    @FXML protected void addProductToCart() {
         if (getMatchingItemInCart() == null) {
             setProductAmount(1);
         } else {
@@ -126,8 +124,7 @@ public class ItemTileController implements Initializable {
         }
     }
 
-    @FXML
-    protected void removeFromCart() {
+    @FXML protected void removeFromCart() {
         if (getMatchingItemInCart() == null) {
             return;
         } else {
@@ -144,6 +141,12 @@ public class ItemTileController implements Initializable {
     }
 
     public void setUnitSuffix(String unitSuffix) {
+        if (unitSuffix.equals("förp")) {
+            unitSuffix = "fp";
+        }
+        if (unitSuffix.equals("burk") && unitSuffix.equals("påse")) {
+            unitSuffix = "st";
+        }
         this.addUnit.setText(unitSuffix);
     }
 

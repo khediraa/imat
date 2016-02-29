@@ -37,9 +37,7 @@ public class RootController implements Initializable, PropertyChangeListener {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         anchorPanes.add(root);
-
         headerController.sendOtherPane(mainPage);
 
         root.widthProperty().addListener((observable, oldValue, newValue) -> {

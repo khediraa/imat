@@ -22,7 +22,7 @@
             <fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity" maxHeight="-Infinity" source="LoginPage.fxml" />
             <fx:include fx:id="basket" source="BasketCentered.fxml" />
             <fx:include fx:id="payment" source="PurchaseCentered.fxml" />
-            <fx:include fx:id="conformation" source="Conformation.fxml" />
+            <fx:include fx:id="confirmation" source="Confirmation.fxml" />
             <GridPane fx:id="shopGrid" gridLinesVisible="true">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -7,11 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +25,12 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private BasketController basketController;
     @FXML private PaymentController paymentController;
     @FXML private ShopController shopController;
-    @FXML private ConformationController conformationController;
+    @FXML private ConfirmationController confirmationController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
     @FXML private BorderPane basket;
     @FXML private BorderPane payment;
-    @FXML private AnchorPane conformation;
+    @FXML private BorderPane confirmation;
     @FXML private GridPane shopGrid;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
@@ -57,7 +55,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         cartController.addObserver(this);
         basketController.addObserver(this);
         paymentController.addObserver(this);
-        conformationController.addObserver(this);
+        confirmationController.addObserver(this);
         headerController.addObserver(this);
     }
 
@@ -97,7 +95,7 @@ public class RootController implements Initializable, PropertyChangeListener {
                 basket.toFront();
                 break;
             case "confirm-order":
-                conformation.toFront();
+                confirmation.toFront();
                 break;
             case "set-category-meat":
                 cartController.refreshView();

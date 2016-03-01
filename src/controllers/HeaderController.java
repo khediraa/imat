@@ -56,6 +56,9 @@ public class HeaderController implements Initializable, IObservable {
 
         // Open modal for profile btn
         myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            if (firstClick) {
+                pcs.firePropertyChange("set-category-greens", true, false);
+            }
             pcs.firePropertyChange("login-modal", true, false);
         });
 
@@ -92,8 +95,6 @@ public class HeaderController implements Initializable, IObservable {
 
             Button buttonClicked = (Button)event.getSource();
             String btnId = buttonClicked.getId();
-
-            System.out.println(btnId);
 
             String eventMsg = "";
 

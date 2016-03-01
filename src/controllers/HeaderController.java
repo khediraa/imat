@@ -19,33 +19,41 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import multiEvent.MultiEvent;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.net.URL;
 import java.util.*;
 
 /**
  * Created by tuyenngo on 2016-02-22.
  */
-public class HeaderController implements Initializable{
+public class HeaderController implements Initializable, IObservable {
     @FXML AnchorPane header;
     @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg;
-    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn;
+    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, myProfileBtn;
     private AnchorPane otherPane;
 
     private List<ImageView> images = new ArrayList<>();
     private List<Button> buttons = new ArrayList<>();
-    private Map<String,MultiEvent<ActionEvent>> buttonEvents = new HashMap<>();
 
     private boolean firstClick = true;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Add all buttons to the buttons-list due to easier access
+
         buttons.add(meatBtn); buttons.add(greensBtn); buttons.add(dairyBtn);
         buttons.add(cupboardBtn); buttons.add(drinksBtn); buttons.add(sweetsBtn);
 
         //Add all images to the images-list due to easier access
         images.add(meatImg); images.add(greensImg); images.add(dairyImg);
         images.add(cupboardImg); images.add(drinksImg); images.add(sweetsImg);
+
+        // Open modal for profile btn
+        myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("login-modal", true, false);
+        });
 
         //Masking all button-images to circles
         for(ImageView image : images){
@@ -55,11 +63,12 @@ public class HeaderController implements Initializable{
 
         //Pairing buttons with their respective events,
         //and setting their actions.
+
         for(Button button : buttons){
-            buttonEvents.put(button.getId(), new MultiEvent<>());
-            //addEventToButton(button.getId(), "move", move());
-            button.setOnAction(buttonEvents.get(button.getId()));
+            button.addEventHandler(ActionEvent.ACTION, pickCategory);
+            button.addEventHandler(ActionEvent.ACTION, startUpAnimationClick);
         }
+
     }
 
     /**
@@ -69,42 +78,53 @@ public class HeaderController implements Initializable{
         return firstClick;
     }
 
-    /**
-     * Adds a specified eventhandler to this button
-     * @param btnName Name of this button
-     * @param evtName Name of this event
-     * @param event The eventhandler
-     */
-    public void addEventToButton(String btnName, String evtName, EventHandler<ActionEvent> event){
-        if(buttonEvents.get(btnName) != null){
-            buttonEvents.get(btnName).addEvent(evtName, event);
-        }
-    }
+    private EventHandler<ActionEvent> pickCategory = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
 
-    public void removeEventFromButton(String btnName, String evtName){
-        if(buttonEvents.containsKey(btnName)){
-            buttonEvents.get(btnName).removeEvent(evtName);
-        }
-    }
+            Button buttonClicked = (Button)event.getSource();
+            String btnId = buttonClicked.getId();
 
-    /**
-     * Makes the header move upwards.
-     */
-    /*private EventHandler<ActionEvent> move(){
-        return event -> {
-            if(firstClick){
-                Path path = new Path();
-                path.getElements().add(new MoveTo(header.getWidth()/2, 70));
-                path.getElements().add(new LineTo(header.getWidth()/2, -230));
+            System.out.println(btnId);
 
-                PathTransition pathTransition = new PathTransition(Duration.millis(800),path,header);
-                pathTransition.play();
+            String eventMsg = "";
+
+            switch (btnId) {
+                case "meatBtn":
+                    eventMsg = "set-category-meat";
+                    break;
+                case "greensBtn":
+                    eventMsg = "set-category-greens";
+                    break;
+                case "dairyBtn":
+                    eventMsg = "set-category-dairy";
+                    break;
+                case "cupboardBtn":
+                    eventMsg = "set-category-pantry";
+                    break;
+                case "drinksBtn":
+                    eventMsg = "set-category-drinks";
+                    break;
+                case "sweetsBtn":
+                    eventMsg = "set-category-sweets";
+                    break;
+                default:
+                    return;
             }
-            firstClick = false;
-        };
-    }*/
 
-    private EventHandler<ActionEvent> MOVE_PANES;
+            pcs.firePropertyChange(eventMsg, true, false);
+        }
+    };
+
+    private EventHandler<ActionEvent> startUpAnimationClick = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            if (firstClick) {
+                startUpAnimation();
+                firstClick = false;
+            }
+        }
+    };
 
     public void sendOtherPane(AnchorPane pane) {
         this.otherPane = pane;
@@ -119,21 +139,19 @@ public class HeaderController implements Initializable{
         pathTransition.play();
     }
 
-    public void setupMovePaneAction(EventHandler<ActionEvent> e) {
-        MOVE_PANES = event -> {
-            movePane(header, header.getWidth()/2, 100, header.getWidth()/2, -230, 800);
-            movePane(otherPane, otherPane.getWidth()/2, otherPane.getHeight()/2, otherPane.getWidth()/2, -otherPane
-                    .getHeight()/2 + 40, 800);
-
-            System.out.println(otherPane.getWidth()/2);
-            for (Button b : buttons){
-                b.setOnAction(e);
-            }
-        };
-
-        for(Button b : buttons){
-            b.setOnAction(MOVE_PANES);
-        }
+    public void startUpAnimation() {
+        movePane(header, header.getWidth()/2, 100, header.getWidth()/2, -230, 800);
+        movePane(otherPane, otherPane.getWidth()/2, otherPane.getHeight()/2, otherPane.getWidth()/2, -otherPane
+                .getHeight()/2 + 40, 800);
     }
 
+    @Override
+    public void addObserver(PropertyChangeListener observer) {
+        this.pcs.addPropertyChangeListener(observer);
+    }
+
+    @Override
+    public void removeObserver(PropertyChangeListener observer) {
+        this.pcs.removePropertyChangeListener(observer);
+    }
 }

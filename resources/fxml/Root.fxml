@@ -3,7 +3,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
@@ -18,31 +17,37 @@
           <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
         </rowConstraints>
       </GridPane>
-      <GridPane gridLinesVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="-Infinity" minWidth="300.0" prefWidth="300.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <StackPane fx:id="mainContainer" layoutX="-0.5" layoutY="179.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity" maxHeight="-Infinity" source="LoginPage.fxml" />
+            <fx:include fx:id="basket" source="BasketCentered.fxml" />
+            <fx:include fx:id="payment" source="PurchaseCentered.fxml" />
+            <fx:include fx:id="confirmation" source="Confirmation.fxml" />
+            <fx:include fx:id="myProfilePane" source="myProfile.fxml" />
+            <GridPane fx:id="shopGrid" gridLinesVisible="true">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="-Infinity" minWidth="300.0" prefWidth="300.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <fx:include fx:id="meat" source="Meat.fxml" />
-                  <fx:include fx:id="greens" source="Greens.fxml" />
-                  <fx:include fx:id="dairy" source="Dairy.fxml" />
-                  <fx:include fx:id="cupboard" source="Cupboard.fxml" />
-                  <fx:include fx:id="drinks" source="Drinks.fxml" />
-                  <fx:include fx:id="sweets" source="Sweets.fxml" />
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <fx:include fx:id="shop" source="Shop.fxml" />
+                     </children>
+                  </StackPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                      <fx:include fx:id="cart" source="Cart.fxml" />
+                  </AnchorPane>
                </children>
-            </StackPane>
-            <AnchorPane fx:id="cart" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                <fx:include source="Cart.fxml" />
-            </AnchorPane>
+            </GridPane>
+
+             <fx:include fx:id="logInPane" source="LoginPage.fxml" />
          </children>
-      </GridPane>
-       <fx:include source="MainPage.fxml" fx:id="mainPage"/>
+      </StackPane>
+       <fx:include fx:id="mainPage" source="MainPage.fxml" />
        <fx:include fx:id="header" source="Header.fxml" />
    </children>
 </AnchorPane>

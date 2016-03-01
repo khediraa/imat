@@ -11,4 +11,8 @@ public class Utils {
         return text.matches("\\d+(\\.\\d+)*");
     }
 
+    public void changeView() {
+
+    }
+
 }

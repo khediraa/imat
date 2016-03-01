@@ -9,6 +9,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.ait.dat215.project.CartEvent;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 
 import java.beans.PropertyChangeListener;
@@ -38,12 +39,18 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
         });
 
         confirmButton.setOnAction(event -> {
-                pcs.firePropertyChange("confirm-order", true, false);
+            completeOrder();
+            pcs.firePropertyChange("confirm-order", true, false);
         });
 
         billChoice.setOnAction(event -> {cardPayment.setDisable(true);});
         cardChoice.setOnAction(event -> cardPayment.setDisable(false));
 
+    }
+
+    private void completeOrder() {
+        IMatDataHandler dataHandler = IMatDataHandler.getInstance();
+        dataHandler.placeOrder(true);
     }
 
     @Override

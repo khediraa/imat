@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
  * Created by carlo on 2016-02-24.
  */
 public class MyProfileController implements Initializable{
-    @FXML private BorderPane myProfilePane;
+    @FXML private BorderPane myProfileView;
     @FXML private TextField firstName;
     @FXML private TextField lastName;
     @FXML private TextField address;

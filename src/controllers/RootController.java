@@ -27,6 +27,7 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private PaymentController paymentController;
     @FXML private ShopController shopController;
     @FXML private ConformationController conformationController;
+    @FXML private RegistrationController registrationController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
     @FXML private AnchorPane basket;
@@ -58,6 +59,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         paymentController.addObserver(this);
         conformationController.addObserver(this);
         headerController.addObserver(this);
+        registrationController.addObserver(this);
     }
 
     /**

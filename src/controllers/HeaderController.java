@@ -30,7 +30,7 @@ import java.util.*;
 public class HeaderController implements Initializable, IObservable {
     @FXML AnchorPane header;
     @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg;
-    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, myProfileBtn;
+    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, myProfileBtn, purchaseHistoryBtn;
     private AnchorPane otherPane;
 
     private List<ImageView> images = new ArrayList<>();
@@ -53,6 +53,10 @@ public class HeaderController implements Initializable, IObservable {
         // Open modal for profile btn
         myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
             pcs.firePropertyChange("login-modal", true, false);
+        });
+
+        purchaseHistoryBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("to-purchase-history", true, false);
         });
 
         //Masking all button-images to circles

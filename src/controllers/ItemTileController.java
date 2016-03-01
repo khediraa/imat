@@ -10,6 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Product;
@@ -32,6 +35,7 @@ public class ItemTileController implements Initializable {
     @FXML ImageView image;
     @FXML TextField amountField;
     @FXML Label addUnit;
+    @FXML Circle removeCircle;
     private Product product;
     private ShoppingCart shoppingCart;
 
@@ -127,6 +131,8 @@ public class ItemTileController implements Initializable {
 
     @FXML protected void addProductToCart() {
         if (getMatchingItemInCart() == null) {
+            //Todo...
+            removeProductBtn.setDisable(false);
             setProductAmount(1);
         } else {
             setProductAmount(getMatchingItemInCart().getAmount() + 1);
@@ -135,6 +141,8 @@ public class ItemTileController implements Initializable {
 
     @FXML protected void removeFromCart() {
         if (getMatchingItemInCart() == null) {
+            //Todo...
+            removeProductBtn.setDisable(true);
             return;
         } else {
             setProductAmount(getMatchingItemInCart().getAmount() - 1);
@@ -165,6 +173,7 @@ public class ItemTileController implements Initializable {
 
     public void setImage(Image imgView){
         image.setImage(imgView);
+        image.setClip(new Rectangle(image.getFitWidth(), image.getFitHeight()));
     }
 
     private ShoppingItem getMatchingItemInCart() {

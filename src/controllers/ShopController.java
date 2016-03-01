@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.TilePane;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
-import se.chalmers.ait.dat215.project.Product;
-import se.chalmers.ait.dat215.project.ProductCategory;
+import se.chalmers.ait.dat215.project.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Created by tuyenngo on 2016-02-22.
  */
-public class ShopController implements Initializable {
+public class ShopController implements Initializable, ShoppingCartListener {
     @FXML TilePane tilePane;
     IMatDataHandler dataInstance = IMatDataHandler.getInstance();
     List<Product> fruits = new ArrayList<>();
@@ -43,12 +41,16 @@ public class ShopController implements Initializable {
 
     List<Product> sweets = new ArrayList<>();
 
+    List<ItemTileController> visibleControllers = new ArrayList<>();
+
 
     ObservableList<Node> products;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fetchProducts();
+
+        IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
 
         //Todo... ----- Must show subcategories
 
@@ -86,10 +88,14 @@ public class ShopController implements Initializable {
                 //add the itemTile to the tilePane
                 tilePane.getChildren().add(itemTile);
 
+                visibleControllers.add(itemTileController);
+
             } catch (IOException ioe){
                 ioe.printStackTrace();
             }
         }
+
+        checkForAmountUpdate(visibleControllers);
     }
 
     /**
@@ -194,5 +200,16 @@ public class ShopController implements Initializable {
 
         // Add sweets
         sweets.addAll(dataInstance.getProducts(ProductCategory.SWEET));
+    }
+
+    @Override
+    public void shoppingCartChanged(CartEvent cartEvent) {
+        checkForAmountUpdate(visibleControllers);
+    }
+
+    private void checkForAmountUpdate(List<ItemTileController> controllerList) {
+        for(ItemTileController itemTileController : controllerList) {
+            itemTileController.refreshAmountField();
+        }
     }
 }

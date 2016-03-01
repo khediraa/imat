@@ -15,7 +15,9 @@ import se.chalmers.ait.dat215.project.*;
 import java.beans.EventHandler;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -65,7 +67,12 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
-        cartTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setRoundingMode(RoundingMode.CEILING);
+        double total = cartInstance.getTotal();
+
+        cartTotal.setText("Totalt " + df.format(total) + " kr");
 
         if(cartEvent.isAddEvent()) {
             cartList.add(cartEvent.getShoppingItem());

@@ -76,11 +76,12 @@ public class ShopController implements Initializable {
                 //set the image
                 itemTileController.setImage(dataInstance.getFXImage(product));
 
-
                 //set the price
                 itemTileController.setPriceAndUnit(product.getPrice(), product.getUnit());
 
                 itemTileController.setUnitSuffix(product.getUnitSuffix());
+
+                itemTileController.setAmountFormat();
 
                 //add the itemTile to the tilePane
                 tilePane.getChildren().add(itemTile);

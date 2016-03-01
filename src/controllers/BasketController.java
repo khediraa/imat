@@ -134,6 +134,17 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
 
     public void refreshView() {
         cartList.setAll(cartInstance.getItems());
+
+        checkoutCheck();
+    }
+
+    // is it ok to checkout?
+    private void checkoutCheck() {
+        if (cartInstance.getItems().size() < 1) {
+            toPayButton.setDisable(true);
+        } else {
+            toPayButton.setDisable(false);
+        }
     }
 
     @Override

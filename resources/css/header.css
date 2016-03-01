@@ -1,4 +1,12 @@
 .button{
-	-fx-background-color: #ffff00;
-	-fx-background-radius: 5em;
+	-fx-background-color: transparent;
+}
+
+.anchorpane{
+	-fx-background-color: #7C9F36;
+}
+
+
+.label {
+	-fx-text-fill: #CCF971;
 }

@@ -155,6 +155,7 @@ public class RootController implements Initializable, PropertyChangeListener {
                 break;
 
             case "to-purchase-history":
+                purchaseHistoryController.refreshOrderHistory();
                 purchaseHistory.toFront();
                 break;
         }

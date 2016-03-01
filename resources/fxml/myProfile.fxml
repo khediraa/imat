@@ -94,7 +94,7 @@
                                     <TextField fx:id="postCode" promptText="Postnummer" />
                                  </children>
                               </VBox>
-                              <Button fx:id="toPurchaseHistoryPaneButton" mnemonicParsing="false" text="Din köphistorik" GridPane.rowIndex="6" />
+                              <Button fx:id="toPurchaseHistoryButton" mnemonicParsing="false" text="Din köphistorik" GridPane.rowIndex="6" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

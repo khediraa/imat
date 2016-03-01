@@ -14,6 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.scene.Cursor?>
 <AnchorPane fx:id="itemTile" prefHeight="250.0" prefWidth="180.0" stylesheets="@../css/itemTile.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemTileController">
    <children>
       <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -63,7 +64,12 @@
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#addProductToCart" opacity="0.0" prefWidth="30.0" GridPane.columnIndex="2" />
+                  <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#addProductToCart" opacity="0.0"
+                          prefWidth="30.0" GridPane.columnIndex="2">
+                      <cursor>
+                          <Cursor fx:constant="HAND" />
+                      </cursor>
+                  </Button>
                   <Label fx:id="addUnit" text="st" textAlignment="CENTER" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="53.0" />
@@ -73,6 +79,9 @@
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                      <cursor>
+                          <Cursor fx:constant="HAND" />
+                      </cursor>
                   </Button>
                </children>
             </GridPane>

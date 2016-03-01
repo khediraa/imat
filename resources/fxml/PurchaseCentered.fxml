@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -194,8 +196,25 @@
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <RadioButton fx:id="visaCard" mnemonicParsing="false" text="Visa" />
-                                                            <RadioButton fx:id="mastercardCard" mnemonicParsing="false" text="Mastercard" GridPane.columnIndex="1" />
+                                                            <RadioButton fx:id="visaCard" mnemonicParsing="false" text="Visa">
+                                                               <toggleGroup>
+                                                                  <ToggleGroup fx:id="typeOfCard" />
+                                                               </toggleGroup>
+                                                               <graphic>
+                                                                  <ImageView fitHeight="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/visaIcon.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                               </graphic></RadioButton>
+                                                            <RadioButton fx:id="mastercardCard" mnemonicParsing="false" text="Mastercard" toggleGroup="$typeOfCard" GridPane.columnIndex="1">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@../img/masterCard.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                               </graphic></RadioButton>
                                                          </children>
                                                       </GridPane>
                                                    </children>

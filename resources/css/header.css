@@ -36,3 +36,17 @@
 	-fx-border-radius: 2;
 	-fx-padding: -1 -1 -1 -1;
 }
+
+.search-bar {
+	-fx-background-radius: 20;
+}
+
+#bar {
+	-fx-background-color: #7C9F36;
+}
+
+#matLabel {
+	-fx-font-family: Futura;
+	-fx-font-size: 16pt;
+	-fx-font-weight: bold;
+}

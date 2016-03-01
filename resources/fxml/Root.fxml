@@ -57,7 +57,7 @@
           <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <HBox alignment="CENTER_LEFT">
+            <HBox fx:id="bar" alignment="CENTER_LEFT" stylesheets="@../css/header.css">
                <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="50.0">
                      <children>
@@ -76,9 +76,9 @@
                      </children>
                   </AnchorPane>
                   <Label fx:id="matLabel" text="Mat" />
-                  <TextField prefWidth="450.0" promptText="Sök efter produkt...">
+                  <TextField fx:id="searchBar" prefWidth="450.0" promptText="Sök efter produkt..." styleClass="search-bar" stylesheets="@../css/header.css">
                      <HBox.margin>
-                        <Insets left="30.0" top="5.0" />
+                        <Insets left="30.0" />
                      </HBox.margin>
                   </TextField>
                </children>

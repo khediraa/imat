@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-
-import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
@@ -32,13 +30,28 @@ public class LogInController implements Initializable, IObservable {
     @FXML
     private Hyperlink forgotPasswordLink;
 
+    private String userNameString;
+    private String passwordString;
+
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
+    public void change() {
+        if (userName.textProperty() != null && password.textProperty() != null) {
+            pcs.firePropertyChange("back-to-previous-screen", true, false);
+        } else {
+            //logInButton.setEnabled(false);
+        }
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logInButton.addEventHandler(ActionEvent.ACTION, event -> {
-            pcs.firePropertyChange("to-my-profile", true, false);
+            pcs.firePropertyChange("back-to-previous-screen", true, false);
         });
+
+        toRegistrationPaneButton.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("to-registration", true, false);
+        });
+
     }
 
     @Override

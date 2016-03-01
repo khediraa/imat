@@ -30,3 +30,29 @@
 .button:pressed .circleBorder{
 	-fx-stroke: white;
 }
+
+.separator:vertical .line{
+	-fx-border-color: transparent #B2DF59 transparent #5A6A23;
+	-fx-border-radius: 2;
+	-fx-padding: -1 -1 -1 -1;
+}
+
+.search-bar {
+	-fx-background-radius: 20;
+}
+
+#bar {
+	-fx-background-color: #7C9F36;
+}
+
+#matLabel {
+	-fx-font-family: Futura;
+	-fx-font-size: 16pt;
+	-fx-font-weight: bold;
+}
+
+#searchButton {
+	-fx-text-fill: #CCF971;
+	-fx-background-color: #485f1b;
+	-fx-background-radius: 20;
+}

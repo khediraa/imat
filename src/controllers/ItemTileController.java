@@ -14,10 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
-import se.chalmers.ait.dat215.project.Product;
-import se.chalmers.ait.dat215.project.ShoppingCart;
-import se.chalmers.ait.dat215.project.ShoppingItem;
+import se.chalmers.ait.dat215.project.*;
 import utils.Utils;
 
 import java.net.URL;
@@ -45,7 +42,7 @@ public class ItemTileController implements Initializable {
         this.shoppingCart = im.getShoppingCart();
 
 
-        amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+        this.amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue) {
@@ -65,8 +62,8 @@ public class ItemTileController implements Initializable {
         amountField.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
                 setProductAmount(formatAmountInput(amountField.getText()));
-                e.consume();
                 amountField.getParent().requestFocus();
+                e.consume();
             }
         });
     }
@@ -98,16 +95,17 @@ public class ItemTileController implements Initializable {
     public void setAmountFormat() {
         if(this.product.getUnitSuffix().equals("kg") || this.product.getUnitSuffix().equals("l")) {
             amountField.setText("0.0");
+        } else {
+            amountField.setText("0");
         }
     }
 
-    private void refreshAmountField() {
+    public void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
-            System.out.println(formatAmountInput(String.valueOf(matchingItem.getAmount())));
-            amountField.setText(String.valueOf(formatAmountInput(String.valueOf(matchingItem.getAmount()))));
+            amountField.setText(Utils.getFormatedProductAmount(matchingItem.getAmount(), product));
         } else {
-            amountField.setText(String.valueOf(formatAmountInput("0")));
+            amountField.setText(Utils.getFormatedProductAmount(0, product));
         }
     }
 
@@ -121,8 +119,10 @@ public class ItemTileController implements Initializable {
             if (amount <= 0) {
                 matchingItem.setAmount(0);
                 this.shoppingCart.removeItem(matchingItem);
+                removeProductBtn.setDisable(true);
             } else {
                 matchingItem.setAmount(amount);
+                removeProductBtn.setDisable(false);
                 this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
             }
         }
@@ -130,9 +130,8 @@ public class ItemTileController implements Initializable {
     }
 
     @FXML protected void addProductToCart() {
+        this.removeProductBtn.setDisable(false);
         if (getMatchingItemInCart() == null) {
-            //Todo...
-            removeProductBtn.setDisable(false);
             setProductAmount(1);
         } else {
             setProductAmount(getMatchingItemInCart().getAmount() + 1);
@@ -140,9 +139,12 @@ public class ItemTileController implements Initializable {
     }
 
     @FXML protected void removeFromCart() {
+        if (getMatchingItemInCart() != null && getMatchingItemInCart().getAmount() - 1 == 0) {
+            this.removeProductBtn.setDisable(true);
+            this.amountField.requestFocus();
+            this.amountField.getParent().requestFocus();
+        }
         if (getMatchingItemInCart() == null) {
-            //Todo...
-            removeProductBtn.setDisable(true);
             return;
         } else {
             setProductAmount(getMatchingItemInCart().getAmount() - 1);
@@ -184,4 +186,13 @@ public class ItemTileController implements Initializable {
         }
         return null;
     }
+
+    public Product getProduct() {
+        return this.product;
+    }
+
+    public double getAmountFieldData() {
+        return Double.parseDouble(this.amountField.getText());
+    }
+
 }

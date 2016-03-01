@@ -39,19 +39,16 @@ public class OrderHistoryCell extends ListCell<ShoppingItem> {
             ColumnConstraints col1Constraints = new ColumnConstraints();
             ColumnConstraints col2Constraints = new ColumnConstraints();
             ColumnConstraints col3Constraints = new ColumnConstraints();
-            ColumnConstraints col4Constraints = new ColumnConstraints();
 
-            col1Constraints.setPercentWidth(10);
+            col1Constraints.setPercentWidth(15);
+            col2Constraints.setPercentWidth(60);
             col2Constraints.setPercentWidth(25);
-            col3Constraints.setPercentWidth(35);
-            col4Constraints.setPercentWidth(30);
 
             GridPane layout = new GridPane();
 
             layout.getColumnConstraints().add(col1Constraints);
             layout.getColumnConstraints().add(col2Constraints);
             layout.getColumnConstraints().add(col3Constraints);
-            layout.getColumnConstraints().add(col4Constraints);
             layout.setHgap(10);
             layout.setVgap(10);
             layout.setPadding(new Insets(5,5,5,5));

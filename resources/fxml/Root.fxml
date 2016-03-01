@@ -23,6 +23,7 @@
             <fx:include fx:id="basket" source="Basket.fxml" />
             <fx:include fx:id="payment" source="Payment.fxml" />
             <fx:include fx:id="conformation" source="Conformation.fxml" />
+             <fx:include fx:id="registration" source="registration.fxml" />
             <GridPane fx:id="shopGrid" gridLinesVisible="true">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

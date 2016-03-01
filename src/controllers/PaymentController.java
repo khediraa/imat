@@ -41,8 +41,8 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
                 pcs.firePropertyChange("to-delivery", true, false);
         });
 
-        cardChoice.setOnAction(event -> {cardPayment.setDisable(true);});
-        billChoice.setOnAction(event -> cardPayment.setDisable(false));
+        billChoice.setOnAction(event -> {cardPayment.setDisable(true);});
+        cardChoice.setOnAction(event -> cardPayment.setDisable(false));
 
     }
 

@@ -50,3 +50,9 @@
 	-fx-font-size: 16pt;
 	-fx-font-weight: bold;
 }
+
+#searchButton {
+	-fx-text-fill: #CCF971;
+	-fx-background-color: #485f1b;
+	-fx-background-radius: 20;
+}

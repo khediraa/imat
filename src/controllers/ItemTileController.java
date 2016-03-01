@@ -14,10 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
-import se.chalmers.ait.dat215.project.Product;
-import se.chalmers.ait.dat215.project.ShoppingCart;
-import se.chalmers.ait.dat215.project.ShoppingItem;
+import se.chalmers.ait.dat215.project.*;
 import utils.Utils;
 
 import java.net.URL;
@@ -101,7 +98,7 @@ public class ItemTileController implements Initializable {
         }
     }
 
-    private void refreshAmountField() {
+    public void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
             amountField.setText(Utils.getFormatedProductAmount(matchingItem.getAmount(), product));
@@ -187,4 +184,13 @@ public class ItemTileController implements Initializable {
         }
         return null;
     }
+
+    public Product getProduct() {
+        return this.product;
+    }
+
+    public double getAmountFieldData() {
+        return Double.parseDouble(this.amountField.getText());
+    }
+
 }

@@ -102,7 +102,6 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
-
         refreshCart();
 
         if (cartEvent.getShoppingItem() == null) return;

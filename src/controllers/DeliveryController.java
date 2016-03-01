@@ -1,13 +1,10 @@
 package controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 
@@ -17,34 +14,36 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * By: Therese Sturesson
- * Date: 2016-02-24
- * project: imat26
+ * Created by Therese on 2016-03-01.
  */
-public class PaymentController implements Initializable, ShoppingCartListener, IObservable {
+public class DeliveryController implements Initializable, ShoppingCartListener, IObservable {
 
-    @FXML private Button backToBasketButton;
-    @FXML private Button goToDeliveryButton;
-    @FXML private AnchorPane cardPayment;
-    @FXML private ToggleGroup typeOfPayment;
-    @FXML private RadioButton cardChoice;
-    @FXML private RadioButton billChoice;
+    @FXML private Button backToPaymentButton;
+    @FXML private Button confirmButton;
+    @FXML private GridPane deliveryMethod;
+    @FXML private RadioButton shopChoice;
+    @FXML private RadioButton homeChoice;
+
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        backToBasketButton.setOnAction(event -> {
-            pcs.firePropertyChange("back-to-basket", true, false);
+
+        backToPaymentButton.setOnAction(event -> {
+            pcs.firePropertyChange("back-to-payment", true, false);
         });
 
-        goToDeliveryButton.setOnAction(event -> {
-                pcs.firePropertyChange("to-delivery", true, false);
+        confirmButton.setOnAction(event -> {
+            pcs.firePropertyChange("confirm-order", true, false);
         });
 
-        cardChoice.setOnAction(event -> {cardPayment.setDisable(true);});
-        billChoice.setOnAction(event -> cardPayment.setDisable(false));
+        shopChoice.setOnAction(event -> {deliveryMethod.setDisable(true);});
+        homeChoice.setOnAction(event -> deliveryMethod.setDisable(false));
 
     }
+
+
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {

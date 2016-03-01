@@ -44,7 +44,7 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
         cartList.setAll(cartInstance.getItems());
         basketListView.setItems(cartList);
 
-        basketTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
+        basketTotal.setText(cartInstance.getTotal() + " kr");
 
         this.cartInstance.addShoppingCartListener(this);
 

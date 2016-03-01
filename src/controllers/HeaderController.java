@@ -89,8 +89,6 @@ public class HeaderController implements Initializable, IObservable {
             Button buttonClicked = (Button)event.getSource();
             String btnId = buttonClicked.getId();
 
-            System.out.println(btnId);
-
             String eventMsg = "";
 
             switch (btnId) {

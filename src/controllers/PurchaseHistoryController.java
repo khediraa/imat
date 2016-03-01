@@ -20,10 +20,10 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by carlo on 2016-02-24.

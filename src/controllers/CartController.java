@@ -4,7 +4,9 @@ import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -15,6 +17,7 @@ import se.chalmers.ait.dat215.project.*;
 import java.beans.EventHandler;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -47,11 +50,42 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         this.cartInstance.addShoppingCartListener(this);
 
         // set CartItemCell to new cell type for our list view
-        cartListView.setCellFactory(new Callback<ListView, ListCell>() {
+        cartListView.setCellFactory(new Callback<ListView<ShoppingItem>, ListCell<ShoppingItem>>() {
             @Override
-            public ListCell call(ListView param) {
-                CartItemCell cartItemCell = new CartItemCell();
-                return cartItemCell;
+            public ListCell<ShoppingItem> call(ListView<ShoppingItem> param) {
+                ListCell<ShoppingItem> cell = new ListCell<ShoppingItem>() {
+                    @Override
+                    protected void updateItem(ShoppingItem item, boolean empty){
+
+                        super.updateItem(item, empty);
+
+                        if (empty || item == null) {
+                            setText(null);
+                            setGraphic(null);
+                         } else {
+
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/CartCell.fxml"));
+                                Node cellView = loader.load();
+                                CartCellController controller = loader.getController();
+
+                                controller.setItem(item);
+                                controller.setAmount(item.getAmount());
+                                controller.setPrice(item.getProduct().getPrice());
+                                controller.setAmount(item.getAmount());
+                                controller.setProductName(item.getProduct().getName());
+                                controller.setUnit(item.getProduct().getUnitSuffix());
+
+                                setGraphic(cellView);
+
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                };
+
+                return cell;
             }
         });
 
@@ -74,12 +108,9 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
         if (cartEvent.getShoppingItem() == null) return;
 
-
         if(cartEvent.isAddEvent()) {
             cartList.add(cartEvent.getShoppingItem());
         } else {
-
-            System.out.println(cartInstance.getItems().size());
 
             if (cartEvent.getShoppingItem().getAmount() <= 0) {
                 cartList.remove(cartEvent.getShoppingItem());

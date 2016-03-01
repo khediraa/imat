@@ -104,7 +104,6 @@ public class ItemTileController implements Initializable {
     private void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
-            System.out.println(formatAmountInput(String.valueOf(matchingItem.getAmount())));
             amountField.setText(String.valueOf(formatAmountInput(String.valueOf(matchingItem.getAmount()))));
         } else {
             amountField.setText(String.valueOf(formatAmountInput("0")));
@@ -121,8 +120,10 @@ public class ItemTileController implements Initializable {
             if (amount <= 0) {
                 matchingItem.setAmount(0);
                 this.shoppingCart.removeItem(matchingItem);
+                removeProductBtn.setDisable(true);
             } else {
                 matchingItem.setAmount(amount);
+                removeProductBtn.setDisable(false);
                 this.shoppingCart.fireShoppingCartChanged(matchingItem, false);
             }
         }
@@ -130,9 +131,9 @@ public class ItemTileController implements Initializable {
     }
 
     @FXML protected void addProductToCart() {
+        removeProductBtn.setDisable(false);
         if (getMatchingItemInCart() == null) {
             //Todo...
-            removeProductBtn.setDisable(false);
             setProductAmount(1);
         } else {
             setProductAmount(getMatchingItemInCart().getAmount() + 1);
@@ -140,9 +141,11 @@ public class ItemTileController implements Initializable {
     }
 
     @FXML protected void removeFromCart() {
-        if (getMatchingItemInCart() == null) {
-            //Todo...
+
+        if (getMatchingItemInCart() != null && getMatchingItemInCart().getAmount() - 1 == 0) {
             removeProductBtn.setDisable(true);
+        }
+        if (getMatchingItemInCart() == null) {
             return;
         } else {
             setProductAmount(getMatchingItemInCart().getAmount() - 1);

@@ -30,3 +30,9 @@
 .button:pressed .circleBorder{
 	-fx-stroke: white;
 }
+
+.separator:vertical .line{
+	-fx-border-color: transparent #B2DF59 transparent #5A6A23;
+	-fx-border-radius: 2;
+	-fx-padding: -1 -1 -1 -1;
+}

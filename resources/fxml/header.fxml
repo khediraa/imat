@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="header" minHeight="-Infinity" prefHeight="140.0" prefWidth="1100.0" style="-fx-background-color: tan;" stylesheets="@../css/header.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="340.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
+<AnchorPane fx:id="header" minHeight="-Infinity" prefHeight="140.0" prefWidth="1100.0" styleClass="anchorpane" stylesheets="@../css/header.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="340.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -35,7 +30,12 @@
                   <Separator maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="110.0" />
                   <Button mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Min historik" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
                      </graphic>
                      <padding>
                         <Insets right="-1.0" top="-1.0" />
@@ -46,7 +46,12 @@
                   </Button>
                   <Button fx:id="myProfileBtn" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label text="Mitt konto" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
                      </graphic>
                      <padding>
                         <Insets right="-1.0" top="-1.0" />
@@ -56,142 +61,158 @@
                      </cursor>
                   </Button>
                </children>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
             </HBox>
-            <HBox alignment="CENTER" spacing="15.0">
+            <HBox alignment="TOP_CENTER" spacing="15.0">
                <children>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button fx:id="meatBtn" mnemonicParsing="false">
-                           <graphic>
+                  <Button fx:id="meatBtn" mnemonicParsing="false">
+                     <graphic>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
                               <ImageView fx:id="meatImg" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../headerImages/meat.jpg" />
                                  </image>
                               </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button fx:id="greensBtn" mnemonicParsing="false">
-                           <graphic>
+                              <Label text="Kött" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <padding>
+                        <Insets right="-1.0" top="-1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="greensBtn" mnemonicParsing="false">
+                     <graphic>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
                               <ImageView fx:id="greensImg" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../headerImages/greens.jpeg" />
                                  </image>
                               </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button fx:id="dairyBtn" mnemonicParsing="false">
-                           <graphic>
+                              <Label text="Frukt &amp;&#10;grönt" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <padding>
+                        <Insets right="-1.0" top="-1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="dairyBtn" mnemonicParsing="false">
+                     <graphic>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
                               <ImageView fx:id="dairyImg" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../headerImages/dairy.jpg" />
                                  </image>
                               </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button fx:id="cupboardBtn" mnemonicParsing="false">
-                           <graphic>
+                              <Label text="Mejeri" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <padding>
+                        <Insets right="-1.0" top="-1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="cupboardBtn" mnemonicParsing="false">
+                     <graphic>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
                               <ImageView fx:id="cupboardImg" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../headerImages/cupboard.jpg" />
                                  </image>
                               </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button fx:id="drinksBtn" mnemonicParsing="false">
-                           <graphic>
+                              <Label text="Skafferi" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <padding>
+                        <Insets right="-1.0" top="-1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="drinksBtn" mnemonicParsing="false">
+                     <graphic>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
                               <ImageView fx:id="drinksImg" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../headerImages/drinks.jpg" />
                                  </image>
                               </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button fx:id="sweetsBtn" mnemonicParsing="false">
-                           <graphic>
+                              <Label text="Drycker" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <padding>
+                        <Insets right="-1.0" top="-1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="sweetsBtn" mnemonicParsing="false">
+                     <graphic>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
                               <ImageView fx:id="sweetsImg" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../headerImages/sweets.jpg" />
                                  </image>
                               </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <Button mnemonicParsing="false">
-                           <graphic>
+                              <Label text="Sötsaker" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <padding>
+                        <Insets right="-1.0" top="-1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button mnemonicParsing="false">
+                     <graphic>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
                               <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                           <padding>
-                              <Insets right="-1.0" top="-1.0" />
-                           </padding>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
+                              <Label text="Mina mest&#10;köpta" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                     </graphic>
+                     <padding>
+                        <Insets right="-1.0" top="-1.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
             </HBox>
          </children>
       </GridPane>

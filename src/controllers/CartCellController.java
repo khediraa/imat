@@ -155,7 +155,7 @@ public class CartCellController implements Initializable {
     }
 
     public void setPrice(double price) {
-        this.price.setText(Utils.getFormatedPrice(price));
+        this.price.setText(Utils.getFormatedPrice(price) + " kr");
     }
 
     public void deleteProduct() {

@@ -23,7 +23,6 @@ public class OrderHistoryCell extends ListCell<ShoppingItem> {
 
     private ShoppingItem item;
 
-
     @Override
     protected void updateItem(ShoppingItem item, boolean empty) {
         super.updateItem(item, empty);

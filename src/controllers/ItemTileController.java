@@ -103,8 +103,10 @@ public class ItemTileController implements Initializable {
     public void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
+            removeProductBtn.setDisable(false);
             amountField.setText(Utils.getFormatedProductAmount(matchingItem.getAmount(), product));
         } else {
+            removeProductBtn.setDisable(true);
             amountField.setText(Utils.getFormatedProductAmount(0, product));
         }
     }

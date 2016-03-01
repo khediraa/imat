@@ -55,14 +55,12 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
             }
         });
 
-
         toCartBtn.setOnAction(new javafx.event.EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 pcs.firePropertyChange("to-basket", null, false);
             }
         });
-
     }
 
     @Override
@@ -74,12 +72,19 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
         cartTotal.setText("Totalt " + df.format(total) + " kr");
 
+        if (cartEvent.getShoppingItem() == null) return;
+
+
         if(cartEvent.isAddEvent()) {
             cartList.add(cartEvent.getShoppingItem());
         } else {
-            if (cartInstance.getItems().size() > 0 && cartEvent.getShoppingItem().getAmount() <= 0) {
+
+            System.out.println(cartInstance.getItems().size());
+
+            if (cartEvent.getShoppingItem().getAmount() <= 0) {
                 cartList.remove(cartEvent.getShoppingItem());
             }
+
         }
 
         cartListView.refresh();

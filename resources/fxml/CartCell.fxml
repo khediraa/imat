@@ -23,6 +23,9 @@
          </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+         <tooltip>
+            <Tooltip text="Ta bort produkt" />
+         </tooltip></Button>
    </children>
 </AnchorPane>

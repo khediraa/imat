@@ -57,7 +57,6 @@ public class ItemTileController implements Initializable {
             }
         });
 
-
         // when pressing enter while editing format the input
         amountField.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
@@ -66,34 +65,43 @@ public class ItemTileController implements Initializable {
                 amountField.getParent().requestFocus();
             }
         });
-
     }
 
     private double formatAmountInput(String amountString) {
         double amount = 0;
-
         amountString = amountString.replace(',', '.');
-
-        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
-        dfs.setDecimalSeparator('.');
-        DecimalFormat df = new DecimalFormat("0.0", dfs);
 
         if (Utils.isValidDouble(amountString)) {
             amount = Double.parseDouble(amountString);
         }
 
-        String formatedText = df.format(amount);
-        amountField.setText(formatedText);
+        // if this is a unit that can use decimals
+        if (product.getUnitSuffix().equals("kg") || product.getUnitSuffix().equals("l")) {
+            DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+            dfs.setDecimalSeparator('.');
+            DecimalFormat df = new DecimalFormat("0.0", dfs);
+            String formatedText = df.format(amount);
+            amountField.setText(formatedText);
+        } else {
+            int intAmount = (int)Math.round(amount);
+            amountField.setText(String.valueOf(intAmount));
+            amount = (double)intAmount;
+        }
 
         return amount;
     }
 
-
+    public void setAmountFormat() {
+        if(this.product.getUnitSuffix().equals("kg") || this.product.getUnitSuffix().equals("l")) {
+            amountField.setText("0.0");
+        }
+    }
 
     private void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
-            amountField.setText(String.valueOf(matchingItem.getAmount()));
+            System.out.println(formatAmountInput(String.valueOf(matchingItem.getAmount())));
+            amountField.setText(String.valueOf(formatAmountInput(String.valueOf(matchingItem.getAmount()))));
         } else {
             amountField.setText(String.valueOf(formatAmountInput("0")));
         }
@@ -117,8 +125,7 @@ public class ItemTileController implements Initializable {
         refreshAmountField();
     }
 
-    @FXML
-    protected void addProductToCart() {
+    @FXML protected void addProductToCart() {
         if (getMatchingItemInCart() == null) {
             setProductAmount(1);
         } else {
@@ -126,8 +133,7 @@ public class ItemTileController implements Initializable {
         }
     }
 
-    @FXML
-    protected void removeFromCart() {
+    @FXML protected void removeFromCart() {
         if (getMatchingItemInCart() == null) {
             return;
         } else {
@@ -144,6 +150,12 @@ public class ItemTileController implements Initializable {
     }
 
     public void setUnitSuffix(String unitSuffix) {
+        if (unitSuffix.equals("förp")) {
+            unitSuffix = "fp";
+        }
+        if (unitSuffix.equals("burk") || unitSuffix.equals("påse")) {
+            unitSuffix = "st";
+        }
         this.addUnit.setText(unitSuffix);
     }
 

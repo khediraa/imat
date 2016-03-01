@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,6 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.util.Duration;
+import utils.Modal;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -26,19 +30,26 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private PaymentController paymentController;
     @FXML private ShopController shopController;
     @FXML private ConfirmationController confirmationController;
+    @FXML private LogInController logInPaneController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
     @FXML private BorderPane basket;
     @FXML private BorderPane payment;
     @FXML private BorderPane confirmation;
     @FXML private GridPane shopGrid;
+    @FXML private StackPane mainContainer;
+    @FXML private BorderPane logInPane;
+    @FXML private BorderPane myProfilePane;
     List<AnchorPane> anchorPanes = new ArrayList<>();
+
+    private Modal loginModal;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         anchorPanes.add(root);
         headerController.sendOtherPane(mainPage);
 
+        loginModal = new Modal(logInPane, root);
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
             if(headerController.isFirstClick()){
                 mainPageController.setWidth(newValue.doubleValue());
@@ -57,23 +68,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         paymentController.addObserver(this);
         confirmationController.addObserver(this);
         headerController.addObserver(this);
-    }
-
-    /**
-     * Stacks this anchorpane on top.
-     */
-    private EventHandler<ActionEvent> anchorPaneToFront(AnchorPane anchorPane) {
-        return event -> shopGrid.toFront();
-    }
-
-    private EventHandler<ActionEvent> toCartView() {
-        return event -> basket.toFront();
-    }
-
-    private EventHandler<ActionEvent> mainPageUpwards() {
-        return event -> {
-            //Todo...
-        };
+        logInPaneController.addObserver(this);
     }
 
     // Button Events
@@ -126,6 +121,15 @@ public class RootController implements Initializable, PropertyChangeListener {
                 cartController.refreshView();
                 shopController.displaySweets();
                 shopGrid.toFront();
+                break;
+
+            case "login-modal":
+                loginModal.toggleModal();
+                break;
+
+            case "to-my-profile":
+                myProfilePane.toFront();
+                loginModal.toggleModal();
                 break;
         }
 

@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCart;
 import se.chalmers.ait.dat215.project.ShoppingItem;
+import utils.Utils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,7 +42,8 @@ public class CartCellController implements Initializable {
     }
 
     public void setAmount(double amount) {
-        amountField.setText(String.valueOf(amount));
+        String formatedString = Utils.getFormatedProductAmount(amount, this.item.getProduct());
+        amountField.setText(formatedString);
     }
 
     public void setUnit(String unitText) {
@@ -60,7 +62,7 @@ public class CartCellController implements Initializable {
     }
 
     public void setPrice(double price) {
-        this.price.setText(String.valueOf(price));
+        this.price.setText(Utils.getFormatedPrice(price));
     }
 
     public void deleteProduct() {

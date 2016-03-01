@@ -45,7 +45,7 @@ public class ItemTileController implements Initializable {
         this.shoppingCart = im.getShoppingCart();
 
 
-        amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+        this.amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue) {
@@ -65,8 +65,8 @@ public class ItemTileController implements Initializable {
         amountField.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
                 setProductAmount(formatAmountInput(amountField.getText()));
-                e.consume();
                 amountField.getParent().requestFocus();
+                e.consume();
             }
         });
     }
@@ -104,7 +104,7 @@ public class ItemTileController implements Initializable {
     private void refreshAmountField() {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
-            amountField.setText(String.valueOf(formatAmountInput(String.valueOf(matchingItem.getAmount()))));
+            amountField.setText(Utils.getFormatedProductAmount(matchingItem.getAmount(), product));
         } else {
             amountField.setText(String.valueOf(formatAmountInput("0")));
         }
@@ -131,9 +131,8 @@ public class ItemTileController implements Initializable {
     }
 
     @FXML protected void addProductToCart() {
-        removeProductBtn.setDisable(false);
+        this.removeProductBtn.setDisable(false);
         if (getMatchingItemInCart() == null) {
-            //Todo...
             setProductAmount(1);
         } else {
             setProductAmount(getMatchingItemInCart().getAmount() + 1);
@@ -141,9 +140,10 @@ public class ItemTileController implements Initializable {
     }
 
     @FXML protected void removeFromCart() {
-
         if (getMatchingItemInCart() != null && getMatchingItemInCart().getAmount() - 1 == 0) {
-            removeProductBtn.setDisable(true);
+            this.removeProductBtn.setDisable(true);
+            this.amountField.requestFocus();
+            this.amountField.getParent().requestFocus();
         }
         if (getMatchingItemInCart() == null) {
             return;

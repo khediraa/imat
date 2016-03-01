@@ -45,7 +45,7 @@ public class HeaderController implements Initializable, IObservable {
 
         buttons.add(meatBtn); buttons.add(greensBtn); buttons.add(dairyBtn);
         buttons.add(cupboardBtn); buttons.add(drinksBtn); buttons.add(sweetsBtn);
-        buttons.add(purchaseHistoryBtn);
+        buttons.add(purchaseHistoryBtn); buttons.add(myProfileBtn);
 
         //Add all images to the images-list due to easier access
         images.add(meatImg); images.add(greensImg); images.add(dairyImg);
@@ -53,6 +53,9 @@ public class HeaderController implements Initializable, IObservable {
 
         // Open modal for profile btn
         myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            if (firstClick) {
+                pcs.firePropertyChange("set-category-greens", true, false);
+            }
             pcs.firePropertyChange("login-modal", true, false);
         });
 

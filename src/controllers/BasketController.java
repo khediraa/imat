@@ -5,18 +5,24 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
+import java.math.RoundingMode;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
@@ -49,11 +55,45 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
         this.cartInstance.addShoppingCartListener(this);
 
         // set CartItemCell to new cell type for our list view
-        basketListView.setCellFactory(new Callback<ListView, ListCell>() {
+        basketListView.setCellFactory(new Callback<ListView<ShoppingItem>, ListCell<ShoppingItem>>() {
             @Override
-            public ListCell call(ListView param) {
-                CartItemCell cartItemCell = new CartItemCell();
-                return cartItemCell;
+            public ListCell<ShoppingItem> call(ListView<ShoppingItem> param) {
+                ListCell<ShoppingItem> cell = new ListCell<ShoppingItem>() {
+                    @Override
+                    protected void updateItem(ShoppingItem item, boolean empty){
+
+                        super.updateItem(item, empty);
+
+                        if (empty || item == null) {
+                            setText(null);
+                            setGraphic(null);
+                        } else {
+
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/CartCell.fxml"));
+                                AnchorPane cellView = loader.load();
+                                CartCellController controller = loader.getController();
+
+                                controller.setItem(item);
+                                controller.setAmount(item.getAmount());
+                                controller.setPrice(item.getProduct().getPrice());
+                                controller.setAmount(item.getAmount());
+                                controller.setProductName(item.getProduct().getName());
+                                controller.setUnit(item.getProduct().getUnitSuffix());
+                                double width = basketListView.getWidth();
+
+                                cellView.prefWidthProperty().bind(basketListView.widthProperty());
+
+                                setGraphic(cellView);
+
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                };
+
+                return cell;
             }
         });
 
@@ -78,11 +118,13 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
     public void shoppingCartChanged(CartEvent cartEvent) {
         basketTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
 
+        if (cartEvent.getShoppingItem() == null) return;
+
         if(cartEvent.isAddEvent()) {
             cartList.add(cartEvent.getShoppingItem());
         } else {
 
-            if (cartInstance.getItems().size() > 0 &&  cartEvent.getShoppingItem().getAmount() <= 0) {
+            if (cartEvent.getShoppingItem().getAmount() <= 0) {
                 cartList.remove(cartEvent.getShoppingItem());
             }
         }

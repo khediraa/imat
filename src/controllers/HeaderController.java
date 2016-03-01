@@ -45,6 +45,7 @@ public class HeaderController implements Initializable, IObservable {
 
         buttons.add(meatBtn); buttons.add(greensBtn); buttons.add(dairyBtn);
         buttons.add(cupboardBtn); buttons.add(drinksBtn); buttons.add(sweetsBtn);
+        buttons.add(purchaseHistoryBtn);
 
         //Add all images to the images-list due to easier access
         images.add(meatImg); images.add(greensImg); images.add(dairyImg);
@@ -88,8 +89,6 @@ public class HeaderController implements Initializable, IObservable {
 
             Button buttonClicked = (Button)event.getSource();
             String btnId = buttonClicked.getId();
-
-            System.out.println(btnId);
 
             String eventMsg = "";
 

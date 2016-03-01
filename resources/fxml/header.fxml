@@ -33,7 +33,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1">
                <children>
                   <Separator maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="110.0" />
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="purchaseHistoryBtn" mnemonicParsing="false">
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>

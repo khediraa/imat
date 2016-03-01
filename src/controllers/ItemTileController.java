@@ -110,6 +110,8 @@ public class ItemTileController implements Initializable {
     }
 
     private void setProductAmount(double amount) {
+
+        if (amount > 99) amount = 99;
         ShoppingItem matchingItem = getMatchingItemInCart();
         if(matchingItem == null && amount <= 0) return;
 

@@ -32,6 +32,7 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private RegistrationController registrationController;
     @FXML private ConfirmationController confirmationController;
     @FXML private LogInController logInPaneController;
+    @FXML private PurchaseHistoryController purchaseHistoryController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
     @FXML private BorderPane basket;
@@ -41,6 +42,9 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private StackPane mainContainer;
     @FXML private BorderPane logInPane;
     @FXML private BorderPane myProfilePane;
+    @FXML private BorderPane registration;
+    @FXML private BorderPane purchaseHistory;
+
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
@@ -70,6 +74,9 @@ public class RootController implements Initializable, PropertyChangeListener {
         confirmationController.addObserver(this);
         headerController.addObserver(this);
         registrationController.addObserver(this);
+        logInPaneController.addObserver(this);
+        purchaseHistoryController.addObserver(this);
+
     }
 
     /**
@@ -150,6 +157,15 @@ public class RootController implements Initializable, PropertyChangeListener {
                 myProfilePane.toFront();
                 loginModal.toggleModal();
                 break;
+            case "to-registration":
+                registration.toFront();
+                loginModal.toggleModal();
+                break;
+            case "back-to-previous-screen":
+                loginModal.toggleModal();
+                break;
+            case "to-purchase-history":
+                purchaseHistory.toFront();
         }
 
     }

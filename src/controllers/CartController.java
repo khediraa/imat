@@ -50,6 +50,8 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         cartListView.setItems(cartList);
         this.cartInstance.addShoppingCartListener(this);
 
+        refreshCart();
+
         // set CartItemCell to new cell type for our list view
         cartListView.setCellFactory(new Callback<ListView<ShoppingItem>, ListCell<ShoppingItem>>() {
             @Override
@@ -101,9 +103,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
 
-        double total = cartInstance.getTotal();
-
-        cartTotal.setText("Totalt " + Utils.getFormatedPrice(total) + " kr");
+        refreshCart();
 
         if (cartEvent.getShoppingItem() == null) return;
 
@@ -118,6 +118,11 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         }
 
         cartListView.refresh();
+    }
+
+    private void refreshCart() {
+        double total = cartInstance.getTotal();
+        cartTotal.setText("Totalt " + Utils.getFormatedPrice(total) + " kr");
     }
 
     public void refreshView() {

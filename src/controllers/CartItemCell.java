@@ -19,6 +19,9 @@ import javafx.scene.text.Text;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 /**
  * By: Sebastian Nilsson
  * Date: 16-02-23
@@ -70,7 +73,13 @@ public class CartItemCell extends ListCell<ShoppingItem> {
 
             Text productName = new Text(item.getProduct().getName());
             Text amount = new Text(item.getAmount() + " " + item.getProduct().getUnitSuffix());
-            Text total = new Text(item.getTotal() + " kr");
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            df.setRoundingMode(RoundingMode.CEILING);
+            double total = item.getTotal();
+
+            Text totalTextField = new Text();
+            totalTextField.setText(String.valueOf(df.format(total)));
 
             // Remove btn
             Button removeBtn = new Button("Ta bort");
@@ -83,7 +92,7 @@ public class CartItemCell extends ListCell<ShoppingItem> {
 
             layout.add(amount,0,0);
             layout.add(productName,1,0);
-            layout.add(total,2,0);
+            layout.add(totalTextField,2,0);
             layout.add(removeBtn,3,0);
 
             setGraphic(layout);

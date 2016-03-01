@@ -1,16 +1,19 @@
 package controllers;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.util.Duration;
+import utils.Modal;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,21 +29,28 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private BasketController basketController;
     @FXML private PaymentController paymentController;
     @FXML private ShopController shopController;
-    @FXML private ConformationController conformationController;
     @FXML private RegistrationController registrationController;
+    @FXML private ConfirmationController confirmationController;
+    @FXML private LogInController logInPaneController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
-    @FXML private AnchorPane basket;
-    @FXML private AnchorPane payment;
-    @FXML private AnchorPane conformation;
+    @FXML private BorderPane basket;
+    @FXML private BorderPane payment;
+    @FXML private BorderPane confirmation;
     @FXML private GridPane shopGrid;
+    @FXML private StackPane mainContainer;
+    @FXML private BorderPane logInPane;
+    @FXML private BorderPane myProfilePane;
     List<AnchorPane> anchorPanes = new ArrayList<>();
+
+    private Modal loginModal;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         anchorPanes.add(root);
         headerController.sendOtherPane(mainPage);
 
+        loginModal = new Modal(logInPane, root);
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
             if(headerController.isFirstClick()){
                 mainPageController.setWidth(newValue.doubleValue());
@@ -57,7 +67,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         cartController.addObserver(this);
         basketController.addObserver(this);
         paymentController.addObserver(this);
-        conformationController.addObserver(this);
+        confirmationController.addObserver(this);
         headerController.addObserver(this);
         registrationController.addObserver(this);
     }
@@ -77,6 +87,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         return event -> {
             //Todo...
         };
+
     }
 
     // Button Events
@@ -98,7 +109,7 @@ public class RootController implements Initializable, PropertyChangeListener {
                 basket.toFront();
                 break;
             case "confirm-order":
-                conformation.toFront();
+                confirmation.toFront();
                 break;
             case "set-category-meat":
                 cartController.refreshView();
@@ -129,6 +140,15 @@ public class RootController implements Initializable, PropertyChangeListener {
                 cartController.refreshView();
                 shopController.displaySweets();
                 shopGrid.toFront();
+                break;
+
+            case "login-modal":
+                loginModal.toggleModal();
+                break;
+
+            case "to-my-profile":
+                myProfilePane.toFront();
+                loginModal.toggleModal();
                 break;
         }
 

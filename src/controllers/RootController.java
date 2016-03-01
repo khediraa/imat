@@ -31,6 +31,7 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private ShopController shopController;
     @FXML private ConfirmationController confirmationController;
     @FXML private LogInController logInPaneController;
+    @FXML private DeliveryController deliveryController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
     @FXML private BorderPane basket;
@@ -40,6 +41,7 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private StackPane mainContainer;
     @FXML private BorderPane logInPane;
     @FXML private BorderPane myProfilePane;
+    @FXML private BorderPane delivery;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
@@ -69,6 +71,7 @@ public class RootController implements Initializable, PropertyChangeListener {
         confirmationController.addObserver(this);
         headerController.addObserver(this);
         logInPaneController.addObserver(this);
+        deliveryController.addObserver(this);
     }
 
     // Button Events
@@ -79,44 +82,54 @@ public class RootController implements Initializable, PropertyChangeListener {
                 basket.toFront();
                 basketController.refreshView();
                 break;
+
             case "to-shop":
                 shopGrid.toFront();
                 cartController.refreshView();
                 break;
+
             case "to-payment":
                 payment.toFront();
                 break;
+
             case "back-to-basket":
                 basket.toFront();
                 break;
+
             case "confirm-order":
                 confirmation.toFront();
                 break;
+
             case "set-category-meat":
                 cartController.refreshView();
                 shopController.displayMeat();
                 shopGrid.toFront();
                 break;
+
             case "set-category-greens":
                 cartController.refreshView();
                 shopController.displayGreens();
                 shopGrid.toFront();
                 break;
+
             case "set-category-dairy":
                 cartController.refreshView();
                 shopController.displayDairy();
                 shopGrid.toFront();
                 break;
+
             case "set-category-pantry":
                 cartController.refreshView();
                 shopController.displayPantry();
                 shopGrid.toFront();
                 break;
+
             case "set-category-drinks":
                 cartController.refreshView();
                 shopController.displayDrinks();
                 shopGrid.toFront();
                 break;
+
             case "set-category-sweets":
                 cartController.refreshView();
                 shopController.displaySweets();
@@ -131,6 +144,15 @@ public class RootController implements Initializable, PropertyChangeListener {
                 myProfilePane.toFront();
                 loginModal.toggleModal();
                 break;
+
+            case "to-delivery":
+                delivery.toFront();
+                break;
+
+            case "back-to-payment":
+                payment.toFront();
+                break;
+
         }
 
     }

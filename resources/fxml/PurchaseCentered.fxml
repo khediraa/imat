@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -17,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="payment" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
+<BorderPane fx:id="payment" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
    <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -119,7 +124,7 @@
                               <Separator orientation="VERTICAL" prefHeight="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
                               <VBox prefHeight="380.0" prefWidth="400.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0">
                                  <children>
-                                    <RadioButton fx:id="cardChoice" mnemonicParsing="false" selected="true" text="Kortbetalning">
+                                    <RadioButton fx:id="cardChoice" mnemonicParsing="false" prefHeight="20.0" prefWidth="225.0" selected="true" text="Kortbetalning">
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font>
@@ -182,7 +187,7 @@
                                                       <TextField fx:id="verificationCode" promptText="XXX" />
                                                    </children>
                                                 </VBox>
-                                                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2">
+                                                <VBox prefHeight="71.0" prefWidth="300.0" GridPane.columnSpan="2">
                                                    <children>
                                                       <Label text="Kort:" />
                                                       <GridPane hgap="10.0">
@@ -241,7 +246,7 @@
                                     <Insets right="233.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button fx:id="confirmButton" mnemonicParsing="false" text="Bekräfta köp" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                              <Button fx:id="goToDeliveryButton" mnemonicParsing="false" text="Gå vidare" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                                  <GridPane.margin>
                                     <Insets left="203.0" />
                                  </GridPane.margin>
@@ -260,7 +265,7 @@
             </AnchorPane>
             <VBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <children>
-                  <ProgressBar prefWidth="600.0" progress="0.67" />
+                  <ProgressBar prefWidth="600.0" progress="0.5" />
                </children>
             </VBox>
          </children>

@@ -10,3 +10,23 @@
 .label {
 	-fx-text-fill: #CCF971;
 }
+
+.button:hover .label{
+	-fx-text-fill: beige;
+	-fx-font-weight: bold;
+}
+
+
+.circleBorder {
+	-fx-fill: transparent;
+	-fx-stroke: #485F1B;
+	-fx-stroke-width: 5px;
+}
+
+.button:hover .circleBorder{
+	-fx-stroke: #CCF971;
+}
+
+.button:pressed .circleBorder{
+	-fx-stroke: white;
+}

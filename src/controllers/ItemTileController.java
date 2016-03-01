@@ -95,6 +95,8 @@ public class ItemTileController implements Initializable {
     public void setAmountFormat() {
         if(this.product.getUnitSuffix().equals("kg") || this.product.getUnitSuffix().equals("l")) {
             amountField.setText("0.0");
+        } else {
+            amountField.setText("0");
         }
     }
 
@@ -103,7 +105,7 @@ public class ItemTileController implements Initializable {
         if (matchingItem != null) {
             amountField.setText(Utils.getFormatedProductAmount(matchingItem.getAmount(), product));
         } else {
-            amountField.setText(String.valueOf(formatAmountInput("0")));
+            amountField.setText(Utils.getFormatedProductAmount(0, product));
         }
     }
 

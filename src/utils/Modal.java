@@ -84,11 +84,14 @@ public class Modal {
             addCloseEvent();
             modalOpen = true;
         } else {
-            fadeOut();
-            fadeOutBackdrop();
-            removeCloseEvent();
-            modalOpen = false;
+            closeModal();
         }
+    }
+    public void closeModal() {
+        fadeOut();
+        fadeOutBackdrop();
+        removeCloseEvent();
+        modalOpen = false;
     }
 
     public void fadeIn() {

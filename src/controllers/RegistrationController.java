@@ -26,6 +26,7 @@ public class RegistrationController implements Initializable, IObservable{
     @FXML private Button backButton;
     @FXML private Button registerButton;
 
+
     private String userNameString;
     private String passwordString;
     private String passwordAgainString;

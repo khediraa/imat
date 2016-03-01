@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
+import utils.Utils;
 
 import java.beans.EventHandler;
 import java.beans.PropertyChangeListener;
@@ -71,7 +72,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
                                 controller.setItem(item);
                                 controller.setAmount(item.getAmount());
-                                controller.setPrice(item.getProduct().getPrice());
+                                controller.setPrice(item.getProduct().getPrice() * item.getAmount());
                                 controller.setAmount(item.getAmount());
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
@@ -100,11 +101,9 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
 
-        DecimalFormat df = new DecimalFormat("0.00");
-        df.setRoundingMode(RoundingMode.CEILING);
         double total = cartInstance.getTotal();
 
-        cartTotal.setText("Totalt " + df.format(total) + " kr");
+        cartTotal.setText("Totalt " + Utils.getFormatedPrice(total) + " kr");
 
         if (cartEvent.getShoppingItem() == null) return;
 

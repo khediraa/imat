@@ -24,6 +24,8 @@
             <fx:include fx:id="payment" source="PurchaseCentered.fxml" />
             <fx:include fx:id="confirmation" source="Confirmation.fxml" />
             <fx:include fx:id="myProfilePane" source="myProfile.fxml" />
+            <fx:include fx:id="registration" source="registration.fxml" />
+            <fx:include fx:id="purchaseHistory" source="purchaseHistory.fxml" />
             <GridPane fx:id="shopGrid" gridLinesVisible="true">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

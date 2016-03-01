@@ -77,7 +77,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         if(cartEvent.isAddEvent()) {
             cartList.add(cartEvent.getShoppingItem());
         } else {
-            if (cartEvent.getShoppingItem().getAmount() <= 0) {
+            if (cartInstance.getItems().size() > 0 && cartEvent.getShoppingItem().getAmount() <= 0) {
                 cartList.remove(cartEvent.getShoppingItem());
             }
         }

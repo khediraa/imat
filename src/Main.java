@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 
 import java.util.ResourceBundle;
 
@@ -20,6 +21,11 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        primaryStage.setOnCloseRequest(event -> {
+            IMatDataHandler imatDataHandler = IMatDataHandler.getInstance();
+            imatDataHandler.shutDown();
+        });
     }
 
     public static void main(String[] args) {

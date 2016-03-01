@@ -134,6 +134,7 @@ public class CartCellController implements Initializable {
     }
 
     public void setAmount(double amount) {
+        if (amount > 99) amount = 99;
         String formatedString = Utils.getFormatedProductAmount(amount, this.item.getProduct());
         amountField.setText(formatedString);
     }

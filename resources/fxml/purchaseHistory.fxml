@@ -25,9 +25,9 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Accordion prefHeight="350.0" prefWidth="800.0">
+            <Accordion fx:id="historyAccordion" prefHeight="350.0" prefWidth="800.0">
               <panes>
-                <TitledPane fx:id="dateOfPurchase" animated="false" text="datum här">
+                <TitledPane fx:id="historyTemplate" animated="false" opacity="0.0" text="datum här">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -45,16 +45,6 @@
                               </HBox>
                            </children>
                         </AnchorPane>
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" text="datum här">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" text="datum här">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                 </TitledPane>
               </panes>

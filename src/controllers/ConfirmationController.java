@@ -18,9 +18,10 @@ import java.util.ResourceBundle;
  * Date: 2016-02-24
  * Project: imat26
  */
-public class ConformationController implements Initializable, ShoppingCartListener, IObservable {
+public class ConfirmationController implements Initializable, ShoppingCartListener, IObservable {
 
     @FXML private Button toShopButton;
+    @FXML private Button toPurchaseHistoryButton;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -31,6 +32,10 @@ public class ConformationController implements Initializable, ShoppingCartListen
             public void handle(ActionEvent event) {
                 pcs.firePropertyChange("to-shop", true, false);
             }
+        });
+
+        toPurchaseHistoryButton.setOnAction(event -> {
+            //Todo...
         });
     }
 

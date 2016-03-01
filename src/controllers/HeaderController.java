@@ -30,12 +30,11 @@ import java.util.*;
 public class HeaderController implements Initializable, IObservable {
     @FXML AnchorPane header;
     @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg;
-    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn;
+    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, myProfileBtn;
     private AnchorPane otherPane;
 
     private List<ImageView> images = new ArrayList<>();
     private List<Button> buttons = new ArrayList<>();
-    private Map<String,MultiEvent<ActionEvent>> buttonEvents = new HashMap<>();
 
     private boolean firstClick = true;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -50,6 +49,11 @@ public class HeaderController implements Initializable, IObservable {
         //Add all images to the images-list due to easier access
         images.add(meatImg); images.add(greensImg); images.add(dairyImg);
         images.add(cupboardImg); images.add(drinksImg); images.add(sweetsImg);
+
+        // Open modal for profile btn
+        myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("login-modal", true, false);
+        });
 
         //Masking all button-images to circles
         for(ImageView image : images){
@@ -77,6 +81,7 @@ public class HeaderController implements Initializable, IObservable {
     private EventHandler<ActionEvent> pickCategory = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
+
             Button buttonClicked = (Button)event.getSource();
             String btnId = buttonClicked.getId();
 

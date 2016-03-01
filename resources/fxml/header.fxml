@@ -36,7 +36,12 @@
                            <children>
                                <StackPane>
                                    <children>
-                                       <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                                       <ImageView fx:id="purchaseHistoryImg" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true"
+                                                  preserveRatio="true">
+                                           <image>
+                                               <Image url="@../headerImages/purchaseHistory.png" />
+                                           </image>
+                                       </ImageView>
                                        <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
                                    </children>
                                </StackPane>
@@ -57,7 +62,13 @@
                            <children>
                                <StackPane>
                                    <children>
-                                       <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                                       <ImageView fx:id="myProfileImg" fitHeight="90.0" fitWidth="90.0"
+                                                  pickOnBounds="true"
+                                                  preserveRatio="true">
+                                           <image>
+                                               <Image url="@../headerImages/myProfile.png" />
+                                           </image>
+                                       </ImageView>
                                        <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
                                    </children>
                                </StackPane>
@@ -232,13 +243,20 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="mostBoughtBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
-                                       <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <ImageView fx:id="mostBoughtImg" fitHeight="90.0" fitWidth="90.0"
+                                                  pickOnBounds="true"
+                                                  preserveRatio="true">
+                                           <image>
+                                               <Image url="@../headerImages/mostBought.png" />
+                                           </image>
+                                       </ImageView>
+                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Mina mest&#10;köpta" textAlignment="CENTER" />

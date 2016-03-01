@@ -29,7 +29,9 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private BasketController basketController;
     @FXML private PaymentController paymentController;
     @FXML private ShopController shopController;
+    @FXML private RegistrationController registrationController;
     @FXML private ConfirmationController confirmationController;
+    @FXML private PurchaseHistoryController purchaseHistoryController;
     @FXML private LogInController logInPaneController;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
@@ -40,6 +42,7 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private StackPane mainContainer;
     @FXML private BorderPane logInPane;
     @FXML private BorderPane myProfilePane;
+    @FXML private BorderPane purchaseHistory;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
@@ -68,7 +71,26 @@ public class RootController implements Initializable, PropertyChangeListener {
         paymentController.addObserver(this);
         confirmationController.addObserver(this);
         headerController.addObserver(this);
-        logInPaneController.addObserver(this);
+        registrationController.addObserver(this);
+        purchaseHistoryController.addObserver(this);
+    }
+
+    /**
+     * Stacks this anchorpane on top.
+     */
+    private EventHandler<ActionEvent> anchorPaneToFront(AnchorPane anchorPane) {
+        return event -> shopGrid.toFront();
+    }
+
+    private EventHandler<ActionEvent> toCartView() {
+        return event -> basket.toFront();
+    }
+
+    private EventHandler<ActionEvent> mainPageUpwards() {
+        return event -> {
+            //Todo...
+        };
+
     }
 
     // Button Events
@@ -130,6 +152,11 @@ public class RootController implements Initializable, PropertyChangeListener {
             case "to-my-profile":
                 myProfilePane.toFront();
                 loginModal.toggleModal();
+                break;
+
+            case "to-purchase-history":
+                purchaseHistoryController.refreshOrderHistory();
+                purchaseHistory.toFront();
                 break;
         }
 

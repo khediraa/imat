@@ -30,7 +30,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1">
                <children>
                   <Separator maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="110.0" />
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="purchaseHistoryBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>

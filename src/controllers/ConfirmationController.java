@@ -35,7 +35,7 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
         });
 
         toPurchaseHistoryButton.setOnAction(event -> {
-            //Todo...
+            pcs.firePropertyChange("to-purchase-history", true, false);
         });
     }
 

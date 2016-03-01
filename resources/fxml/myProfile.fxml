@@ -110,7 +110,6 @@
                                  </children>
                               </VBox>
                               <Button fx:id="toPurchaseHistoryPaneButton" mnemonicParsing="false" text="Din köphistorik" GridPane.rowIndex="6" />
-                              <Button fx:id="saveDetailsButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Spara" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -200,6 +199,10 @@
                                     </GridPane>
                                  </children>
                               </VBox>
+                              <Button fx:id="saveDetailsButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Spara" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font></Button>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

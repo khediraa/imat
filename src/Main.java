@@ -21,7 +21,8 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-
+        primaryStage.setResizable(false);
+        
         primaryStage.setOnCloseRequest(event -> {
             IMatDataHandler imatDataHandler = IMatDataHandler.getInstance();
             imatDataHandler.shutDown();

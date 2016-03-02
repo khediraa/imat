@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.tools.hat.internal.model.Root;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,11 +47,15 @@ public class ShopController implements Initializable, ShoppingCartListener {
 
     ObservableList<Node> products;
 
+    @FXML RootController rootController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fetchProducts();
 
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
+
+
 
         //Todo... ----- Must show subcategories
 
@@ -202,6 +207,14 @@ public class ShopController implements Initializable, ShoppingCartListener {
         sweets.addAll(dataInstance.getProducts(ProductCategory.SWEET));
     }
 
+    public void search(String searchTerm) {
+        clearTilePane();
+        List<Product> results = dataInstance.findProducts(searchTerm);
+
+        clearTilePane();
+        displayProducts(results);
+    }
+
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
         checkForAmountUpdate(visibleControllers);
@@ -212,4 +225,5 @@ public class ShopController implements Initializable, ShoppingCartListener {
             itemTileController.refreshAmountField();
         }
     }
+
 }

@@ -4,16 +4,23 @@ import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import utils.Modal;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +29,7 @@ import java.util.ResourceBundle;
 /**
  * Created by tuyenngo on 2016-02-22.
  */
-public class RootController implements Initializable, PropertyChangeListener {
+public class RootController implements Initializable, PropertyChangeListener, IObservable {
     @FXML private HeaderController headerController;
     @FXML private MainPageController mainPageController;
     @FXML private CartController cartController;
@@ -44,9 +51,11 @@ public class RootController implements Initializable, PropertyChangeListener {
     @FXML private BorderPane myProfilePane;
     @FXML private BorderPane registration;
     @FXML private BorderPane purchaseHistory;
+    @FXML private TextField searchBar;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,6 +72,17 @@ public class RootController implements Initializable, PropertyChangeListener {
         root.heightProperty().addListener((observable, oldValue, newValue) -> {
             if (headerController.isFirstClick()){
                 mainPageController.setHeight(newValue.doubleValue());
+            }
+        });
+
+        // search bar
+        // search field
+
+        // when pressing enter while editing format the input
+        searchBar.addEventFilter(KeyEvent.ANY, e->{
+            if(e.getCode().equals(KeyCode.ENTER)) {
+                shopController.search(searchBar.getText());
+                e.consume();
             }
         });
 
@@ -167,6 +187,16 @@ public class RootController implements Initializable, PropertyChangeListener {
                 purchaseHistory.toFront();
                 break;
         }
+
+    }
+
+    @Override
+    public void addObserver(PropertyChangeListener observer) {
+
+    }
+
+    @Override
+    public void removeObserver(PropertyChangeListener observer) {
 
     }
 }

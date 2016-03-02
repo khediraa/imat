@@ -1,0 +1,30 @@
+#itemTile{
+	-fx-background-color: white;
+}
+
+.circleButtons {
+	-fx-fill: #348A2F;
+	-fx-stroke: transparent;
+}
+
+.button {
+	-fx-background-color: transparent;
+}
+
+.button:hover .circleButtons{
+	-fx-fill: #53C24D;
+}
+
+.button:disabled .circleButtons{
+	-fx-fill: #bcbcbc;
+}
+
+#title {
+	-fx-font-weight: bold;
+	-fx-font-size: 14pt;
+}
+
+#price {
+	-fx-font-family: Arial;
+	-fx-font-style: italic;
+}

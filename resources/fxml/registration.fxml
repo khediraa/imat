@@ -5,10 +5,13 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="registrationPane" prefHeight="520.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationController">
+<BorderPane fx:id="registration" prefHeight="520.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationController">
    <center>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +26,19 @@
             <PasswordField fx:id="password" />
             <Label text="Ange lösenord igen" />
             <PasswordField fx:id="passwordAgain" />
-            <Button fx:id="registerButton" mnemonicParsing="false" text="Registrera dig" />
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="backButton" mnemonicParsing="false" text="Tillbaka" />
+                  <Button fx:id="registerButton" mnemonicParsing="false" text="Registrera dig" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+               </children>
+            </GridPane>
          </children>
       </VBox>
    </center>

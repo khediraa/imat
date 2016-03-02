@@ -29,8 +29,10 @@ import java.util.*;
  */
 public class HeaderController implements Initializable, IObservable {
     @FXML AnchorPane header;
-    @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg;
-    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, myProfileBtn;
+    @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg, mostBoughtImg,
+    purchaseHistoryImg, myProfileImg;
+    @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, mostBoughtBtn, myProfileBtn,
+    purchaseHistoryBtn;
     private AnchorPane otherPane;
 
     private List<ImageView> images = new ArrayList<>();
@@ -45,14 +47,23 @@ public class HeaderController implements Initializable, IObservable {
 
         buttons.add(meatBtn); buttons.add(greensBtn); buttons.add(dairyBtn);
         buttons.add(cupboardBtn); buttons.add(drinksBtn); buttons.add(sweetsBtn);
+        buttons.add(mostBoughtBtn); buttons.add(purchaseHistoryBtn); buttons.add(myProfileBtn);
 
         //Add all images to the images-list due to easier access
         images.add(meatImg); images.add(greensImg); images.add(dairyImg);
         images.add(cupboardImg); images.add(drinksImg); images.add(sweetsImg);
+        images.add(mostBoughtImg); images.add(purchaseHistoryImg); images.add(myProfileImg);
 
         // Open modal for profile btn
         myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            if (firstClick) {
+                pcs.firePropertyChange("set-category-greens", true, false);
+            }
             pcs.firePropertyChange("login-modal", true, false);
+        });
+
+        purchaseHistoryBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("to-purchase-history", true, false);
         });
 
         //Masking all button-images to circles
@@ -84,8 +95,6 @@ public class HeaderController implements Initializable, IObservable {
 
             Button buttonClicked = (Button)event.getSource();
             String btnId = buttonClicked.getId();
-
-            System.out.println(btnId);
 
             String eventMsg = "";
 

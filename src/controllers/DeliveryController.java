@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.GridPane;
 import se.chalmers.ait.dat215.project.CartEvent;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 
 import java.beans.PropertyChangeListener;
@@ -36,6 +37,7 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
 
         confirmButton.setOnAction(event -> {
             pcs.firePropertyChange("confirm-order", true, false);
+            completeOrder();
         });
 
         shopChoice.setOnAction(event -> {deliveryMethod.setDisable(true);});
@@ -43,7 +45,10 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
 
     }
 
-
+    private void completeOrder() {
+        IMatDataHandler dataHandler = IMatDataHandler.getInstance();
+        dataHandler.placeOrder(true);
+    }
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {

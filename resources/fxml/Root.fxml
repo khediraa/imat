@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.Double?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RootController">
    <children>
-      <GridPane gridLinesVisible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
-        </rowConstraints>
-      </GridPane>
       <StackPane fx:id="mainContainer" layoutX="-0.5" layoutY="179.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
          <children>
-            <fx:include fx:id="purchaseHistoryPane" maxWidth="-Infinity" maxHeight="-Infinity" source="LoginPage.fxml" />
+            <fx:include fx:id="purchaseHistoryPane" maxHeight="-Infinity" maxWidth="-Infinity" source="LoginPage.fxml" />
             <fx:include fx:id="basket" source="BasketCentered.fxml" />
             <fx:include fx:id="payment" source="PurchaseCentered.fxml" />
             <fx:include fx:id="confirmation" source="Confirmation.fxml" />
             <fx:include fx:id="myProfilePane" source="myProfile.fxml" />
             <fx:include fx:id="delivery" source="Delivery.fxml" />
+            <fx:include fx:id="registration" source="registration.fxml" />
+            <fx:include fx:id="purchaseHistory" source="purchaseHistory.fxml" />
             <GridPane fx:id="shopGrid" gridLinesVisible="true">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,5 +52,52 @@
       </StackPane>
        <fx:include fx:id="mainPage" source="MainPage.fxml" />
        <fx:include fx:id="header" source="Header.fxml" />
+      <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <HBox fx:id="bar" alignment="CENTER_LEFT" stylesheets="@../css/header.css">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="50.0">
+                     <children>
+                        <Circle fill="#485f1b" radius="15.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.0" />
+                        <Circle fill="WHITE" layoutY="10.0" radius="5.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="10.0" />
+                        <Polygon fill="WHITE" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="12.0">
+                          <points>
+                            <Double fx:value="-8.0" />
+                            <Double fx:value="6.0" />
+                            <Double fx:value="8.0" />
+                            <Double fx:value="6.0" />
+                            <Double fx:value="0.0" />
+                            <Double fx:value="-10.0" />
+                          </points>
+                        </Polygon>
+                     </children>
+                  </AnchorPane>
+                  <Label fx:id="matLabel" text="Mat" />
+                  <TextField fx:id="searchBar" prefWidth="450.0" promptText="Sök efter produkt..." styleClass="search-bar" stylesheets="@../css/header.css">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="searchButton" mnemonicParsing="false" stylesheets="@../css/header.css" text="Sök">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

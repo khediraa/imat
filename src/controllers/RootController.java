@@ -193,6 +193,12 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 shopGrid.toFront();
                 break;
 
+            case "set-category-most-bought":
+                cartController.refreshView();
+                shopController.displayMostBought();
+                shopGrid.toFront();
+                break;
+
             case "login-modal":
                 loginModal.toggleModal();
                 break;

@@ -7,12 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.TilePane;
 import se.chalmers.ait.dat215.project.*;
+import sun.dc.pr.PRError;
+import utils.Utils;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by tuyenngo on 2016-02-22.
@@ -165,6 +165,44 @@ public class ShopController implements Initializable, ShoppingCartListener {
     public void displaySweets(){
         clearTilePane();
         displayProducts(sweets);
+    }
+
+    public void displayMostBought() {
+        clearTilePane();
+        displayProducts(getMostBoughtProducts());
+    }
+
+    private List<Product> getMostBoughtProducts() {
+        Map<Product, Integer> boughtProducts = new HashMap<>();
+
+        List<Order> orderList = dataInstance.getOrders();
+        for(Order order : orderList) {
+            for (ShoppingItem item : order.getItems()) {
+                if (boughtProducts.containsKey(item.getProduct())) {
+                    int currentCount = boughtProducts.get(item.getProduct());
+                    boughtProducts.put(item.getProduct(), currentCount + 1);
+                } else {
+                    boughtProducts.put(item.getProduct(), 1);
+                }
+            }
+        }
+
+        Map<Product, Integer> boughtProductsSorted = Utils.sortByValue(boughtProducts);
+
+        Iterator it = boughtProductsSorted.entrySet().iterator();
+
+        int max_products = 12;
+        int i = 0;
+
+        List<Product> mostBoughtProducts = new ArrayList<>();
+
+        while (it.hasNext() && i < max_products) {
+            Map.Entry pair = (Map.Entry)it.next();
+            mostBoughtProducts.add((Product) pair.getKey());
+            i++;
+        }
+
+        return mostBoughtProducts;
     }
 
     private void fetchProducts() {

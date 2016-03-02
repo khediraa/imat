@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -54,6 +55,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private BorderPane registration;
     @FXML private BorderPane purchaseHistory;
     @FXML private TextField searchBar;
+    @FXML private Button searchButton;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
@@ -83,10 +85,13 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         // when pressing enter while editing format the input
         searchBar.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
-                shopGrid.toFront();
-                shopController.search(searchBar.getText());
+                search();
                 e.consume();
             }
+        });
+
+        searchButton.addEventFilter(ActionEvent.ACTION, event -> {
+            search();
         });
 
         // Add as observer to the sub views
@@ -117,6 +122,13 @@ public class RootController implements Initializable, PropertyChangeListener, IO
             //Todo...
         };
 
+    }
+
+    private void search() {
+        if (searchBar.getText().length() > 0) {
+            shopGrid.toFront();
+            shopController.search(searchBar.getText());
+        }
     }
 
     // Button Events

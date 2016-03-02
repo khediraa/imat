@@ -180,9 +180,9 @@ public class ShopController implements Initializable, ShoppingCartListener {
             for (ShoppingItem item : order.getItems()) {
                 if (boughtProducts.containsKey(item.getProduct())) {
                     int currentCount = boughtProducts.get(item.getProduct());
-                    boughtProducts.put(item.getProduct(), currentCount + 1);
+                    boughtProducts.put(item.getProduct(), currentCount + (int)item.getAmount());
                 } else {
-                    boughtProducts.put(item.getProduct(), 1);
+                    boughtProducts.put(item.getProduct(), (int)item.getAmount());
                 }
             }
         }

@@ -83,6 +83,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         // when pressing enter while editing format the input
         searchBar.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
+                shopGrid.toFront();
                 shopController.search(searchBar.getText());
                 e.consume();
             }

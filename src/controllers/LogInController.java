@@ -28,6 +28,8 @@ public class LogInController implements Initializable, IObservable {
     @FXML
     private Button toRegistrationPaneButton;
     @FXML
+    private Button closeModuleButton;
+    @FXML
     private Hyperlink forgotPasswordLink;
 
     private String userNameString;
@@ -51,6 +53,10 @@ public class LogInController implements Initializable, IObservable {
 
         toRegistrationPaneButton.addEventHandler(ActionEvent.ACTION, event -> {
             pcs.firePropertyChange("to-registration", true, false);
+        });
+
+        closeModuleButton.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("back-to-previous-screen", true, false);
         });
 
     }

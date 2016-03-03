@@ -54,13 +54,14 @@
        <fx:include fx:id="header" source="Header.fxml" />
       <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <HBox fx:id="bar" alignment="CENTER_LEFT" stylesheets="@../css/header.css">
+            <HBox fx:id="bar" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="400.0" stylesheets="@../css/header.css">
                <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="50.0">
                      <children>
@@ -84,7 +85,8 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="searchButton" mnemonicParsing="false" stylesheets="@../css/header.css" text="Sök">
+                  <Button fx:id="searchButton" mnemonicParsing="false" stylesheets="@../css/header.css"
+                          styleClass="toolBarButton" text="Sök">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -96,6 +98,20 @@
                      </HBox.margin>
                   </Button>
                </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="logInLabel" text="Ej inloggad" stylesheets="@../css/header.css"/>
+                  <Button fx:id="logInButton" mnemonicParsing="false" text="Logga in"
+                          stylesheets="@../css/header.css" styleClass="toolBarButton">
+                      <cursor>
+                          <Cursor fx:constant="HAND"/>
+                      </cursor>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
             </HBox>
          </children>
       </GridPane>

@@ -1,7 +1,9 @@
 package utils;
 
 import javafx.scene.control.TextField;
+import se.chalmers.ait.dat215.project.Order;
 import se.chalmers.ait.dat215.project.Product;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
@@ -74,6 +76,16 @@ public class Utils {
 
         return results;
 
+    }
+
+    public static double getOrderTotalPrice(Order order) {
+        double totalPrice = 0;
+
+        for (ShoppingItem item : order.getItems()) {
+            totalPrice = item.getTotal();
+        }
+
+        return totalPrice;
     }
 
 }

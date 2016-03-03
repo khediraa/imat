@@ -3,8 +3,10 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -20,6 +22,7 @@ import se.chalmers.ait.dat215.project.ShoppingItem;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -50,54 +53,27 @@ public class PurchaseHistoryController implements Initializable, IObservable {
         historyAccordion.getPanes().clear();
 
         for(Order order : this.orders) {
-            createTitledPane(order);
+            TitledPane orderPane = createTitledPane(order);
+            historyAccordion.getPanes().add(orderPane);
         }
     }
 
-    private void createTitledPane(Order order) {
-        GridPane layout = new GridPane();
+    private TitledPane createTitledPane(Order order) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/HistoryDetails.fxml"));
+            Node historyDetailsNode = loader.load();
+            HistoryDetailsController historyDetailsController = loader.getController();
 
-        ObservableList<ShoppingItem> itemList = FXCollections.observableArrayList();
-        itemList.setAll(order.getItems());
-        ListView<ShoppingItem> orderItems = new ListView<>();
-        orderItems.setItems(itemList);
+            TitledPane orderTitledPane = new TitledPane(order.getDate().toString(), historyDetailsNode);
 
-        ColumnConstraints col1Constraints = new ColumnConstraints();
-        ColumnConstraints col2Constraints = new ColumnConstraints();
+            historyDetailsController.populateHistoryDetails(order);
 
-        col1Constraints.setPercentWidth(75);
-        col2Constraints.setPercentWidth(25);
-
-        layout.getColumnConstraints().add(col1Constraints);
-        layout.getColumnConstraints().add(col2Constraints);
-
-        layout.setHgap(10);
-        layout.setVgap(10);
-        layout.setPadding(new Insets(5,5,5,5));
-
-        orderItems.setCellFactory(new Callback<ListView<ShoppingItem>, ListCell<ShoppingItem>>() {
-            @Override
-            public ListCell<ShoppingItem> call(ListView<ShoppingItem> param) {
-                return new OrderHistoryCell();
-            }
-        });
-
-        double amount = 0;
-
-        for (ShoppingItem item : itemList) {
-            amount += item.getAmount() * item.getProduct().getPrice();
+            return orderTitledPane;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        Text total = new Text("Totalt: " + amount + " kr");
-
-        layout.add(orderItems, 0,0);
-        layout.add(total, 1,0);
-
-
-        String formatedDateString = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(order.getDate());
-
-        TitledPane newOrderPane = new TitledPane(formatedDateString, layout);
-        historyAccordion.getPanes().add(newOrderPane);
+        return null;
     }
 
     public void refreshOrderHistory() {

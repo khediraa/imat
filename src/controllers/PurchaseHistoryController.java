@@ -42,9 +42,10 @@ public class PurchaseHistoryController implements Initializable, IObservable {
     }
 
     private void getOrders() {
-
         this.orders.clear();
         this.orders.setAll(dataHandler.getOrders());
+
+        Collections.reverse(this.orders);
 
         historyAccordion.getPanes().clear();
 

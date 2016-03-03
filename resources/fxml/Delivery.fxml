@@ -9,12 +9,12 @@
    <left>
       <AnchorPane prefHeight="504.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="201.0" layoutY="25.0" prefHeight="18.0" prefWidth="600.0">
+            <VBox layoutX="201.0" layoutY="20.0" prefHeight="9.0" prefWidth="600.0">
                <children>
-                  <ProgressBar prefHeight="18.0" prefWidth="600.0" progress="0.75" />
+                  <ProgressBar prefHeight="79.0" prefWidth="600.0" progress="0.75" />
                </children>
             </VBox>
-            <GridPane fx:id="deliveryMethod" layoutX="300.0" layoutY="59.0" prefHeight="398.0" prefWidth="401.0">
+            <GridPane fx:id="deliveryMethod" layoutX="301.0" layoutY="52.0" prefHeight="342.0" prefWidth="401.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,7 +40,7 @@
                   </RadioButton>
                   <RadioButton fx:id="homeChoice" mnemonicParsing="false" text="Till hemmet" GridPane.rowIndex="3">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </RadioButton>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Varorna kommer levereras till butiken inom 4 dagar. Du får ett sms när de har kommit till butiken." wrappingWidth="400.654296875" GridPane.rowIndex="2" />
@@ -58,8 +58,8 @@
                   </VBox>
                </children>
             </GridPane>
-            <Button fx:id="backToPaymentButton" layoutX="106.0" layoutY="445.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Tillbaka" />
-            <Button fx:id="confirmButton" layoutX="801.0" layoutY="445.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Bekräfta köp" />
+            <Button fx:id="backToPaymentButton" layoutX="201.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Tillbaka" />
+            <Button fx:id="confirmButton" layoutX="711.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Bekräfta köp" />
          </children>
       </AnchorPane>
    </left>

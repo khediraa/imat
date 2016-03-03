@@ -105,6 +105,7 @@ public class ItemTileController implements Initializable {
         if (matchingItem != null) {
             amountField.setText(Utils.getFormatedProductAmount(matchingItem.getAmount(), product));
         } else {
+            removeProductBtn.setDisable(true);
             amountField.setText(Utils.getFormatedProductAmount(0, product));
         }
     }

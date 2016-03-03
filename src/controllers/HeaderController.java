@@ -66,6 +66,13 @@ public class HeaderController implements Initializable, IObservable {
             pcs.firePropertyChange("to-purchase-history", true, false);
         });
 
+
+        // Most bought products
+
+        mostBoughtBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("set-category-most-bought", true, false);
+        });
+
         //Masking all button-images to circles
         for(ImageView image : images){
             image.setClip(new Circle(image.getFitHeight()/2, image.getFitHeight()/2,

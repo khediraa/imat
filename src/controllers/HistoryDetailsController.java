@@ -44,8 +44,6 @@ public class HistoryDetailsController implements Initializable, IObservable{
     }
 
     public void populateHistoryDetails(Order order) {
-
-        System.out.println(Utils.getOrderTotalPrice(order));
         totalPrice.setText(Utils.getFormatedPrice(Utils.getOrderTotalPrice(order)) + " kr");
         historyDetails.setEditable(false);
         historyDetails.setColumnResizePolicy(new Callback<TableView.ResizeFeatures, Boolean>() {

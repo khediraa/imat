@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -42,6 +43,8 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private LogInController logInPaneController;
     @FXML private DeliveryController deliveryController;
     @FXML private PurchaseHistoryController purchaseHistoryController;
+    @FXML private Button logInButton;
+    @FXML private Label logInLabel;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
     @FXML private BorderPane basket;
@@ -78,6 +81,9 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 mainPageController.setHeight(newValue.doubleValue());
             }
         });
+
+        //Showing log-in modal if log in button is pressed
+        logInButton.setOnAction(event -> loginModal.toggleModal());
 
         // search bar
         // search field

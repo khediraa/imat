@@ -253,7 +253,7 @@
                                                   pickOnBounds="true"
                                                   preserveRatio="true">
                                            <image>
-                                               <Image url="@../headerImages/mostBought.png" />
+                                               <Image url="@../headerImages/mostBoughtCentered.png" />
                                            </image>
                                        </ImageView>
                                        <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />

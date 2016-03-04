@@ -14,9 +14,8 @@
                   <ProgressBar prefHeight="79.0" prefWidth="600.0" progress="0.75" />
                </children>
             </VBox>
-            <GridPane fx:id="deliveryMethod" layoutX="301.0" layoutY="52.0" prefHeight="342.0" prefWidth="401.0">
+            <GridPane fx:id="deliveryMethod" layoutX="213.0" layoutY="52.0" prefHeight="330.0" prefWidth="561.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
@@ -28,34 +27,48 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Leveransmetod">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Text>
-                  <RadioButton fx:id="shopChoice" mnemonicParsing="false" text="Till butiken" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="homeChoice" mnemonicParsing="false" text="Till hemmet" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Varorna kommer levereras till butiken inom 4 dagar. Du får ett sms när de har kommit till butiken." wrappingWidth="400.654296875" GridPane.rowIndex="2" />
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                  <AnchorPane prefHeight="307.0" prefWidth="340.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Välj datum:" />
-                        <DatePicker promptText="Välj datum" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
+                        <Text layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leveransmetod">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="deliveryDate" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Välj tid:" />
-                        <ComboBox fx:id="timeCombo" prefWidth="150.0" promptText="Välj tid" />
+                        <Text layoutX="-2.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj datum:" />
+                        <DatePicker fx:id="pickDate" layoutY="21.0" promptText="Välj datum" />
                      </children>
-                  </VBox>
+                  </AnchorPane>
+                  <AnchorPane fx:id="deliveryShop" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <children>
+                        <Text layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varorna kommer levereras till butiken inom 4 dagar. Du får ett sms när de har kommit till butiken." wrappingWidth="400.654296875" />
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="deliveryTime" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+                     <children>
+                        <ComboBox fx:id="timeCombo" layoutX="3.0" layoutY="29.0" prefWidth="150.0" promptText="Välj tid" />
+                        <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj tid:" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="shopRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <RadioButton fx:id="shopChoice" layoutY="18.0" mnemonicParsing="false" text="Till butiken">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="homeRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <RadioButton fx:id="homeChoice" layoutY="18.0" mnemonicParsing="false" text="Till hemmet">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
             <Button fx:id="backToPaymentButton" layoutX="201.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Tillbaka" />

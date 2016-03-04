@@ -42,7 +42,7 @@
                      </children>
                   </StackPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                      <fx:include fx:id="cart" source="Cart.fxml" />
+                      <fx:include fx:id="cart" source="cart.fxml" />
                   </AnchorPane>
                </children>
             </GridPane>
@@ -51,7 +51,7 @@
          </children>
       </StackPane>
        <fx:include fx:id="mainPage" source="MainPage.fxml" />
-       <fx:include fx:id="header" source="Header.fxml" />
+       <fx:include fx:id="header" source="header.fxml" />
       <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

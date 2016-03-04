@@ -5,9 +5,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 
+import javax.xml.soap.Text;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
@@ -22,6 +24,8 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
 
     @FXML private Button toShopButton;
     @FXML private Button toPurchaseHistoryButton;
+    @FXML private Label dateConfirm;
+    @FXML private Label timeConfirm;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -37,6 +41,11 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
         toPurchaseHistoryButton.setOnAction(event -> {
             pcs.firePropertyChange("to-purchase-history", true, false);
         });
+    }
+
+    public void showDeliveryTime(String time, String date){
+        dateConfirm.setText(date);
+        timeConfirm.setText(time);
     }
 
     @Override

@@ -142,6 +142,8 @@ public class RootController implements Initializable, PropertyChangeListener, IO
 
             case "confirm-order":
                 confirmation.toFront();
+                confirmationController.showDeliveryTime(
+                        deliveryController.getTime(), deliveryController.getDate());
                 break;
 
             case "set-category-meat":

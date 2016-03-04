@@ -2,8 +2,8 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -21,12 +21,19 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
 
     @FXML private Button backToPaymentButton;
     @FXML private Button confirmButton;
-    @FXML private GridPane deliveryMethod;
+    @FXML private AnchorPane deliveryShop;
+    @FXML private AnchorPane deliveryDate;
+    @FXML private AnchorPane deliveryTime;
+
     @FXML private RadioButton shopChoice;
     @FXML private RadioButton homeChoice;
+    @FXML private DatePicker pickDate;
+    @FXML private ComboBox timeCombo;
 
+    private final ToggleGroup deliveryRadioGroup = new ToggleGroup();
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-
+    private String time;
+    private String date;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,18 +43,40 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
         });
 
         confirmButton.setOnAction(event -> {
+            time = (String)timeCombo.getValue();
+            date = pickDate.getValue().toString();
             pcs.firePropertyChange("confirm-order", true, false);
             completeOrder();
         });
 
-        shopChoice.setOnAction(event -> {deliveryMethod.setDisable(true);});
-        homeChoice.setOnAction(event -> deliveryMethod.setDisable(false));
+        homeChoice.setToggleGroup(deliveryRadioGroup);
+        shopChoice.setToggleGroup(deliveryRadioGroup);
 
+        homeChoice.setOnAction(event -> {
+            deliveryTime.setDisable(true);
+            deliveryDate.setDisable(true);
+        });
+
+        shopChoice.setOnAction(event -> deliveryShop.setDisable(false));
+
+
+    }
+
+    private void toggleDeliveryPanes(boolean value){
+        //TODO: Move lambda function on homeChoice here, it needs to be written twice.
     }
 
     private void completeOrder() {
         IMatDataHandler dataHandler = IMatDataHandler.getInstance();
         dataHandler.placeOrder(true);
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public String getDate(){
+        return date;
     }
 
     @Override

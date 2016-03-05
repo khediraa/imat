@@ -30,7 +30,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1">
                <children>
                   <Separator maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="110.0" />
-                  <Button fx:id="purchaseHistoryBtn" mnemonicParsing="false">
+                  <Button id="purchaseHistoryBtn" fx:id="purchaseHistoryBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -42,7 +42,9 @@
                                                <Image url="@../headerImages/purchaseHistory.png" />
                                            </image>
                                        </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="purchaseHistoryCircle" radius="45.0" stroke="BLACK"
+                                               strokeType="INSIDE"
+                                               styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Min historik" textAlignment="CENTER" />
@@ -56,7 +58,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="myProfileBtn" mnemonicParsing="false">
+                  <Button id="myProfileBtn" fx:id="myProfileBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -69,7 +71,8 @@
                                                <Image url="@../headerImages/myProfile.png" />
                                            </image>
                                        </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="myProfileCircle" radius="45.0" stroke="BLACK" strokeType="INSIDE"
+                                               styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Mitt konto" textAlignment="CENTER" />
@@ -93,7 +96,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" spacing="15.0">
                <children>
-                  <Button fx:id="meatBtn" mnemonicParsing="false">
+                  <Button id="meatBtn" fx:id="meatBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -104,7 +107,8 @@
                                           <Image url="@../headerImages/meat.jpg" />
                                        </image>
                                     </ImageView>
-                                    <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                    <Circle fx:id="meatCircle" radius="45.0" stroke="BLACK" strokeType="INSIDE"
+                                            styleClass="circleBorder" />
                                  </children>
                               </StackPane>
                               <Label text="Kött" textAlignment="CENTER" />
@@ -118,7 +122,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="greensBtn" mnemonicParsing="false">
+                  <Button id="greensBtn" fx:id="greensBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -129,7 +133,8 @@
                                             <Image url="@../headerImages/greens.jpeg" />
                                          </image>
                                       </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="greensCircle" radius="45.0" stroke="BLACK" strokeType="INSIDE"
+                                                styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Frukt &amp;&#10;grönt" textAlignment="CENTER" />
@@ -143,7 +148,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="dairyBtn" mnemonicParsing="false">
+                  <Button id="dairyBtn" fx:id="dairyBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -154,7 +159,8 @@
                                                <Image url="@../headerImages/dairy.jpg" />
                                            </image>
                                        </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="dairyCircle" radius="45.0" stroke="BLACK" strokeType="INSIDE"
+                                               styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Mejeri" textAlignment="CENTER" />
@@ -168,7 +174,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="cupboardBtn" mnemonicParsing="false">
+                  <Button id="cupboardBtn" fx:id="cupboardBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -179,7 +185,8 @@
                                                <Image url="@../headerImages/cupboard.jpg" />
                                            </image>
                                        </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="cupboardCircle" radius="45.0" stroke="BLACK" strokeType="INSIDE"
+                                               styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Skafferi" textAlignment="CENTER" />
@@ -193,7 +200,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="drinksBtn" mnemonicParsing="false">
+                  <Button id="drinksBtn" fx:id="drinksBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -204,7 +211,8 @@
                                                <Image url="@../headerImages/drinks.jpg" />
                                            </image>
                                        </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="drinksCircle" radius="45.0" stroke="BLACK" strokeType="INSIDE"
+                                                styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Drycker" textAlignment="CENTER" />
@@ -218,7 +226,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="sweetsBtn" mnemonicParsing="false">
+                  <Button id="sweetsBtn" fx:id="sweetsBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -229,7 +237,8 @@
                                                <Image url="@../headerImages/sweets.jpg" />
                                            </image>
                                        </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="sweetsCircle" radius="45.0" stroke="BLACK" strokeType="INSIDE"
+                                               styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Sötsaker" textAlignment="CENTER" />
@@ -243,7 +252,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="mostBoughtBtn" mnemonicParsing="false">
+                  <Button id="mostBoughtBtn" fx:id="mostBoughtBtn" mnemonicParsing="false">
                      <graphic>
                         <VBox alignment="TOP_CENTER" spacing="8.0">
                            <children>
@@ -256,7 +265,9 @@
                                                <Image url="@../headerImages/mostBoughtCentered.png" />
                                            </image>
                                        </ImageView>
-                                       <Circle radius="45.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleBorder" />
+                                       <Circle fx:id="mostBoughtCircle" radius="45.0" stroke="BLACK"
+                                               strokeType="INSIDE"
+                                               styleClass="circleBorder" />
                                    </children>
                                </StackPane>
                               <Label text="Mina mest&#10;köpta" textAlignment="CENTER" />

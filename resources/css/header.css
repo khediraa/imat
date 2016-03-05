@@ -61,3 +61,7 @@
 	-fx-font-family: arial;
 	-fx-text-fill: whitesmoke;
 }
+
+.selected-button {
+	-fx-stroke: #CCF971;
+}

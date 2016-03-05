@@ -3,6 +3,8 @@ package controllers;
 import javafx.animation.PathTransition;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,12 +33,16 @@ public class HeaderController implements Initializable, IObservable {
     @FXML AnchorPane header;
     @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg, mostBoughtImg,
     purchaseHistoryImg, myProfileImg;
+    @FXML Circle meatCircle, greensCircle, dairyCircle, cupboardCircle, drinksCircle, sweetsCircle, mostBoughtCircle,
+            purchaseHistoryCircle, myProfileCircle;
     @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, mostBoughtBtn, myProfileBtn,
     purchaseHistoryBtn;
     private AnchorPane otherPane;
 
     private List<ImageView> images = new ArrayList<>();
     private List<Button> buttons = new ArrayList<>();
+    private StringProperty selectedProperty = new SimpleStringProperty("");
+    private Map<Button, Circle> mapping;
 
     private boolean firstClick = true;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -66,9 +72,26 @@ public class HeaderController implements Initializable, IObservable {
             pcs.firePropertyChange("to-purchase-history", true, false);
         });
 
+        //Map each circle to its corresponding button
+        mapping = associate(new Button[]{meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn,
+                mostBoughtBtn, purchaseHistoryBtn, myProfileBtn}, new Circle[]{meatCircle, greensCircle, dairyCircle,
+                cupboardCircle, drinksCircle, sweetsCircle, mostBoughtCircle, purchaseHistoryCircle, myProfileCircle
+        } );
+
+        mapping.keySet().forEach(button -> button.setOnAction(event -> selectedProperty.set(button.getId())));
+        selectedProperty.addListener(((observable, oldID, newID) -> {
+            Button oldButton = find(mapping.keySet(), oldID);
+            Button newButton = find(mapping.keySet(), newID);
+            System.out.println(oldButton + " :: " + newButton);
+            if (oldButton != null){
+                getCircle(oldButton).getStyleClass().remove("selected-button");
+            }
+            if (newButton != null){
+                getCircle(newButton).getStyleClass().add("selected-button");
+            }
+        }));
 
         // Most bought products
-
         mostBoughtBtn.addEventHandler(ActionEvent.ACTION, event -> {
             pcs.firePropertyChange("set-category-most-bought", true, false);
         });
@@ -169,5 +192,27 @@ public class HeaderController implements Initializable, IObservable {
     @Override
     public void removeObserver(PropertyChangeListener observer) {
         this.pcs.removePropertyChangeListener(observer);
+    }
+
+    /** Place our buttons into a list */
+    private Map<Button, Circle> associate(Button[] buttons, Circle[] circles) {
+        Map<Button, Circle> map = new HashMap<Button, Circle>();
+        for (int i = 0; i < buttons.length; ++i)
+            map.put(buttons[i], circles[i]);
+
+        return map;
+    }
+
+    /** Finds a button with "css-ID" <code>ID</code> in the list <code>list</code>. Returns null if the there was no button with such an ID. */
+    private Button find(Set<Button> buttons, String ID) {
+        for (Button button : buttons)
+            if (button.getId().equals(ID))
+                return button;
+
+        return null;
+    }
+
+    private Circle getCircle(Button b) {
+        return mapping.get(b);
     }
 }

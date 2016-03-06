@@ -62,6 +62,11 @@
 	-fx-text-fill: whitesmoke;
 }
 
-.selected-button {
+.selected-button .circleBorder{
 	-fx-stroke: #CCF971;
+}
+
+.selected-button .label {
+	-fx-text-fill: beige;
+	-fx-font-weight: bold;
 }

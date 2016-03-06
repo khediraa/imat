@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -33,8 +34,8 @@ public class HeaderController implements Initializable, IObservable {
     @FXML AnchorPane header;
     @FXML ImageView meatImg, greensImg, dairyImg, cupboardImg, drinksImg, sweetsImg, mostBoughtImg,
     purchaseHistoryImg, myProfileImg;
-    @FXML Circle meatCircle, greensCircle, dairyCircle, cupboardCircle, drinksCircle, sweetsCircle, mostBoughtCircle,
-            purchaseHistoryCircle, myProfileCircle;
+    @FXML VBox meatVBox, greensVBox, dairyVBox, cupboardVBox, drinksVBox, sweetsVBox, mostBoughtVBox,
+            purchaseHistoryVBox, myProfileVBox;
     @FXML Button meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn, mostBoughtBtn, myProfileBtn,
     purchaseHistoryBtn;
     private AnchorPane otherPane;
@@ -42,7 +43,7 @@ public class HeaderController implements Initializable, IObservable {
     private List<ImageView> images = new ArrayList<>();
     private List<Button> buttons = new ArrayList<>();
     private StringProperty selectedProperty = new SimpleStringProperty("");
-    private Map<Button, Circle> mapping;
+    private Map<Button, VBox> mapping;
 
     private boolean firstClick = true;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -74,20 +75,19 @@ public class HeaderController implements Initializable, IObservable {
 
         //Map each circle to its corresponding button
         mapping = associate(new Button[]{meatBtn, greensBtn, dairyBtn, cupboardBtn, drinksBtn, sweetsBtn,
-                mostBoughtBtn, purchaseHistoryBtn, myProfileBtn}, new Circle[]{meatCircle, greensCircle, dairyCircle,
-                cupboardCircle, drinksCircle, sweetsCircle, mostBoughtCircle, purchaseHistoryCircle, myProfileCircle
+                mostBoughtBtn, purchaseHistoryBtn, myProfileBtn}, new VBox[]{meatVBox, greensVBox, dairyVBox,
+                cupboardVBox, drinksVBox, sweetsVBox, mostBoughtVBox, purchaseHistoryVBox, myProfileVBox
         } );
 
         mapping.keySet().forEach(button -> button.setOnAction(event -> selectedProperty.set(button.getId())));
         selectedProperty.addListener(((observable, oldID, newID) -> {
             Button oldButton = find(mapping.keySet(), oldID);
             Button newButton = find(mapping.keySet(), newID);
-            System.out.println(oldButton + " :: " + newButton);
             if (oldButton != null){
-                getCircle(oldButton).getStyleClass().remove("selected-button");
+                getVBox(oldButton).getStyleClass().remove("selected-button");
             }
             if (newButton != null){
-                getCircle(newButton).getStyleClass().add("selected-button");
+                getVBox(newButton).getStyleClass().add("selected-button");
             }
         }));
 
@@ -195,10 +195,10 @@ public class HeaderController implements Initializable, IObservable {
     }
 
     /** Place our buttons into a list */
-    private Map<Button, Circle> associate(Button[] buttons, Circle[] circles) {
-        Map<Button, Circle> map = new HashMap<Button, Circle>();
+    private Map<Button, VBox> associate(Button[] buttons, VBox[] stackpanes) {
+        Map<Button, VBox> map = new HashMap<Button, VBox>();
         for (int i = 0; i < buttons.length; ++i)
-            map.put(buttons[i], circles[i]);
+            map.put(buttons[i], stackpanes[i]);
 
         return map;
     }
@@ -212,7 +212,8 @@ public class HeaderController implements Initializable, IObservable {
         return null;
     }
 
-    private Circle getCircle(Button b) {
+
+    private VBox getVBox(Button b) {
         return mapping.get(b);
     }
 }

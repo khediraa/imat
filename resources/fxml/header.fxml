@@ -32,7 +32,7 @@
                   <Separator maxHeight="-Infinity" minHeight="-Infinity" orientation="VERTICAL" prefHeight="110.0" />
                   <Button id="purchaseHistoryBtn" fx:id="purchaseHistoryBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="purchaseHistoryVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
@@ -60,7 +60,7 @@
                   </Button>
                   <Button id="myProfileBtn" fx:id="myProfileBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="myProfileVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
@@ -98,7 +98,7 @@
                <children>
                   <Button id="meatBtn" fx:id="meatBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="meatVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                               <StackPane>
                                  <children>
@@ -124,7 +124,7 @@
                   </Button>
                   <Button id="greensBtn" fx:id="greensBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="greensVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
@@ -150,7 +150,7 @@
                   </Button>
                   <Button id="dairyBtn" fx:id="dairyBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="dairyVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
@@ -176,7 +176,7 @@
                   </Button>
                   <Button id="cupboardBtn" fx:id="cupboardBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="cupboardVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
@@ -202,7 +202,7 @@
                   </Button>
                   <Button id="drinksBtn" fx:id="drinksBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="drinksVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
@@ -228,7 +228,7 @@
                   </Button>
                   <Button id="sweetsBtn" fx:id="sweetsBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="sweetsVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>
@@ -254,7 +254,7 @@
                   </Button>
                   <Button id="mostBoughtBtn" fx:id="mostBoughtBtn" mnemonicParsing="false">
                      <graphic>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                        <VBox fx:id="mostBoughtVBox" alignment="TOP_CENTER" spacing="8.0">
                            <children>
                                <StackPane>
                                    <children>

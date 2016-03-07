@@ -1,4 +1,4 @@
-package controllers;
+package imat;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

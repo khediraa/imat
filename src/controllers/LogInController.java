@@ -1,5 +1,6 @@
 package controllers;
 
+import imat.IObservable;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
 import javafx.fxml.FXML;

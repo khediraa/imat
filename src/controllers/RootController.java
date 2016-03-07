@@ -57,6 +57,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private TextField searchBar;
     @FXML private Button searchButton;
     @FXML private Text noSearchResults;
+    @FXML private Button logoBtn;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
@@ -69,13 +70,13 @@ public class RootController implements Initializable, PropertyChangeListener, IO
 
         loginModal = new Modal(logInPane, root);
         root.widthProperty().addListener((observable, oldValue, newValue) -> {
-            if(headerController.isFirstClick()){
+            if(headerController.isBottomPosition()){
                 mainPageController.setWidth(newValue.doubleValue());
             }
         });
 
         root.heightProperty().addListener((observable, oldValue, newValue) -> {
-            if (headerController.isFirstClick()){
+            if (headerController.isBottomPosition()){
                 mainPageController.setHeight(newValue.doubleValue());
             }
         });
@@ -89,6 +90,9 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         // when pressing enter while editing format the input
         searchBar.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
+                if (headerController.isBottomPosition()) {
+                    headerController.startUpAnimation();
+                }
                 search();
                 e.consume();
             }
@@ -109,6 +113,11 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         deliveryController.addObserver(this);
         purchaseHistoryController.addObserver(this);
         shopController.addObserver(this);
+
+
+        logoBtn.addEventHandler(ActionEvent.ACTION, event -> {
+            headerController.reverseStartUpAnimation();
+        });
     }
 
     /**

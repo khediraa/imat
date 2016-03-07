@@ -41,7 +41,7 @@ public class HeaderController implements Initializable, IObservable {
     private StringProperty selectedProperty = new SimpleStringProperty("");
     private Map<Button, VBox> mapping;
 
-    private boolean firstClick = true;
+    private boolean bottomPosition = true;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
@@ -59,7 +59,7 @@ public class HeaderController implements Initializable, IObservable {
 
         // Open modal for profile btn
         myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
-            if (firstClick) {
+            if (bottomPosition) {
                 pcs.firePropertyChange("set-category-greens", true, false);
             }
             pcs.firePropertyChange("login-modal", true, false);
@@ -108,13 +108,6 @@ public class HeaderController implements Initializable, IObservable {
 
     }
 
-    /**
-     * Returns if first click has been clicked.
-     */
-    public boolean isFirstClick(){
-        return firstClick;
-    }
-
     private EventHandler<ActionEvent> pickCategory = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
@@ -154,9 +147,8 @@ public class HeaderController implements Initializable, IObservable {
     private EventHandler<ActionEvent> startUpAnimationClick = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            if (firstClick) {
+            if (bottomPosition) {
                 startUpAnimation();
-                firstClick = false;
             }
         }
     };
@@ -175,9 +167,29 @@ public class HeaderController implements Initializable, IObservable {
     }
 
     public void startUpAnimation() {
-        movePane(header, header.getWidth()/2, 100, header.getWidth()/2, -230, 800);
-        movePane(otherPane, otherPane.getWidth()/2, otherPane.getHeight()/2, otherPane.getWidth()/2, -otherPane
-                .getHeight()/2 + 40, 800);
+        if (bottomPosition) {
+            movePane(header, header.getWidth() / 2, 100, header.getWidth() / 2, -230, 800);
+            movePane(otherPane, otherPane.getWidth() / 2, otherPane.getHeight() / 2, otherPane.getWidth() / 2, -otherPane
+                    .getHeight() / 2 + 40, 800);
+        }
+
+        bottomPosition = false;
+    }
+
+    public void reverseStartUpAnimation() {
+        if(!bottomPosition) {
+            movePane(header, header.getWidth() / 2, -230, header.getWidth() / 2, 100, 800);
+            movePane(otherPane, otherPane.getWidth() / 2, -otherPane
+                    .getHeight() / 2 + 40, otherPane.getWidth() / 2, otherPane
+                    .getHeight() / 2, 800);
+
+        }
+
+        bottomPosition = true;
+    }
+
+    public boolean isBottomPosition() {
+        return this.bottomPosition;
     }
 
     @Override

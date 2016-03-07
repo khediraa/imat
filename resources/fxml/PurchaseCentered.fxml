@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -26,11 +27,11 @@
 
 <BorderPane fx:id="payment" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
    <top>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane prefHeight="358.0" prefWidth="1000.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -121,10 +122,10 @@
                               </GridPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <AnchorPane prefHeight="346.0" prefWidth="500.0" GridPane.columnIndex="1">
                            <children>
-                              <Separator orientation="VERTICAL" prefHeight="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
-                              <VBox prefHeight="380.0" prefWidth="400.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0">
+                              <Separator layoutX="-2.0" layoutY="60.0" orientation="VERTICAL" prefHeight="284.0" prefWidth="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="60.0" />
+                              <VBox prefHeight="303.0" prefWidth="400.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0">
                                  <children>
                                     <RadioButton fx:id="cardChoice" mnemonicParsing="false" prefHeight="20.0" prefWidth="225.0" selected="true" text="Kortbetalning">
                                        <font>
@@ -234,7 +235,7 @@
                                           <Insets left="30.0" />
                                        </VBox.margin>
                                     </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="400.0">
                                        <children>
                                           <RadioButton fx:id="billChoice" mnemonicParsing="false" text="Posten faktura, 30 kr." toggleGroup="$typeOfPayment" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                              <font>
@@ -249,37 +250,6 @@
                         </AnchorPane>
                      </children>
                   </GridPane>
-                  <VBox alignment="CENTER" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <GridPane>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Button fx:id="backToBasketButton" mnemonicParsing="false" text="Tillbaka" GridPane.halignment="RIGHT">
-                                 <GridPane.margin>
-                                    <Insets right="233.0" />
-                                 </GridPane.margin>
-                              </Button>
-                              <Button fx:id="goToDeliveryButton" mnemonicParsing="false" text="Gå vidare" GridPane.columnIndex="1" GridPane.halignment="LEFT">
-                                 <GridPane.margin>
-                                    <Insets left="203.0" />
-                                 </GridPane.margin>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </GridPane>
-                     </children>
-                  </VBox>
                </children>
             </AnchorPane>
             <VBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
@@ -287,6 +257,44 @@
                   <ProgressBar prefWidth="600.0" progress="0.5" />
                </children>
             </VBox>
+            <GridPane layoutY="420.0" prefHeight="89.0" prefWidth="1000.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="backToBasketButton" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Tillbaka">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="goToDeliveryButton" layoutX="348.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Gå vidare">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <Separator layoutY="420.0" prefHeight="2.0" prefWidth="1000.0" />
          </children>
       </AnchorPane>
    </top>

@@ -12,20 +12,71 @@
 <?import javafx.scene.text.TextFlow?>
 
 <BorderPane fx:id="confirmation" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfirmationController">
-   <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+   <top>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="toPurchaseHistoryButton" layoutX="85.0" layoutY="270.0" mnemonicParsing="false" text="Köphistorik" />
-            <Label layoutX="85.0" layoutY="79.0" styleClass="title" text="Tack för ditt köp!" />
-            <TextFlow layoutX="85.0" layoutY="121.0" prefHeight="8.0" prefWidth="257.0">
+            <VBox layoutX="200.0" layoutY="20.0" prefHeight="9.0" prefWidth="600.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dina varor kommer levereras till din address vid:" />
+                  <ProgressBar prefHeight="79.0" prefWidth="600.0" progress="100.0" />
                </children>
-            </TextFlow>
-            <Button fx:id="toShopButton" layoutX="385.0" layoutY="270.0" mnemonicParsing="false" text="Till sortimentet" />
-            <Label fx:id="dateConfirm" layoutX="85.0" layoutY="155.0" text=" " />
-            <Label fx:id="timeConfirm" layoutX="85.0" layoutY="183.0" text=" " />
+            </VBox>
+            <Button fx:id="toShopButton" layoutX="670.0" layoutY="397.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Till sortimentet" />
+            <Button fx:id="toPurchaseHistoryButton" layoutX="200.0" layoutY="397.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Köphistorik" />
+            <GridPane layoutX="200.0" layoutY="76.0" prefHeight="243.0" prefWidth="600.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutY="17.0" styleClass="title" text="Tack för ditt köp!">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="deliveryLocationText" layoutY="22.0" text="Label1" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="dateConfirm" layoutX="2.0" layoutY="22.0" text="Date" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="timeConfirm" layoutX="1.0" layoutY="22.0" text="Time" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <Separator layoutY="340.0" prefWidth="1000.0" />
          </children>
       </AnchorPane>
-   </center>
+   </top>
 </BorderPane>

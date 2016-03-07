@@ -27,7 +27,7 @@
             <fx:include fx:id="delivery" source="Delivery.fxml" />
             <fx:include fx:id="registration" source="registration.fxml" />
             <fx:include fx:id="purchaseHistory" source="purchaseHistory.fxml" />
-            <GridPane fx:id="shopGrid" gridLinesVisible="true">
+            <GridPane fx:id="shopGrid">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="-Infinity" minWidth="300.0" prefWidth="300.0" />
@@ -85,8 +85,7 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="searchButton" mnemonicParsing="false" stylesheets="@../css/header.css"
-                          styleClass="toolBarButton" text="Sök">
+                  <Button fx:id="searchButton" mnemonicParsing="false" styleClass="toolBarButton" stylesheets="@../css/header.css" text="Sök">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -101,11 +100,10 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1">
                <children>
-                  <Label fx:id="logInLabel" text="Ej inloggad" stylesheets="@../css/header.css"/>
-                  <Button fx:id="logInButton" mnemonicParsing="false" text="Logga in"
-                          stylesheets="@../css/header.css" styleClass="toolBarButton">
+                  <Label fx:id="logInLabel" stylesheets="@../css/header.css" text="Ej inloggad" />
+                  <Button fx:id="logInButton" mnemonicParsing="false" styleClass="toolBarButton" stylesheets="@../css/header.css" text="Logga in">
                       <cursor>
-                          <Cursor fx:constant="HAND"/>
+                          <Cursor fx:constant="HAND" />
                       </cursor>
                   </Button>
                </children>

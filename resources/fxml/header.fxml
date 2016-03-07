@@ -111,7 +111,7 @@
                                             styleClass="circleBorder" />
                                  </children>
                               </StackPane>
-                              <Label text="Kött" textAlignment="CENTER" />
+                              <Label text="Kött &amp;&#10;fisk" textAlignment="CENTER" />
                            </children>
                         </VBox>
                      </graphic>

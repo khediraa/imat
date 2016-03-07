@@ -1,18 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartCellController">
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="280.0" stylesheets="@../css/cart.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CartCellController">
    <children>
-      <TextField fx:id="amountField" alignment="CENTER" layoutX="9.0" layoutY="10.0" prefHeight="27.0" prefWidth="36.0" text="0" AnchorPane.leftAnchor="9.0" />
-      <Label fx:id="unit" layoutX="55.0" layoutY="16.0" text="st" AnchorPane.leftAnchor="55.0" />
-      <Label fx:id="productName" layoutX="78.0" layoutY="16.0" text="Product name" AnchorPane.leftAnchor="78.0" />
-      <Label fx:id="price" layoutX="195.0" layoutY="16.0" text="20.00 kr" AnchorPane.rightAnchor="53.0" />
-      <Button fx:id="removeItemBtn" layoutX="260.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="26.0" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="14.0">
+      <HBox layoutX="9.0" layoutY="10.0">
+         <children>
+            <ImageView fx:id="productImage" fitHeight="50.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox spacing="5.0">
+               <children>
+                  <Label fx:id="productName" text="Product name" />
+                  <HBox alignment="CENTER_LEFT" styleClass="hbox">
+                     <children>
+                        <TextField fx:id="amountField" alignment="CENTER" prefHeight="27.0" prefWidth="36.0" text="0" />
+                        <Label fx:id="unit" text="st" />
+                         <Button fx:id="removeProductBtn" disable="true" mnemonicParsing="false" opacity="100.0">
+                             <cursor>
+                                 <Cursor fx:constant="HAND" />
+                             </cursor>
+                             <graphic>
+                                 <StackPane>
+                                     <children>
+                                         <Circle fx:id="removeCircle" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleButtons">
+                                       <StackPane.margin>
+                                          <Insets />
+                                       </StackPane.margin>
+                                    </Circle>
+                                         <Rectangle arcWidth="2.0" fill="WHITE" height="2.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="10.0" />
+                                     </children>
+                                 </StackPane>
+                             </graphic>
+                           <padding>
+                              <Insets top="-1.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                         </Button>
+                         <Button fx:id="addProductBtn" mnemonicParsing="false" prefWidth="30.0">
+                             <cursor>
+                                 <Cursor fx:constant="HAND" />
+                             </cursor>
+                             <graphic>
+                                 <StackPane>
+                                     <children>
+                                         <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" styleClass="circleButtons" />
+                                         <Rectangle arcWidth="2.0" fill="WHITE" height="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="2.0" />
+                                         <Rectangle arcWidth="2.0" fill="WHITE" height="2.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="10.0" />
+                                     </children>
+                                 </StackPane>
+                             </graphic>
+                           <padding>
+                              <Insets top="-1.0" />
+                           </padding>
+                         </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Label fx:id="price" text="20.00 kr" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="39.0" />
+      <Button fx:id="removeItemBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="26.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="9.0">
          <graphic>
             <StackPane prefHeight="20.0" prefWidth="20.0">
                <children>

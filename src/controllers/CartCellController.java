@@ -9,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Rectangle;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCart;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -32,6 +35,7 @@ public class CartCellController implements Initializable {
     @FXML Label unit;
     @FXML Label productName;
     @FXML Label price;
+    @FXML ImageView productImage;
     @FXML double amount;
     @FXML Button removeItemBtn;
     ShoppingItem item;
@@ -161,6 +165,14 @@ public class CartCellController implements Initializable {
     public void deleteProduct() {
         item.setAmount(0);
         cartInstance.removeItem(item);
+    }
+
+    public void setProductImage(Image image){
+        this.productImage.setImage(image);
+        Rectangle clip = new Rectangle(productImage.getFitHeight(), productImage.getFitHeight());
+        clip.setArcWidth(10.0);
+        clip.setArcHeight(10.0);
+        productImage.setClip(clip);
     }
 
     public void updateAmount(double amount) {

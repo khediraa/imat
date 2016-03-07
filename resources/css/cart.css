@@ -4,3 +4,34 @@
 .list-view .scroll-bar:horizontal .decrement-button {
     -fx-padding:0;
 }
+
+#productName {
+	-fx-font-size: 14 pt;
+	-fx-font-weight: bold;
+}
+
+.text-field {
+	-fx-background-color: transparent;
+}
+
+.button {
+	-fx-background-color: transparent;
+}
+
+.circleButtons {
+	-fx-fill: #348A2F;
+	-fx-stroke: transparent;
+}
+
+.button:hover .circleButtons{
+	-fx-fill: #53C24D;
+}
+
+.button:disabled .circleButtons{
+	-fx-fill: #bcbcbc;
+}
+
+.hbox {
+	-fx-background-color: white;
+	-fx-background-radius: 5;
+}

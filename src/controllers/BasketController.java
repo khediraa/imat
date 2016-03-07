@@ -82,7 +82,7 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
                                 controller.setProductImage(dataInstance.getFXImage(item.getProduct()));
-                                cellView.prefWidthProperty().bind(basketListView.widthProperty().subtract(20));
+                                cellView.prefWidthProperty().bind(basketListView.widthProperty().subtract(40));
 
                                 setGraphic(cellView);
 

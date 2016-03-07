@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
@@ -69,7 +70,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/CartCell.fxml"));
-                                Node cellView = loader.load();
+                                AnchorPane cellView = loader.load();
                                 CartCellController controller = loader.getController();
 
                                 controller.setItem(item);
@@ -78,6 +79,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
                                 controller.setAmount(item.getAmount());
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
+                                cellView.prefWidthProperty().bind(cartListView.widthProperty().subtract(40.0));
 
                                 setGraphic(cellView);
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import imat.IObservable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import se.chalmers.ait.dat215.project.*;
 import sun.dc.pr.PRError;
 import utils.Utils;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -17,7 +20,7 @@ import java.util.*;
 /**
  * Created by tuyenngo on 2016-02-22.
  */
-public class ShopController implements Initializable, ShoppingCartListener {
+public class ShopController implements Initializable, IObservable, ShoppingCartListener {
     @FXML TilePane tilePane;
     IMatDataHandler dataInstance = IMatDataHandler.getInstance();
     List<Product> fruits = new ArrayList<>();
@@ -43,22 +46,12 @@ public class ShopController implements Initializable, ShoppingCartListener {
 
     List<ItemTileController> visibleControllers = new ArrayList<>();
 
-
-    ObservableList<Node> products;
-
-    @FXML RootController rootController;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fetchProducts();
-
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
-
-
-
-        //Todo... ----- Must show subcategories
-
-        //Todo... ----- Must create separator and set title for subcategories
     }
 
 
@@ -248,8 +241,22 @@ public class ShopController implements Initializable, ShoppingCartListener {
         clearTilePane();
         List<Product> results = dataInstance.findProducts(searchTerm);
 
+        if (results.size() < 1) {
+            pcs.firePropertyChange("no-search-results", true, false);
+        }
+
         clearTilePane();
         displayProducts(results);
+    }
+
+    @Override
+    public void addObserver(PropertyChangeListener observer) {
+        pcs.addPropertyChangeListener(observer);
+    }
+
+    @Override
+    public void removeObserver(PropertyChangeListener observer) {
+        pcs.removePropertyChangeListener(observer);
     }
 
     @Override

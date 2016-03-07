@@ -24,7 +24,7 @@
                   <Label fx:id="productName" text="Product name" />
                   <HBox alignment="CENTER_LEFT" styleClass="hbox">
                      <children>
-                        <TextField fx:id="amountField" alignment="CENTER" prefHeight="27.0" prefWidth="36.0" text="0" />
+                        <TextField fx:id="amountField" alignment="CENTER" prefHeight="27.0" prefWidth="50.0" text="0" />
                         <Label fx:id="unit" text="st" />
                          <Button fx:id="removeProductBtn" disable="true" mnemonicParsing="false" opacity="100.0">
                              <cursor>

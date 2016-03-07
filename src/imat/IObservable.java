@@ -1,4 +1,4 @@
-package controllers;
+package imat;
 
 import java.beans.PropertyChangeListener;
 

@@ -1,6 +1,6 @@
 package controllers;
+import imat.IObservable;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,10 +19,7 @@ import java.beans.EventHandler;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**

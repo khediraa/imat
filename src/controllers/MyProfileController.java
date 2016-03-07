@@ -1,13 +1,12 @@
 package controllers;
 
-import com.sun.xml.internal.bind.v2.TODO;
+import imat.IObservable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.beans.PropertyChangeListener;
@@ -18,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Created by carlo on 2016-02-24.
  */
-public class MyProfileController implements Initializable, IObservable{
+public class MyProfileController implements Initializable, IObservable {
     @FXML private BorderPane myProfilePane;
     @FXML private TextField firstName;
     @FXML private TextField lastName;

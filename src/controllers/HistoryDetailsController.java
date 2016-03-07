@@ -1,8 +1,7 @@
 package controllers;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import imat.IObservable;
+import imat.TableShoppingItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,13 +18,12 @@ import utils.Utils;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 /**
  * Created by Therese on 2016-03-02.
  */
-public class HistoryDetailsController implements Initializable, IObservable{
+public class HistoryDetailsController implements Initializable, IObservable {
     @FXML private BorderPane purchaseHistory;
     @FXML private TableView<TableShoppingItem> historyDetails;
     @FXML private TableColumn amount;

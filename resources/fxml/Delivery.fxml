@@ -9,12 +9,12 @@
    <left>
       <AnchorPane prefHeight="504.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="201.0" layoutY="20.0" prefHeight="9.0" prefWidth="600.0">
+            <VBox layoutX="200.0" layoutY="20.0" prefHeight="9.0" prefWidth="600.0">
                <children>
                   <ProgressBar prefHeight="79.0" prefWidth="600.0" progress="0.75" />
                </children>
             </VBox>
-            <GridPane fx:id="deliveryMethod" layoutX="213.0" layoutY="52.0" prefHeight="330.0" prefWidth="561.0">
+            <GridPane fx:id="deliveryMethod" layoutX="203.0" layoutY="52.0" prefHeight="330.0" prefWidth="600.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -39,6 +39,7 @@
                      <children>
                         <Text layoutX="-2.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj datum:" />
                         <DatePicker fx:id="pickDate" layoutY="21.0" promptText="Välj datum" />
+                        <Label fx:id="warningHomeText" layoutX="229.0" layoutY="25.0" text="Du måste fylla i datum och tid!" textFill="RED" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="deliveryShop" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -47,8 +48,8 @@
                      </children></AnchorPane>
                   <AnchorPane fx:id="deliveryTime" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
-                        <ComboBox fx:id="timeCombo" layoutX="3.0" layoutY="29.0" prefWidth="150.0" promptText="Välj tid" />
-                        <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj tid:" />
+                        <ComboBox fx:id="timeCombo" layoutY="29.0" prefWidth="150.0" promptText="Välj tid" />
+                        <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj tid:" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="shopRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -71,8 +72,44 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <Button fx:id="backToPaymentButton" layoutX="201.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Tillbaka" />
-            <Button fx:id="confirmButton" layoutX="711.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Bekräfta köp" />
+            <GridPane layoutY="420.0" prefHeight="89.0" prefWidth="1000.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="500.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="500.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="backToPaymentButton" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Tillbaka">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="confirmButton" layoutX="348.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Bekräfta köp">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <Separator layoutY="420.0" prefWidth="1000.0" />
          </children>
       </AnchorPane>
    </left>

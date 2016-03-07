@@ -1,5 +1,7 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -29,46 +31,79 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
     @FXML private RadioButton homeChoice;
     @FXML private DatePicker pickDate;
     @FXML private ComboBox timeCombo;
+    @FXML private Label warningHomeText;
 
     private final ToggleGroup deliveryRadioGroup = new ToggleGroup();
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private String time;
     private String date;
+    private boolean isHomeDelivery;
+
+    ObservableList <String> timeOptions =
+            FXCollections.observableArrayList(
+                    "Kl 7-10",
+                    "Kl 10-13",
+                    "Kl 13-16",
+                    "Kl 16-19",
+                    "Kl 19-22"
+
+            );
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        time = "";
+        date = "";
+        timeCombo.setItems(timeOptions);
+        warningHomeText.setVisible(false);
+        confirmButton.setDisable(true);
 
         backToPaymentButton.setOnAction(event -> {
             pcs.firePropertyChange("back-to-payment", true, false);
         });
 
         confirmButton.setOnAction(event -> {
-            time = (String)timeCombo.getValue();
-            date = pickDate.getValue().toString();
-            pcs.firePropertyChange("confirm-order", true, false);
-            completeOrder();
+            if(isHomeDelivery && (pickDate.getValue() == null || timeCombo.getValue() == null)) {
+                warningHomeText.setVisible(true);
+            } else if(isHomeDelivery) {
+                time = (String) timeCombo.getValue();
+                date = pickDate.getValue().toString();
+                pcs.firePropertyChange("confirm-order", true, false);
+                completeOrder();
+            } else {
+                pcs.firePropertyChange("confirm-order", true, false);
+                completeOrder();
+            }
         });
 
         homeChoice.setToggleGroup(deliveryRadioGroup);
         shopChoice.setToggleGroup(deliveryRadioGroup);
 
-        homeChoice.setOnAction(event -> {
-            deliveryTime.setDisable(true);
-            deliveryDate.setDisable(true);
-        });
-
-        shopChoice.setOnAction(event -> deliveryShop.setDisable(false));
-
-
+        shopChoice.setOnAction(event -> toggleHomeChoice(false));
+        homeChoice.setOnAction(event -> toggleHomeChoice(true));
     }
 
-    private void toggleDeliveryPanes(boolean value){
-        //TODO: Move lambda function on homeChoice here, it needs to be written twice.
+    private void toggleHomeChoice(boolean value) {
+        isHomeDelivery = value;
+        deliveryShop.setDisable(value);
+        deliveryDate.setDisable(!value);
+        deliveryTime.setDisable(!value);
+        warningHomeText.setVisible(false);
+        confirmButton.setDisable(false);
     }
 
+    //Cleans up all the choices for the next order
     private void completeOrder() {
+        warningHomeText.setVisible(false);
+        pickDate.setValue(null);
+        timeCombo.setValue(null);
+        deliveryRadioGroup.selectToggle(null);
+        confirmButton.setDisable(true);
         IMatDataHandler dataHandler = IMatDataHandler.getInstance();
         dataHandler.placeOrder(true);
+    }
+
+    public boolean getIsHomeDelivery () {
+        return isHomeDelivery;
     }
 
     public String getTime(){

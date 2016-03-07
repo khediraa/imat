@@ -143,7 +143,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
             case "confirm-order":
                 confirmation.toFront();
                 confirmationController.showDeliveryTime(
-                        deliveryController.getTime(), deliveryController.getDate());
+                        deliveryController.getTime(), deliveryController.getDate(), deliveryController.getIsHomeDelivery());
                 break;
 
             case "set-category-meat":
@@ -203,9 +203,11 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 registration.toFront();
                 loginModal.toggleModal();
                 break;
+
             case "back-to-previous-screen":
                 loginModal.toggleModal();
                 break;
+
             case "to-purchase-history":
                 purchaseHistoryController.refreshOrderHistory();
                 purchaseHistory.toFront();

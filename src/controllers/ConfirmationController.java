@@ -26,6 +26,7 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
     @FXML private Button toPurchaseHistoryButton;
     @FXML private Label dateConfirm;
     @FXML private Label timeConfirm;
+    @FXML private Label deliveryLocationText;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -43,9 +44,22 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
         });
     }
 
-    public void showDeliveryTime(String time, String date){
+    public void showDeliveryTime(String time, String date, boolean isHomeDelivery){
         dateConfirm.setText(date);
         timeConfirm.setText(time);
+
+        if (isHomeDelivery) {
+            deliveryLocationText.setText("Dina varor kommer levereras till din adress den: ");
+            dateConfirm.setText(date);
+            timeConfirm.setText(time);
+        }
+        else {
+            deliveryLocationText.setText("Dina varor kommer levereras till butiken inom 4 dagar. \nDu får ett sms " +
+                    "när de har levererats.");
+            dateConfirm.setText("");
+            timeConfirm.setText("");
+        }
+
     }
 
     @Override

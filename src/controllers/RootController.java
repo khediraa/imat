@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.*;
 import imat.Modal;
+import javafx.scene.text.Text;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -55,6 +56,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private BorderPane purchaseHistory;
     @FXML private TextField searchBar;
     @FXML private Button searchButton;
+    @FXML private Text noSearchResults;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
     private Modal loginModal;
@@ -106,6 +108,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         logInPaneController.addObserver(this);
         deliveryController.addObserver(this);
         purchaseHistoryController.addObserver(this);
+        shopController.addObserver(this);
     }
 
     /**
@@ -228,6 +231,10 @@ public class RootController implements Initializable, PropertyChangeListener, IO
             case "to-purchase-history":
                 purchaseHistoryController.refreshOrderHistory();
                 purchaseHistory.toFront();
+                break;
+
+            case "no-search-results":
+                noSearchResults.toFront();
                 break;
         }
 

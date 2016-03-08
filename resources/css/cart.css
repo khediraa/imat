@@ -36,10 +36,6 @@
 	-fx-background-radius: 5;
 }
 
-.list-view {
-	-fx-background-insets: 0;
-    -fx-padding: 0;
-}
 
 .list-cell:even {
 	-fx-background-color: white;

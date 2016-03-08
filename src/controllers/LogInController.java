@@ -49,7 +49,7 @@ public class LogInController implements Initializable, IObservable {
     public void initialize(URL location, ResourceBundle resources) {
         logInButton.addEventHandler(ActionEvent.ACTION, event -> {
             //pcs.firePropertyChange("back-to-previous-screen", true, false);
-            pcs.firePropertyChange("to-my-profile", true, false);
+            pcs.firePropertyChange("login-successful", true, false);
         });
 
         toRegistrationPaneButton.addEventHandler(ActionEvent.ACTION, event -> {

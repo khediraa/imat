@@ -217,9 +217,13 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 loginModal.toggleModal();
                 break;
 
+            case "login-successful":
+                loginModal.closeModal();
+                break;
+
             case "to-my-profile":
                 myProfilePane.toFront();
-                loginModal.toggleModal();
+                loginModal.closeModal();
                 break;
 
             case "to-delivery":

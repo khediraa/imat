@@ -77,16 +77,21 @@ public class Modal {
 
     public void toggleModal() {
         if (!modalOpen) {
-            initialize();
-            this.placeModal();
-            fadeInBackdrop();
-            fadeIn();
-            addCloseEvent();
-            modalOpen = true;
+            openModal();
         } else {
             closeModal();
         }
     }
+
+    public void openModal() {
+        initialize();
+        this.placeModal();
+        fadeInBackdrop();
+        fadeIn();
+        addCloseEvent();
+        modalOpen = true;
+    }
+
     public void closeModal() {
         fadeOut();
         fadeOutBackdrop();

@@ -53,7 +53,10 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
         date = "";
         timeCombo.setItems(timeOptions);
         warningHomeText.setVisible(false);
-        confirmButton.setDisable(true);
+
+        homeChoice.setToggleGroup(deliveryRadioGroup);
+        shopChoice.setToggleGroup(deliveryRadioGroup);
+        isHomeDelivery = true;
 
         backToPaymentButton.setOnAction(event -> {
             pcs.firePropertyChange("back-to-payment", true, false);
@@ -72,9 +75,6 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
                 completeOrder();
             }
         });
-
-        homeChoice.setToggleGroup(deliveryRadioGroup);
-        shopChoice.setToggleGroup(deliveryRadioGroup);
 
         shopChoice.setOnAction(event -> toggleHomeChoice(false));
         homeChoice.setOnAction(event -> toggleHomeChoice(true));

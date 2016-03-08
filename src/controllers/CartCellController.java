@@ -38,6 +38,8 @@ public class CartCellController implements Initializable {
     @FXML ImageView productImage;
     @FXML double amount;
     @FXML Button removeItemBtn;
+    @FXML Button removeProductBtn;
+    @FXML Button addProductBtn;
     ShoppingItem item;
     ShoppingCart cartInstance = IMatDataHandler.getInstance().getShoppingCart();
 
@@ -62,6 +64,9 @@ public class CartCellController implements Initializable {
                 }
             }
         });
+
+        addProductBtn.addEventHandler(ActionEvent.ACTION, event -> addProductToCart());
+        removeProductBtn.addEventHandler(ActionEvent.ACTION, event -> removeFromCart());
 
         // when pressing enter while editing format the input
         amountField.addEventFilter(KeyEvent.ANY, e->{
@@ -131,6 +136,28 @@ public class CartCellController implements Initializable {
             }
         }
         return null;
+    }
+
+    @FXML protected void addProductToCart() {
+        this.removeProductBtn.setDisable(false);
+        if (getMatchingItemInCart() == null) {
+            setProductAmount(1);
+        } else {
+            setProductAmount(getMatchingItemInCart().getAmount() + 1);
+        }
+    }
+
+    @FXML protected void removeFromCart() {
+        if (getMatchingItemInCart() != null && getMatchingItemInCart().getAmount() - 1 == 0) {
+            this.removeProductBtn.setDisable(true);
+            this.amountField.requestFocus();
+            this.amountField.getParent().requestFocus();
+        }
+        if (getMatchingItemInCart() == null) {
+            return;
+        } else {
+            setProductAmount(getMatchingItemInCart().getAmount() - 1);
+        }
     }
 
     public void setItem(ShoppingItem item) {

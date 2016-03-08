@@ -1,101 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.Double?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+<BorderPane fx:id="basket" prefWidth="1100.0" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BasketController">
+   <bottom>
 
-<BorderPane fx:id="basket" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BasketController">
-   <top>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="89.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="500.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button fx:id="backToShopButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="arrow-button" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="250.0" />
+               </GridPane.margin>
+               <graphic>
+                  <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0">
                      <children>
-                        <VBox prefHeight="310.0" prefWidth="600.0" spacing="20.0">
-                           <children>
-                              <ProgressBar prefWidth="600.0" progress="0.25">
-                                 <VBox.margin>
-                                    <Insets top="25.0" />
-                                 </VBox.margin>
-                              </ProgressBar>
-                              <Label text="Varukorgen">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </Label>
-
-                              <ListView fx:id="basketListView" prefHeight="250.0" prefWidth="200.0" stylesheets="@../css/cart.css" />
-
-                              <HBox alignment="CENTER_RIGHT">
-                                 <children>
-                                    <Label text="Totalt: ">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="basketTotal" text="pris ">
-                                       <font>
-                                          <Font name="System Bold" size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" styleClass="shape" width="100.0" StackPane.alignment="CENTER_RIGHT" />
+                        <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="shape" StackPane.alignment="CENTER_LEFT">
+                           <points>
+                              <Double fx:value="-10.0" />
+                              <Double fx:value="10.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="-20.0" />
+                           </points>
+                        </Polygon>
+                        <Label text="Fortsätt handla">
+                           <StackPane.margin>
+                              <Insets left="10.0" />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="toPayButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="arrow-button" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="250.0" />
+               </GridPane.margin>
+               <graphic>
+                  <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" styleClass="shape" width="100.0" StackPane.alignment="CENTER_LEFT" />
+                        <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="shape" StackPane.alignment="CENTER_RIGHT">
+                           <points>
+                              <Double fx:value="0.0" />
+                              <Double fx:value="10.0" />
+                              <Double fx:value="-40.0" />
+                              <Double fx:value="40.0" />
+                              <Double fx:value="-40.0" />
+                              <Double fx:value="-20.0" />
+                           </points>
+                        </Polygon>
+                        <Label text="Ange uppgifter">
+                           <StackPane.margin>
+                              <Insets left="10.0" />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </GridPane>
+   </bottom>
+   <center>
+      <VBox maxWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="310.0" prefWidth="600.0" spacing="20.0">
+               <children>
+                  <ProgressBar prefWidth="600.0" progress="0.25">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </ProgressBar>
+                  <Label text="Varukorgen">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <ListView fx:id="basketListView" minHeight="-Infinity" prefHeight="250.0" prefWidth="200.0" stylesheets="@../css/cart.css" />
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Label text="Totalt: ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="basketTotal" text="pris ">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </children>
-            </AnchorPane>
-
-            <GridPane layoutY="421.0" prefHeight="89.0" prefWidth="1000.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <AnchorPane prefHeight="89.0" prefWidth="499.0">
-                           <children>
-                              <Button fx:id="backToShopButton" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Fortsätt handla" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                     <children>
-                        <AnchorPane prefHeight="89.0" prefWidth="499.0">
-                           <children>
-                              <Button fx:id="toPayButton" layoutX="348.0" layoutY="25.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Betala">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-               </children>
-            </GridPane>
+            </VBox>
          </children>
-      </AnchorPane>
-   </top>
+      </VBox>
+   </center>
 </BorderPane>

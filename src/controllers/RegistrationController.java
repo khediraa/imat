@@ -1,7 +1,7 @@
 package controllers;
 
+import imat.IObservable;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,7 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
-import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
@@ -18,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Created by carlo on 2016-02-24.
  */
-public class RegistrationController implements Initializable, IObservable{
+public class RegistrationController implements Initializable, IObservable {
     @FXML private BorderPane registration;
     @FXML private TextField userName;
     @FXML private PasswordField password;

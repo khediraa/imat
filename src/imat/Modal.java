@@ -1,4 +1,4 @@
-package utils;
+package imat;
 
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -21,6 +21,7 @@ public class Modal {
     private Rectangle backdrop;
     private boolean modalOpen = false;
     private boolean initialized = false;
+    private String destination;
 
     public Modal(Pane pane, Pane parent) {
         this.pane = pane;
@@ -70,6 +71,14 @@ public class Modal {
         parent.removeEventHandler(MouseEvent.MOUSE_CLICKED, closeModal);
     }
 
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDestination() {
+        return this.destination;
+    }
+
     private void placeModal() {
         pane.setLayoutX((parent.getWidth() / 2) - 170);
         pane.setLayoutY((parent.getHeight() / 2) - (pane.getHeight() / 2));
@@ -77,16 +86,21 @@ public class Modal {
 
     public void toggleModal() {
         if (!modalOpen) {
-            initialize();
-            this.placeModal();
-            fadeInBackdrop();
-            fadeIn();
-            addCloseEvent();
-            modalOpen = true;
+            openModal();
         } else {
             closeModal();
         }
     }
+
+    public void openModal() {
+        initialize();
+        this.placeModal();
+        fadeInBackdrop();
+        fadeIn();
+        addCloseEvent();
+        modalOpen = true;
+    }
+
     public void closeModal() {
         fadeOut();
         fadeOutBackdrop();

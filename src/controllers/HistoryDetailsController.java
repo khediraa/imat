@@ -1,34 +1,39 @@
 package controllers;
 
+
+import imat.IObservable;
+import imat.TableShoppingItem;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+
+import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.Order;
 import se.chalmers.ait.dat215.project.ShoppingItem;
 
-import javax.swing.table.TableColumn;
-import javax.swing.text.TableView;
-import java.awt.*;
+import utils.Utils;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
-import java.text.SimpleDateFormat;
+
 import java.util.ResourceBundle;
 
 /**
  * Created by Therese on 2016-03-02.
  */
-public class HistoryDetailsController implements Initializable, IObservable{
+
+public class HistoryDetailsController implements Initializable, IObservable {
     @FXML private BorderPane purchaseHistory;
-    @FXML private TableView historyDetails;
+    @FXML private TableView<TableShoppingItem> historyDetails;
     @FXML private TableColumn amount;
     @FXML private TableColumn product;
     @FXML private TableColumn price;
@@ -39,50 +44,43 @@ public class HistoryDetailsController implements Initializable, IObservable{
     ObservableList<Order> orders = FXCollections.observableArrayList();
     private IMatDataHandler dataHandler = IMatDataHandler.getInstance();
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         getOrders();
     }
 
-
     private void getOrders() {
-
         this.orders.clear();
         this.orders.setAll(dataHandler.getOrders());
     }
 
 
-
-    private void createTitledPane(Order order) {
-        ObservableList<ShoppingItem> itemList = FXCollections.observableArrayList();
-        itemList.setAll(order.getItems());
-        ListView<ShoppingItem> orderItems = new ListView<>();
-        orderItems.setItems(itemList);
-
-        orderItems.setCellFactory(new Callback<ListView<ShoppingItem>, ListCell<ShoppingItem>>() {
+    public void populateHistoryDetails(Order order) {
+        totalPrice.setText(Utils.getFormatedPrice(Utils.getOrderTotalPrice(order)) + " kr");
+        historyDetails.setEditable(false);
+        historyDetails.setColumnResizePolicy(new Callback<TableView.ResizeFeatures, Boolean>() {
             @Override
-            public ListCell<ShoppingItem> call(ListView<ShoppingItem> param) {
-                return new OrderHistoryCell();
+            public Boolean call(TableView.ResizeFeatures param) {
+                return false;
             }
         });
+        historyDetails.getColumns().setAll(amount, product, price, addToCart);
 
-        double totalAmount = 0;
+        amount.setCellValueFactory(new PropertyValueFactory<TableShoppingItem, String>("amount"));
+        product.setCellValueFactory(new PropertyValueFactory<TableShoppingItem, String>("productName"));
+        price.setCellValueFactory(new PropertyValueFactory<TableShoppingItem, String>("totalPrice"));
+        addToCart.setCellValueFactory(new PropertyValueFactory<TableShoppingItem, Button>("addToCartButton"));
 
-        for (ShoppingItem item : itemList) {
-            totalAmount += item.getAmount() * item.getProduct().getPrice();
+        ObservableList<TableShoppingItem> items = FXCollections.observableArrayList();
+
+        for(ShoppingItem item : order.getItems()) {
+            items.add(new TableShoppingItem(item));
         }
 
-        Text totalPrice = new Text(totalAmount + " kr");
+        historyDetails.setItems(items);
+
+
     }
-
-
-
-    public void refreshOrderHistory() {
-        getOrders();
-    }
-
-
     @Override
     public void addObserver(PropertyChangeListener observer) {
         pcs.addPropertyChangeListener(observer);

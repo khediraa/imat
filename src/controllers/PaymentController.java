@@ -1,7 +1,6 @@
 package controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import imat.IObservable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,7 +8,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.ait.dat215.project.CartEvent;
-import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 
 import java.beans.PropertyChangeListener;

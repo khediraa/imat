@@ -1,6 +1,6 @@
 package controllers;
+import imat.IObservable;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
@@ -19,10 +20,7 @@ import java.beans.EventHandler;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -69,7 +67,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
 
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/CartCell.fxml"));
-                                Node cellView = loader.load();
+                                AnchorPane cellView = loader.load();
                                 CartCellController controller = loader.getController();
 
                                 controller.setItem(item);
@@ -78,6 +76,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
                                 controller.setAmount(item.getAmount());
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
+                                cellView.prefWidthProperty().bind(cartListView.widthProperty().subtract(40.0));
 
                                 setGraphic(cellView);
 

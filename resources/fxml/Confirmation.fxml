@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="confirmation" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfirmationController">
-   <top>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.Insets?>
+<?import java.lang.Double?>
+<BorderPane fx:id="confirmation" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfirmationController">
+   <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="200.0" layoutY="20.0" prefHeight="9.0" prefWidth="600.0">
-               <children>
-                  <ProgressBar prefHeight="79.0" prefWidth="600.0" progress="100.0" />
-               </children>
-            </VBox>
             <Button fx:id="toShopButton" layoutX="670.0" layoutY="397.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Till sortimentet" />
             <Button fx:id="toPurchaseHistoryButton" layoutX="200.0" layoutY="397.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" text="Köphistorik" />
             <GridPane layoutX="200.0" layoutY="76.0" prefHeight="243.0" prefWidth="600.0">
@@ -78,5 +82,181 @@
             <Separator layoutY="340.0" prefWidth="1000.0" />
          </children>
       </AnchorPane>
-   </top>
+   </center>
+    <top>
+        <GridPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="700.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="selected-sequence-button">
+                    <graphic>
+                        <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0">
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" styleClass="shape" width="120.0" StackPane.alignment="CENTER_RIGHT">
+                                    <StackPane.margin>
+                                        <Insets right="18.0" />
+                                    </StackPane.margin>
+                                </Rectangle>
+                                <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="shape" StackPane.alignment="CENTER_RIGHT">
+                                    <points>
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="18.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="-17.0" />
+                                    </points>
+                                </Polygon>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                        <ImageView fitHeight="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../img/cartIcon_selected.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Label text="Varukorgen">
+                                            <HBox.margin>
+                                                <Insets right="30.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="selected-sequence-button" GridPane.columnIndex="1">
+                    <graphic>
+                        <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0">
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" styleClass="shape" width="157.0" StackPane.alignment="CENTER_LEFT" />
+                                <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="white-shape" StackPane.alignment="CENTER_LEFT">
+                                    <points>
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="18.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="-17.0" />
+                                    </points>
+                                </Polygon>
+                                <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="shape" StackPane.alignment="CENTER_RIGHT">
+                                    <points>
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="18.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="-17.0" />
+                                    </points>
+                                </Polygon>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                        <ImageView fitHeight="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../img/profileIcon_selected.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Label text="Kunduppgifter" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0"
+                        prefWidth="130.0" styleClass="selected-sequence-button" GridPane.columnIndex="2">
+                    <graphic>
+                        <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0">
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" styleClass="shape" width="157.0" StackPane.alignment="CENTER_LEFT" />
+                                <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="white-shape" StackPane.alignment="CENTER_LEFT">
+                                    <points>
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="18.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="-17.0" />
+                                    </points>
+                                </Polygon>
+                                <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="shape" StackPane.alignment="CENTER_RIGHT">
+                                    <points>
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="18.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="-17.0" />
+                                    </points>
+                                </Polygon>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                        <ImageView fitHeight="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../img/deliveryIcon_selected.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Label text="Leveransmetod" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0"
+                        prefWidth="130.0" styleClass="selected-sequence-button" GridPane.columnIndex="3">
+                    <graphic>
+                        <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0">
+                            <children>
+                                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" stroke="BLACK" strokeType="INSIDE" styleClass="shape" width="170.0" StackPane.alignment="CENTER_LEFT" />
+                                <Polygon fill="DODGERBLUE" stroke="BLACK" strokeType="INSIDE" styleClass="white-shape" StackPane.alignment="CENTER_LEFT">
+                                    <points>
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="0.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="18.0" />
+                                        <Double fx:value="-19.0" />
+                                        <Double fx:value="-17.0" />
+                                    </points>
+                                </Polygon>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                        <ImageView fitHeight="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../img/coinsIcon_selected.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Label text="Bekräfta köp" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+            <BorderPane.margin>
+                <Insets top="10.0" />
+            </BorderPane.margin>
+        </GridPane>
+    </top>
 </BorderPane>

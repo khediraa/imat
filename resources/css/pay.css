@@ -30,3 +30,49 @@
 .arrow-button:hover .shape {
 	-fx-fill: #DAEEB1;
 }
+
+.sequence-button,
+.selected-sequence-button {
+	-fx-background-color: transparent;
+}
+
+.sequence-button .shape{
+	-fx-fill: #DAEEB1;
+	-fx-stroke: transparent;
+}
+
+.sequence-button .label{
+	-fx-text-fill: #1A5217;
+}
+
+.selected-sequence-button .shape{
+	-fx-fill: #A1C161;
+	-fx-stroke: transparent;
+}
+
+.selected-sequence-button .label{
+	-fx-text-fill: white;
+}
+
+.white-shape {
+	-fx-fill: white;
+	-fx-stroke: transparent;
+}
+
+.toggle-button {
+	-fx-background-color: #BDD888;
+	-fx-background-insets: 0;
+}
+
+.toggle-button:selected {
+	-fx-background-insets: 0;
+	-fx-background-color: #A1C161;
+}
+
+.toggle-button .label{
+	-fx-text-fill: #389033;
+}
+
+.toggle-button:selected .label {
+	-fx-text-fill: white;
+}

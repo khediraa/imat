@@ -4,3 +4,94 @@
 .list-view .scroll-bar:horizontal .decrement-button {
     -fx-padding:0;
 }
+
+#productName {
+	-fx-font-size: 14 pt;
+	-fx-font-weight: bold;
+}
+
+.text-field {
+	-fx-background-color: transparent;
+}
+
+.button {
+	-fx-background-color: transparent;
+}
+
+.circleButtons {
+	-fx-fill: #348A2F;
+	-fx-stroke: transparent;
+}
+
+.button:hover .circleButtons{
+	-fx-fill: #53C24D;
+}
+
+.button:disabled .circleButtons{
+	-fx-fill: #bcbcbc;
+}
+
+.hbox {
+	-fx-background-color: derive(#A9AA3A, 85%);
+	-fx-background-radius: 5;
+}
+
+.list-view {
+	-fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-cell:even {
+	-fx-background-color: white;
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color: gainsboro;
+}
+
+.list-cell:odd {
+	-fx-background-color: white;
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color: gainsboro;
+}
+
+.list-cell:even:selected,
+.list-cell:odd:selected {
+	-fx-background-color: derive(#A9AA3A, 70%);
+}
+
+.list-cell:even:selected .label,
+.list-cell:odd:selected .label {
+	-fx-text-fill: #485F1B;
+}
+
+.list-cell:empty {
+	-fx-opacity: 0;
+}
+
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+	-fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+	-fx-background-color:transparent;
+	-fx-background-radius: 0em;
+	-fx-padding:0 0 10 0;
+}
+
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color:gainsboro;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:horizontal ,
+.scroll-bar:vertical {
+	-fx-background-color: transparent;
+}

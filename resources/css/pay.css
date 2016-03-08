@@ -70,3 +70,8 @@
 #toMainPage:hover {
 	-fx-background-color: #BCDCBA;
 }
+
+
+#deliveryShop:disabled .text {
+	-fx-opacity: 0.3;
+}

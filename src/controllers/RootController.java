@@ -1,6 +1,7 @@
 package controllers;
 
 import imat.IObservable;
+import imat.LoginSession;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -214,16 +215,32 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 break;
 
             case "login-modal":
-                loginModal.toggleModal();
+                loginModal.openModal();
+                break;
+
+            case "login-modal-dest-my-profile":
+                loginModal.setDestination("to-my-profile");
+                loginModal.openModal();
                 break;
 
             case "login-successful":
+                LoginSession ls = LoginSession.getInstance();
+                ls.setLoggedIn(true);
                 loginModal.closeModal();
+
+                System.out.println(loginModal.getDestination());
+
+                // If we have a destination connected to the modal, then let's go there!
+                if (loginModal.getDestination() != null) {
+                    this.propertyChange(new PropertyChangeEvent(this, loginModal.getDestination(), true, false));
+                }
                 break;
 
             case "to-my-profile":
+                if (headerController.isBottomPosition()) {
+                    headerController.startUpAnimation();
+                }
                 myProfilePane.toFront();
-                loginModal.closeModal();
                 break;
 
             case "to-delivery":

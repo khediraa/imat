@@ -21,6 +21,7 @@ public class Modal {
     private Rectangle backdrop;
     private boolean modalOpen = false;
     private boolean initialized = false;
+    private String destination;
 
     public Modal(Pane pane, Pane parent) {
         this.pane = pane;
@@ -68,6 +69,14 @@ public class Modal {
 
     public void removeCloseEvent() {
         parent.removeEventHandler(MouseEvent.MOUSE_CLICKED, closeModal);
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDestination() {
+        return this.destination;
     }
 
     private void placeModal() {

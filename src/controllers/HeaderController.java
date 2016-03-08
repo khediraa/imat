@@ -1,6 +1,7 @@
 package controllers;
 
 import imat.IObservable;
+import imat.LoginSession;
 import javafx.animation.PathTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -50,7 +51,7 @@ public class HeaderController implements Initializable, IObservable {
 
         buttons.add(meatBtn); buttons.add(greensBtn); buttons.add(dairyBtn);
         buttons.add(cupboardBtn); buttons.add(drinksBtn); buttons.add(sweetsBtn);
-        buttons.add(mostBoughtBtn); buttons.add(purchaseHistoryBtn); buttons.add(myProfileBtn);
+        buttons.add(mostBoughtBtn); buttons.add(purchaseHistoryBtn);
 
         //Add all images to the images-list due to easier access
         images.add(meatImg); images.add(greensImg); images.add(dairyImg);
@@ -59,10 +60,13 @@ public class HeaderController implements Initializable, IObservable {
 
         // Open modal for profile btn
         myProfileBtn.addEventHandler(ActionEvent.ACTION, event -> {
-            if (bottomPosition) {
-                pcs.firePropertyChange("set-category-greens", true, false);
+            LoginSession ls = LoginSession.getInstance();
+            if (!ls.isLoggedIn()) {
+                pcs.firePropertyChange("login-modal-dest-my-profile", true, false);
+            } else {
+                pcs.firePropertyChange("to-my-profile", true, false);
+                startUpAnimation();
             }
-            pcs.firePropertyChange("login-modal", true, false);
         });
 
         purchaseHistoryBtn.addEventHandler(ActionEvent.ACTION, event -> {

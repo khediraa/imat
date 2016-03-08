@@ -17,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.*;
 import imat.Modal;
 import javafx.scene.text.Text;
+import sun.rmi.runtime.Log;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -61,6 +62,8 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private Button logoBtn;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
+    private LoginSession ls = LoginSession.getInstance();
+
     private Modal loginModal;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -83,7 +86,14 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         });
 
         //Showing log-in modal if log in button is pressed
-        logInButton.setOnAction(event -> loginModal.toggleModal());
+        logInButton.setOnAction(event -> {
+            if (!ls.isLoggedIn()) {
+                loginModal.toggleModal();
+            } else {
+                ls.setLoggedIn(false);
+                resetLoginName();
+            }
+        });
 
         // search bar
         // search field
@@ -149,6 +159,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     // Button Events
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+
         switch(evt.getPropertyName()) {
             case "to-basket":
                 basket.toFront();
@@ -224,11 +235,10 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 break;
 
             case "login-successful":
-                LoginSession ls = LoginSession.getInstance();
                 ls.setLoggedIn(true);
                 loginModal.closeModal();
 
-                System.out.println(loginModal.getDestination());
+                setLoginName();
 
                 // If we have a destination connected to the modal, then let's go there!
                 if (loginModal.getDestination() != null) {
@@ -268,6 +278,16 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 break;
         }
 
+    }
+
+    public void setLoginName() {
+        logInLabel.setText("Välkommen Hjördis Ohlsson!");
+        logInButton.setText("Logga ut");
+    }
+
+    public void resetLoginName() {
+        logInLabel.setText("Ej inloggad");
+        logInButton.setText("Logga in");
     }
 
     @Override

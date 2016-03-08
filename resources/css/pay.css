@@ -13,3 +13,20 @@
 #confirmation{
 	-fx-background-color: white;
 }
+
+.arrow-button {
+	-fx-background-color: transparent;
+}
+
+.arrow-button .label {
+	-fx-text-fill: #1A5217;
+}
+
+.arrow-button .shape {
+	-fx-fill: #BDD888;
+	-fx-stroke: transparent;
+}
+
+.arrow-button:hover .shape {
+	-fx-fill: #DAEEB1;
+}

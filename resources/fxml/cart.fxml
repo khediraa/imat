@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +20,7 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="110.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
             <ListView fx:id="cartListView" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" stylesheets="@../css/cart.css" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS" />
@@ -30,7 +31,10 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Button fx:id="toCartBtn" mnemonicParsing="false" text="Till varukorgen och kassan" />
+                  <Button fx:id="toCartBtn" mnemonicParsing="false" stylesheets="@../css/cart.css" text="Till varukorgen och kassan">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
                <padding>
                   <Insets right="10.0" />

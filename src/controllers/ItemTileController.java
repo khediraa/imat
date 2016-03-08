@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import se.chalmers.ait.dat215.project.*;
 import utils.Utils;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -32,6 +33,7 @@ public class ItemTileController implements Initializable {
     @FXML ImageView image;
     @FXML TextField amountField;
     @FXML Label addUnit;
+    private double productAmount;
     @FXML Circle removeCircle;
     private Product product;
     private ShoppingCart shoppingCart;
@@ -104,6 +106,8 @@ public class ItemTileController implements Initializable {
         ShoppingItem matchingItem = getMatchingItemInCart();
         if (matchingItem != null) {
             amountField.setText(Utils.getFormatedProductAmount(matchingItem.getAmount(), product));
+            this.productAmount = getMatchingItemInCart().getAmount();
+            refreshTile();
         } else {
             removeProductBtn.setDisable(true);
             amountField.setText(Utils.getFormatedProductAmount(0, product));
@@ -112,6 +116,7 @@ public class ItemTileController implements Initializable {
 
     private void setProductAmount(double amount) {
         if (amount > 99) amount = 99;
+
         ShoppingItem matchingItem = getMatchingItemInCart();
         if(matchingItem == null && amount <= 0) return;
 
@@ -189,12 +194,11 @@ public class ItemTileController implements Initializable {
         return null;
     }
 
-    public Product getProduct() {
-        return this.product;
+    public void refreshTile() {
+        if (this.productAmount > 0 && this.removeProductBtn.isDisabled()) {
+            this.removeProductBtn.setDisable(false);
+        }
     }
 
-    public double getAmountFieldData() {
-        return Double.parseDouble(this.amountField.getText());
-    }
 
 }

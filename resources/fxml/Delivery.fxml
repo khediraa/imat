@@ -7,12 +7,14 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -21,10 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
-<BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="1100.0" stylesheets="@../css/pay.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeliveryController">
+<BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1100.0" stylesheets="@../css/pay.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeliveryController">
     <bottom>
         <GridPane prefHeight="89.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -129,25 +128,25 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="deliveryDate" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+                  <AnchorPane fx:id="deliveryDate" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
                         <Text layoutX="-2.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj datum:" />
                         <DatePicker fx:id="pickDate" layoutY="21.0" promptText="Välj datum" />
                         <Label fx:id="warningHomeText" layoutX="229.0" layoutY="25.0" text="Du måste fylla i datum och tid!" textFill="RED" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="deliveryShop" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                  <AnchorPane fx:id="deliveryShop" disable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
-                        <Text layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varorna kommer levereras till butiken inom 4 dagar. Du får ett sms när de har kommit till butiken." wrappingWidth="400.654296875" />
+                        <Text layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Varorna kommer levereras till butiken inom 4 dagar. Du får ett sms när de har kommit till butiken." wrappingWidth="400.654296875" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="deliveryTime" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+                  <AnchorPane fx:id="deliveryTime" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
                         <ComboBox fx:id="timeCombo" layoutY="29.0" prefWidth="150.0" promptText="Välj tid" />
                         <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj tid:" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="shopRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <AnchorPane fx:id="shopRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
                         <RadioButton fx:id="shopChoice" layoutY="18.0" mnemonicParsing="false" text="Till butiken">
                            <font>
@@ -156,9 +155,9 @@
                         </RadioButton>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="homeRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                  <AnchorPane fx:id="homeRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <RadioButton fx:id="homeChoice" layoutY="18.0" mnemonicParsing="false" text="Till hemmet">
+                        <RadioButton fx:id="homeChoice" layoutY="18.0" mnemonicParsing="false" selected="true" text="Till hemmet">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -264,8 +263,7 @@
                        <Cursor fx:constant="HAND" />
                    </cursor>
                </Button>
-               <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0"
-                       prefWidth="130.0" styleClass="selected-sequence-button" GridPane.columnIndex="2">
+               <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="selected-sequence-button" GridPane.columnIndex="2">
                    <graphic>
                        <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="175.0">
                            <children>

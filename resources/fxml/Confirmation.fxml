@@ -21,7 +21,7 @@
 
 <BorderPane fx:id="confirmation" prefHeight="500.0" prefWidth="1100.0" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ConfirmationController">
    <center>
-      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="20.0">
+      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="10.0">
          <children>
             <Label styleClass="title" text="Tack för ditt köp!">
                <font>
@@ -35,17 +35,24 @@
                         <Font name="Arial Italic" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateConfirm" text="Date">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <HBox>
+                     <children>
+                        <Label fx:id="dateConfirm" text="Date">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <Label fx:id="timeConfirm" text="Time">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </VBox>
             <Label text="Kvitto">
                <font>
@@ -55,8 +62,15 @@
             <ListView minHeight="-Infinity" prefHeight="130.0" prefWidth="200.0" />
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <Button fx:id="toShopButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Tillbaka till startsidan" />
+                  <Button fx:id="toMainPage" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Tillbaka till startsidan">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
          </children>
          <BorderPane.margin>

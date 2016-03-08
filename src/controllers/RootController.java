@@ -161,6 +161,10 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     public void propertyChange(PropertyChangeEvent evt) {
 
         switch(evt.getPropertyName()) {
+            case "to-main-page":
+                headerController.reverseStartUpAnimation();
+                break;
+
             case "to-basket":
                 basket.toFront();
                 basketController.refreshView();

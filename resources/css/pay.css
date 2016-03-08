@@ -59,20 +59,14 @@
 	-fx-stroke: transparent;
 }
 
-.toggle-button {
-	-fx-background-color: #BDD888;
-	-fx-background-insets: 0;
+#toMainPage {
+	-fx-background-color: #9DCF9A;
+	-fx-background-radius: 30;
+	-fx-text-fill: #1A5217;
+	-fx-font-size: 22;
+	-fx-font-weight: bold;
 }
 
-.toggle-button:selected {
-	-fx-background-insets: 0;
-	-fx-background-color: #A1C161;
-}
-
-.toggle-button .label{
-	-fx-text-fill: #389033;
-}
-
-.toggle-button:selected .label {
-	-fx-text-fill: white;
+#toMainPage:hover {
+	-fx-background-color: #BCDCBA;
 }

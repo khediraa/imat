@@ -37,6 +37,7 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
     @FXML private Label basketTotal;
     private ShoppingCart cartInstance;
     ObservableList<ShoppingItem> cartList = FXCollections.observableArrayList();
+    IMatDataHandler dataInstance = IMatDataHandler.getInstance();
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -78,9 +79,9 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
                                 controller.setAmount(item.getAmount());
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
-
                                 cellView.prefWidthProperty().bind(basketListView.widthProperty());
-
+                                controller.setProductImage(dataInstance.getFXImage(item.getProduct()));
+                                cellView.prefWidthProperty().bind(basketListView.widthProperty().subtract(40));
                                 setGraphic(cellView);
 
                             } catch (IOException e){

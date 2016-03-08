@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
+import utils.Utils;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -73,11 +74,10 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
 
                                 controller.setItem(item);
                                 controller.setAmount(item.getAmount());
-                                controller.setPrice(item.getProduct().getPrice());
+                                controller.setPrice(item.getProduct().getPrice() * item.getAmount());
                                 controller.setAmount(item.getAmount());
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
-                                double width = basketListView.getWidth();
 
                                 cellView.prefWidthProperty().bind(basketListView.widthProperty());
 
@@ -113,7 +113,7 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
-        basketTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
+        basketTotal.setText(Utils.getFormatedPrice(cartInstance.getTotal()) + " kr");
 
         if (cartEvent.getShoppingItem() == null) return;
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import imat.IObservable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,17 +8,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.TilePane;
 import se.chalmers.ait.dat215.project.*;
+import sun.dc.pr.PRError;
+import utils.Utils;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by tuyenngo on 2016-02-22.
  */
-public class ShopController implements Initializable, ShoppingCartListener {
+public class ShopController implements Initializable, IObservable, ShoppingCartListener {
     @FXML TilePane tilePane;
     IMatDataHandler dataInstance = IMatDataHandler.getInstance();
     List<Product> fruits = new ArrayList<>();
@@ -43,22 +46,12 @@ public class ShopController implements Initializable, ShoppingCartListener {
 
     List<ItemTileController> visibleControllers = new ArrayList<>();
 
-
-    ObservableList<Node> products;
-
-    @FXML RootController rootController;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fetchProducts();
-
         IMatDataHandler.getInstance().getShoppingCart().addShoppingCartListener(this);
-
-
-
-        //Todo... ----- Must show subcategories
-
-        //Todo... ----- Must create separator and set title for subcategories
     }
 
 
@@ -167,6 +160,44 @@ public class ShopController implements Initializable, ShoppingCartListener {
         displayProducts(sweets);
     }
 
+    public void displayMostBought() {
+        clearTilePane();
+        displayProducts(getMostBoughtProducts());
+    }
+
+    private List<Product> getMostBoughtProducts() {
+        Map<Product, Integer> boughtProducts = new HashMap<>();
+
+        List<Order> orderList = dataInstance.getOrders();
+        for(Order order : orderList) {
+            for (ShoppingItem item : order.getItems()) {
+                if (boughtProducts.containsKey(item.getProduct())) {
+                    int currentCount = boughtProducts.get(item.getProduct());
+                    boughtProducts.put(item.getProduct(), currentCount + (int)item.getAmount());
+                } else {
+                    boughtProducts.put(item.getProduct(), (int)item.getAmount());
+                }
+            }
+        }
+
+        Map<Product, Integer> boughtProductsSorted = Utils.sortByValue(boughtProducts);
+
+        Iterator it = boughtProductsSorted.entrySet().iterator();
+
+        int max_products = 12;
+        int i = 0;
+
+        List<Product> mostBoughtProducts = new ArrayList<>();
+
+        while (it.hasNext() && i < max_products) {
+            Map.Entry pair = (Map.Entry)it.next();
+            mostBoughtProducts.add((Product) pair.getKey());
+            i++;
+        }
+
+        return mostBoughtProducts;
+    }
+
     private void fetchProducts() {
         //Adding all fruit products to the fruit-list
         fruits.addAll(dataInstance.getProducts(ProductCategory.CITRUS_FRUIT));
@@ -210,8 +241,22 @@ public class ShopController implements Initializable, ShoppingCartListener {
         clearTilePane();
         List<Product> results = dataInstance.findProducts(searchTerm);
 
+        if (results.size() < 1) {
+            pcs.firePropertyChange("no-search-results", true, false);
+        }
+
         clearTilePane();
         displayProducts(results);
+    }
+
+    @Override
+    public void addObserver(PropertyChangeListener observer) {
+        pcs.addPropertyChangeListener(observer);
+    }
+
+    @Override
+    public void removeObserver(PropertyChangeListener observer) {
+        pcs.removePropertyChangeListener(observer);
     }
 
     @Override

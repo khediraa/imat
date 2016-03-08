@@ -51,8 +51,22 @@
 	-fx-font-weight: bold;
 }
 
-#searchButton {
+.toolBarButton {
 	-fx-text-fill: #CCF971;
 	-fx-background-color: #485f1b;
 	-fx-background-radius: 20;
+}
+
+#logInLabel {
+	-fx-font-family: arial;
+	-fx-text-fill: whitesmoke;
+}
+
+.selected-button .circleBorder{
+	-fx-stroke: #CCF971;
+}
+
+.selected-button .label {
+	-fx-text-fill: beige;
+	-fx-font-weight: bold;
 }

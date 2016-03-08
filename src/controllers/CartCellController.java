@@ -9,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Rectangle;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCart;
 import se.chalmers.ait.dat215.project.ShoppingItem;
@@ -32,8 +35,11 @@ public class CartCellController implements Initializable {
     @FXML Label unit;
     @FXML Label productName;
     @FXML Label price;
+    @FXML ImageView productImage;
     @FXML double amount;
     @FXML Button removeItemBtn;
+    @FXML Button removeProductBtn;
+    @FXML Button addProductBtn;
     ShoppingItem item;
     ShoppingCart cartInstance = IMatDataHandler.getInstance().getShoppingCart();
 
@@ -58,6 +64,9 @@ public class CartCellController implements Initializable {
                 }
             }
         });
+
+        addProductBtn.addEventHandler(ActionEvent.ACTION, event -> addProductToCart());
+        removeProductBtn.addEventHandler(ActionEvent.ACTION, event -> removeFromCart());
 
         // when pressing enter while editing format the input
         amountField.addEventFilter(KeyEvent.ANY, e->{
@@ -129,12 +138,35 @@ public class CartCellController implements Initializable {
         return null;
     }
 
+    @FXML protected void addProductToCart() {
+        this.removeProductBtn.setDisable(false);
+        if (getMatchingItemInCart() == null) {
+            setProductAmount(1);
+        } else {
+            setProductAmount(getMatchingItemInCart().getAmount() + 1);
+        }
+    }
+
+    @FXML protected void removeFromCart() {
+        if (getMatchingItemInCart() != null && getMatchingItemInCart().getAmount() - 1 == 0) {
+            this.removeProductBtn.setDisable(true);
+            this.amountField.requestFocus();
+            this.amountField.getParent().requestFocus();
+        }
+        if (getMatchingItemInCart() == null) {
+            return;
+        } else {
+            setProductAmount(getMatchingItemInCart().getAmount() - 1);
+        }
+    }
+
     public void setItem(ShoppingItem item) {
         this.item = item;
     }
 
     public void setAmount(double amount) {
         if (amount > 99) amount = 99;
+        this.amount = amount;
         String formatedString = Utils.getFormatedProductAmount(amount, this.item.getProduct());
         amountField.setText(formatedString);
     }
@@ -161,6 +193,14 @@ public class CartCellController implements Initializable {
     public void deleteProduct() {
         item.setAmount(0);
         cartInstance.removeItem(item);
+    }
+
+    public void setProductImage(Image image){
+        this.productImage.setImage(image);
+        Rectangle clip = new Rectangle(productImage.getFitHeight(), productImage.getFitHeight());
+        clip.setArcWidth(10.0);
+        clip.setArcHeight(10.0);
+        productImage.setClip(clip);
     }
 
     public void updateAmount(double amount) {

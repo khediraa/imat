@@ -1,5 +1,6 @@
 package controllers;
 
+import imat.IObservable;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
 import javafx.fxml.FXML;
@@ -28,6 +29,8 @@ public class LogInController implements Initializable, IObservable {
     @FXML
     private Button toRegistrationPaneButton;
     @FXML
+    private Button closeModuleButton;
+    @FXML
     private Hyperlink forgotPasswordLink;
 
     private String userNameString;
@@ -45,12 +48,15 @@ public class LogInController implements Initializable, IObservable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logInButton.addEventHandler(ActionEvent.ACTION, event -> {
-            //pcs.firePropertyChange("back-to-previous-screen", true, false);
-            pcs.firePropertyChange("to-my-profile", true, false);
+            pcs.firePropertyChange("login-successful", true, false);
         });
 
         toRegistrationPaneButton.addEventHandler(ActionEvent.ACTION, event -> {
             pcs.firePropertyChange("to-registration", true, false);
+        });
+
+        closeModuleButton.addEventHandler(ActionEvent.ACTION, event -> {
+            pcs.firePropertyChange("back-to-previous-screen", true, false);
         });
 
     }

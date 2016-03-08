@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import imat.IObservable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -16,9 +17,6 @@ import java.beans.PropertyChangeSupport;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by Therese on 2016-03-01.
- */
 public class DeliveryController implements Initializable, ShoppingCartListener, IObservable {
 
     @FXML private Button backToPaymentButton;

@@ -9,6 +9,7 @@
    <left>
       <AnchorPane prefHeight="504.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
+
             <VBox layoutX="200.0" layoutY="20.0" prefHeight="9.0" prefWidth="600.0">
                <children>
                   <ProgressBar prefHeight="79.0" prefWidth="600.0" progress="0.75" />
@@ -110,6 +111,8 @@
                </children>
             </GridPane>
             <Separator layoutY="420.0" prefWidth="1000.0" />
+            <Button fx:id="backToPaymentButton" layoutX="201.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Tillbaka" />
+            <Button fx:id="confirmButton" layoutX="711.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Bekräfta köp" />
          </children>
       </AnchorPane>
    </left>

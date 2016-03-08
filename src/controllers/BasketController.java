@@ -1,5 +1,6 @@
 package controllers;
 
+import imat.IObservable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,22 +8,19 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
+import utils.Utils;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
@@ -39,6 +37,7 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
     @FXML private Label basketTotal;
     private ShoppingCart cartInstance;
     ObservableList<ShoppingItem> cartList = FXCollections.observableArrayList();
+    IMatDataHandler dataInstance = IMatDataHandler.getInstance();
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -76,14 +75,13 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
 
                                 controller.setItem(item);
                                 controller.setAmount(item.getAmount());
-                                controller.setPrice(item.getProduct().getPrice());
+                                controller.setPrice(item.getProduct().getPrice() * item.getAmount());
                                 controller.setAmount(item.getAmount());
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
-                                double width = basketListView.getWidth();
-
                                 cellView.prefWidthProperty().bind(basketListView.widthProperty());
-
+                                controller.setProductImage(dataInstance.getFXImage(item.getProduct()));
+                                cellView.prefWidthProperty().bind(basketListView.widthProperty().subtract(40));
                                 setGraphic(cellView);
 
                             } catch (IOException e){
@@ -116,7 +114,7 @@ public class BasketController implements Initializable, ShoppingCartListener, IO
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
-        basketTotal.setText("Totalt " + cartInstance.getTotal() + " kr");
+        basketTotal.setText(Utils.getFormatedPrice(cartInstance.getTotal()) + " kr");
 
         if (cartEvent.getShoppingItem() == null) return;
 

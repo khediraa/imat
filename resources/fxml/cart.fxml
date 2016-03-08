@@ -22,7 +22,7 @@
           <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <ListView fx:id="cartListView" GridPane.vgrow="ALWAYS" />
+            <ListView fx:id="cartListView" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" stylesheets="@../css/cart.css" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS" />
             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
                <children>
                   <Text fx:id="cartTotal" strokeType="OUTSIDE" strokeWidth="0.0" text="Totalt 0.00 kr" textAlignment="RIGHT" wrappingWidth="188.21875">

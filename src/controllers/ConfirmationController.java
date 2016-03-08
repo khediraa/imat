@@ -39,10 +39,6 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
                 pcs.firePropertyChange("to-shop", true, false);
             }
         });
-
-        toPurchaseHistoryButton.setOnAction(event -> {
-            pcs.firePropertyChange("to-purchase-history", true, false);
-        });
     }
 
     public void showDeliveryTime(String time, String date, boolean isHomeDelivery){
@@ -55,8 +51,8 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
             timeConfirm.setText(time);
         }
         else {
-            deliveryLocationText.setText("Dina varor kommer levereras till butiken inom 4 dagar. \nDu fÂr ett sms " +
-                    "n‰r de har levererats.");
+            deliveryLocationText.setText("Dina varor kommer levereras till butiken inom 4 dagar. \nDu f√•r ett sms " +
+                    "n√§r de har levererats.");
             dateConfirm.setText("");
             timeConfirm.setText("");
         }

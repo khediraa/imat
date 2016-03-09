@@ -2,6 +2,8 @@ package controllers;
 
 import imat.IObservable;
 import imat.LoginSession;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,13 +21,14 @@ import imat.Modal;
 import javafx.scene.text.Text;
 import se.chalmers.ait.dat215.project.Customer;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
-import se.chalmers.ait.dat215.project.User;
-import sun.rmi.runtime.Log;
 
+import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -104,15 +106,25 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         // search bar
         // search field
 
+
+
+        Timeline timeline = new Timeline(new KeyFrame(
+                javafx.util.Duration.millis(2000),
+                ae -> search()));
+        timeline.play();
+
+
         // when pressing enter while editing format the input
         searchBar.addEventFilter(KeyEvent.ANY, e->{
             if(e.getCode().equals(KeyCode.ENTER)) {
                 if (headerController.isBottomPosition()) {
                     headerController.startUpAnimation();
+                    timeline.stop();
                 }
                 search();
                 e.consume();
             }
+            timeline.playFromStart();
         });
 
         searchButton.addEventFilter(ActionEvent.ACTION, event -> {

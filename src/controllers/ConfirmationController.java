@@ -23,8 +23,7 @@ import java.util.ResourceBundle;
  */
 public class ConfirmationController implements Initializable, ShoppingCartListener, IObservable {
 
-    @FXML private Button toShopButton;
-    @FXML private Button toPurchaseHistoryButton;
+    @FXML private Button toMainPage;
     @FXML private Label dateConfirm;
     @FXML private Label timeConfirm;
     @FXML private Label deliveryLocationText;
@@ -33,15 +32,11 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        toShopButton.setOnAction(new EventHandler<ActionEvent>() {
+        toMainPage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                pcs.firePropertyChange("to-shop", true, false);
+                pcs.firePropertyChange("to-main-page", true, false);
             }
-        });
-
-        toPurchaseHistoryButton.setOnAction(event -> {
-            pcs.firePropertyChange("to-purchase-history", true, false);
         });
     }
 
@@ -55,8 +50,8 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
             timeConfirm.setText(time);
         }
         else {
-            deliveryLocationText.setText("Dina varor kommer levereras till butiken inom 4 dagar. \nDu fÂr ett sms " +
-                    "n‰r de har levererats.");
+            deliveryLocationText.setText("Dina varor kommer levereras till butiken inom 4 dagar. \nDu f√•r ett sms " +
+                    "n√§r de har levererats.");
             dateConfirm.setText("");
             timeConfirm.setText("");
         }

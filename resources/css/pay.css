@@ -72,6 +72,8 @@
 }
 
 
-#deliveryShop:disabled .text {
+#deliveryShop:disabled .text,
+#deliveryDate:disabled .text,
+#deliveryTime:disabled .text {
 	-fx-opacity: 0.3;
 }

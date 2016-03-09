@@ -130,7 +130,7 @@
                   </AnchorPane>
                   <AnchorPane fx:id="deliveryDate" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Text layoutX="-2.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj datum:" />
+                        <Text fx:id="pickDateText" layoutX="-2.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Välj datum:" />
                         <DatePicker fx:id="pickDate" layoutY="21.0" promptText="Välj datum" />
                         <Label fx:id="warningHomeText" layoutX="229.0" layoutY="25.0" text="Du måste fylla i datum och tid!" textFill="RED" />
                      </children>
@@ -143,7 +143,7 @@
                   <AnchorPane fx:id="deliveryTime" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
                         <ComboBox fx:id="timeCombo" layoutY="29.0" prefWidth="150.0" promptText="Välj tid" />
-                        <Text layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Välj tid:" />
+                        <Text fx:id="pickTimeText" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Välj tid:" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="shopRadio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">

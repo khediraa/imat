@@ -217,7 +217,9 @@
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <Button fx:id="saveDetailsButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Spara" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                              <Button fx:id="saveDetailsButton" styleClass="big-button" alignment="CENTER_RIGHT"
+                                      mnemonicParsing="false"
+                                      text="Spara" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>

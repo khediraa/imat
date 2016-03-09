@@ -1,0 +1,15 @@
+#saveDetailsButton {
+	-fx-background-color: #9DCF9A;
+	-fx-background-radius: 30;
+	-fx-text-fill: #1A5217;
+	-fx-font-size: 22;
+	-fx-font-weight: bold;
+}
+
+#saveDetailsButton:hover {
+	-fx-background-color: #BCDCBA;
+}
+
+.border-pane {
+	-fx-background-color: white;
+}

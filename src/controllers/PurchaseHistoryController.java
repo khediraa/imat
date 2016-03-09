@@ -38,6 +38,7 @@ public class PurchaseHistoryController implements Initializable, IObservable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        historyAccordion.getStylesheets().add("css/purchaseHistory.css");
         getOrders();
         addPaginationButtons();
         displayOrdersPaginated(0);
@@ -108,7 +109,7 @@ public class PurchaseHistoryController implements Initializable, IObservable {
             Node historyDetailsNode = loader.load();
             HistoryDetailsController historyDetailsController = loader.getController();
 
-            String dateFormated = new SimpleDateFormat("YYYY-MM-dd HH:mm").format(order.getDate());
+            String dateFormated = new SimpleDateFormat("YYYY-MM-dd | HH:mm").format(order.getDate());
             TitledPane orderTitledPane = new TitledPane(dateFormated, historyDetailsNode);
 
             historyDetailsController.populateHistoryDetails(order);

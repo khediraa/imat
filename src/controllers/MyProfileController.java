@@ -39,7 +39,6 @@ public class MyProfileController implements Initializable, IObservable {
     @FXML private TextField validMonth;
     @FXML private TextField validYear;
     @FXML private TextField verificationCode;
-    @FXML private Button toPurchaseHistoryButton;
     @FXML private Button saveDetailsButton;
     @FXML private RadioButton visaCard;
     @FXML private RadioButton mastercardCard;
@@ -60,10 +59,6 @@ public class MyProfileController implements Initializable, IObservable {
         savedProfileNotice.setOpacity(0);
 
         getSavedUserData(); // fetch saved data and populate forms
-
-        toPurchaseHistoryButton.addEventHandler(ActionEvent.ACTION, event -> {
-            pcs.firePropertyChange("to-purchase-history", true, false);
-        });
 
         saveDetailsButton.addEventHandler(ActionEvent.ACTION, event -> {
             saveUserData();

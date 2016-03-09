@@ -190,6 +190,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 shopGrid.toFront();
                 cartHolder.toFront();
                 cartController.refreshView();
+                headerController.setStyleClass();
                 break;
 
             case "to-payment":

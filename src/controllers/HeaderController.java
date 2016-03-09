@@ -196,6 +196,14 @@ public class HeaderController implements Initializable, IObservable {
         return this.bottomPosition;
     }
 
+    public void removeStyleClass() {
+        buttons.forEach(button -> {
+            if (getVBox(button).getStyleClass().contains("selected-button")) {
+                getVBox(button).getStyleClass().remove("selected-button");
+            }
+        });
+    }
+
     @Override
     public void addObserver(PropertyChangeListener observer) {
         this.pcs.addPropertyChangeListener(observer);

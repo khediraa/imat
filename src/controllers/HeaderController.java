@@ -42,6 +42,8 @@ public class HeaderController implements Initializable, IObservable {
     private StringProperty selectedProperty = new SimpleStringProperty("");
     private Map<Button, VBox> mapping;
 
+    private Button currentButton;
+
     private boolean bottomPosition = true;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -83,6 +85,7 @@ public class HeaderController implements Initializable, IObservable {
         selectedProperty.addListener(((observable, oldID, newID) -> {
             Button oldButton = find(mapping.keySet(), oldID);
             Button newButton = find(mapping.keySet(), newID);
+            currentButton = find(mapping.keySet(), newID);
             if (oldButton != null){
                 getVBox(oldButton).getStyleClass().remove("selected-button");
             }
@@ -202,6 +205,10 @@ public class HeaderController implements Initializable, IObservable {
                 getVBox(button).getStyleClass().remove("selected-button");
             }
         });
+    }
+
+    public void setStyleClass() {
+        getVBox(currentButton).getStyleClass().add("selected-button");
     }
 
     @Override

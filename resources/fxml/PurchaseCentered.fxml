@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.Double?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -23,7 +32,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="payment" prefWidth="1100.0" stylesheets="@../css/pay.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
+<BorderPane fx:id="payment" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
    <bottom>
       <GridPane prefHeight="89.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -507,4 +516,8 @@
          </BorderPane.margin>
        </GridPane>
    </top>
+   <stylesheets>
+      <URL value="@../css/pay.css" />
+      <URL value="@../css/validation.css" />
+   </stylesheets>
 </BorderPane>

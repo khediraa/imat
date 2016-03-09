@@ -1,8 +1,13 @@
 package controllers;
 
+import com.sun.glass.ui.Cursor;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -10,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -43,8 +49,21 @@ public class ItemTileController implements Initializable {
         IMatDataHandler im = IMatDataHandler.getInstance();
         this.shoppingCart = im.getShoppingCart();
 
+        Timeline timeline = new Timeline(new KeyFrame(
+                javafx.util.Duration.millis(2000),
+                ae -> setProductAmount(formatAmountInput(amountField.getText()))));
+
+        image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                addProductToCart();
+            }
+        });
+
+        image.setCursor(javafx.scene.Cursor.HAND);
 
         this.amountField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if(newValue) {
@@ -52,6 +71,7 @@ public class ItemTileController implements Initializable {
                         @Override
                         public void run() {
                             amountField.selectAll();
+                            timeline.playFromStart();
                         }
                     });
                 } else {
@@ -65,6 +85,7 @@ public class ItemTileController implements Initializable {
             if(e.getCode().equals(KeyCode.ENTER)) {
                 setProductAmount(formatAmountInput(amountField.getText()));
                 amountField.getParent().requestFocus();
+                timeline.stop();
                 e.consume();
             }
         });

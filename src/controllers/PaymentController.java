@@ -3,8 +3,10 @@ package controllers;
 import imat.IObservable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.ait.dat215.project.CartEvent;
@@ -28,6 +30,17 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
     @FXML private ToggleGroup typeOfPayment;
     @FXML private RadioButton cardChoice;
     @FXML private RadioButton billChoice;
+    @FXML private TextField firstName;
+    @FXML private TextField address;
+    @FXML private TextField postAddress;
+    @FXML private TextField email;
+    @FXML private TextField phoneNumber;
+    @FXML private TextField lastName;
+    @FXML private TextField postCode;
+    @FXML private TextField cardNumber;
+    @FXML private TextField validMonth;
+    @FXML private TextField validYear;
+    @FXML private TextField verificationCode;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
@@ -37,11 +50,39 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
         });
 
         goToDeliveryButton.setOnAction(event -> {
-            pcs.firePropertyChange("to-delivery", true, false);
+            boolean formValidated = validateForm();
+            if (formValidated) {
+                pcs.firePropertyChange("to-delivery", true, false);
+            }
+
         });
 
         billChoice.setOnAction(event -> {cardPayment.setDisable(true);});
         cardChoice.setOnAction(event -> cardPayment.setDisable(false));
+    }
+
+    public boolean validateForm() {
+
+        int errors = 0;
+
+
+
+        if (errors > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public void addErrorToField(Node field) {
+        field.getStyleClass().add("error-field");
+    }
+
+    public void removeErrorFromField(Node field) {
+        field.getStyleClass().remove("error-field");
+    }
+
+    public void populateFromWithCustomerData() {
+
     }
 
     @Override

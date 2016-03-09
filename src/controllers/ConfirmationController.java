@@ -1,6 +1,8 @@
 package controllers;
 
 import imat.IObservable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,12 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import se.chalmers.ait.dat215.project.CartEvent;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
+import se.chalmers.ait.dat215.project.ShoppingItem;
 
 import javax.xml.soap.Text;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -27,11 +32,17 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
     @FXML private Label dateConfirm;
     @FXML private Label timeConfirm;
     @FXML private Label deliveryLocationText;
+    private ObservableList<ShoppingItem> lastCart = FXCollections.observableArrayList();
+    private IMatDataHandler dataHandler = IMatDataHandler.getInstance();
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        lastCart.setAll(dataHandler.getShoppingCart().getItems());
+        dataHandler.getShoppingCart().clear();
+
         toMainPage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

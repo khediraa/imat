@@ -34,7 +34,13 @@
             <fx:include fx:id="myProfile" source="myProfile.fxml" />
             <fx:include fx:id="delivery" source="Delivery.fxml" />
             <fx:include fx:id="registration" source="registration.fxml" />
-            <fx:include fx:id="purchaseHistory" source="purchaseHistory.fxml" />
+            <fx:include StackPane.alignment="TOP_LEFT" fx:id="purchaseHistory" source="purchaseHistory.fxml" />
+
+             <AnchorPane fx:id="cartHolder" maxWidth="300.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="-Infinity" StackPane.alignment="TOP_RIGHT">
+                 <children>
+                     <fx:include fx:id="cart" source="cart.fxml" />
+                 </children>
+             </AnchorPane>
 
             <Text fx:id="noSearchResults" text="Inga sökresultat hittades" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
@@ -57,13 +63,6 @@
                         <fx:include fx:id="shop" source="Shop.fxml" />
                      </children>
                   </StackPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-
-                     <children>
-                         <fx:include fx:id="cart" source="cart.fxml" />
-                     </children>
-
-                  </AnchorPane>
                </children>
             </GridPane>
 

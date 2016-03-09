@@ -110,7 +110,6 @@ public class Modal {
 
     public void fadeIn() {
         pane.toFront();
-
         FadeTransition appearAnimation;
         appearAnimation = new FadeTransition(Duration.millis(300), this.pane);
         FadeTransition fade = appearAnimation;

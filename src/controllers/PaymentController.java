@@ -36,14 +36,12 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
             pcs.firePropertyChange("back-to-basket", true, false);
         });
 
-
         goToDeliveryButton.setOnAction(event -> {
             pcs.firePropertyChange("to-delivery", true, false);
         });
 
         billChoice.setOnAction(event -> {cardPayment.setDisable(true);});
         cardChoice.setOnAction(event -> cardPayment.setDisable(false));
-
     }
 
     @Override

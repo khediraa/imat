@@ -34,7 +34,6 @@ public class TableShoppingItem {
         this.amount = new SimpleDoubleProperty(item.getAmount());
         this.productName = new SimpleStringProperty(item.getProduct().getName());
         this.totalPrice = new SimpleDoubleProperty(item.getAmount() * item.getProduct().getPrice());
-        System.out.println(this.totalPrice);
         this.addToCartButton = new Button("Lägg till i varukorgen");
     }
 

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +18,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.*;
 import imat.Modal;
 import javafx.scene.text.Text;
+import se.chalmers.ait.dat215.project.Customer;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.User;
 import sun.rmi.runtime.Log;
 
 import java.beans.PropertyChangeEvent;
@@ -232,6 +236,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 cartController.refreshView();
                 shopController.displaySweets();
                 shopGrid.toFront();
+                cartHolder.toFront();
                 break;
 
             case "set-category-most-bought":
@@ -302,7 +307,14 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     }
 
     public void setLoginName() {
-        logInLabel.setText("Välkommen Hjördis Ohlsson!");
+        Customer currentCustomer = IMatDataHandler.getInstance().getCustomer();
+
+        if (currentCustomer.getFirstName().length() > 0) {
+            logInLabel.setText("Välkommen " + currentCustomer.getFirstName() + "!");
+        } else {
+            logInLabel.setText("Välkommen kära kund!");
+        }
+
         logInButton.setText("Logga ut");
     }
 

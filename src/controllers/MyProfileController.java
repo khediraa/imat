@@ -1,13 +1,18 @@
 package controllers;
 
 import imat.IObservable;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 import se.chalmers.ait.dat215.project.CreditCard;
 import se.chalmers.ait.dat215.project.Customer;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
@@ -38,6 +43,8 @@ public class MyProfileController implements Initializable, IObservable {
     @FXML private Button saveDetailsButton;
     @FXML private RadioButton visaCard;
     @FXML private RadioButton mastercardCard;
+    @FXML private AnchorPane savedProfileNotice;
+    private boolean noticeBeingShown = false;
 
     private Customer customer;
     private CreditCard creditCard;
@@ -47,9 +54,10 @@ public class MyProfileController implements Initializable, IObservable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         this.customer = dataHandler.getCustomer();
         this.creditCard = dataHandler.getCreditCard();
+
+        savedProfileNotice.setOpacity(0);
 
         getSavedUserData(); // fetch saved data and populate forms
 
@@ -59,11 +67,11 @@ public class MyProfileController implements Initializable, IObservable {
 
         saveDetailsButton.addEventHandler(ActionEvent.ACTION, event -> {
             saveUserData();
+            displayNotice();
         });
     }
 
     private void saveUserData() {
-
         this.customer.setFirstName(firstName.getText());
         this.customer.setLastName(lastName.getText());
         this.customer.setAddress(address.getText());
@@ -81,12 +89,39 @@ public class MyProfileController implements Initializable, IObservable {
             creditCard.setValidYear(Integer.valueOf(validYear.getText()));
         }
 
-
         if (mastercardCard.isSelected()) {
             creditCard.setCardType("Mastercard");
         }
         if (visaCard.isSelected()) {
             creditCard.setCardType("Visa");
+        }
+
+        if (verificationCode.getText().length() > 0) {
+            creditCard.setVerificationCode(Integer.valueOf(verificationCode.getText()));
+        }
+
+
+
+    }
+
+    public void displayNotice() {
+        if (!noticeBeingShown) {
+            PauseTransition pauseTransition;
+            FadeTransition fadeTransition = new FadeTransition(Duration.millis(300));
+            FadeTransition fadeOutTransition = new FadeTransition(Duration.millis(300));
+
+            fadeTransition.setFromValue(0.0);
+            fadeTransition.setToValue(1.0);
+
+            fadeOutTransition.setFromValue(1.0);
+            fadeOutTransition.setToValue(0.0);
+
+            pauseTransition = new PauseTransition(Duration.millis(1000));
+
+            SequentialTransition seqT = new SequentialTransition(savedProfileNotice, fadeTransition, pauseTransition, fadeOutTransition);
+            seqT.play();
+
+            noticeBeingShown = false;
         }
     }
 

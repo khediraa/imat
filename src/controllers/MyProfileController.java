@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import se.chalmers.ait.dat215.project.CreditCard;
+import se.chalmers.ait.dat215.project.Customer;
+import se.chalmers.ait.dat215.project.IMatDataHandler;
+import se.chalmers.ait.dat215.project.User;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -33,17 +37,78 @@ public class MyProfileController implements Initializable, IObservable {
     @FXML private Button toPurchaseHistoryButton;
     @FXML private Button saveDetailsButton;
     @FXML private RadioButton visaCard;
-    @FXML private RadioButton matercardCard;
+    @FXML private RadioButton mastercardCard;
+
+    private Customer customer;
+    private CreditCard creditCard;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private IMatDataHandler dataHandler = IMatDataHandler.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        this.customer = dataHandler.getCustomer();
+        this.creditCard = dataHandler.getCreditCard();
+
+        getSavedUserData(); // fetch saved data and populate forms
+
         toPurchaseHistoryButton.addEventHandler(ActionEvent.ACTION, event -> {
-            pcs.firePropertyChange("to-registration", true, false);
+            pcs.firePropertyChange("to-purchase-history", true, false);
         });
 
+        saveDetailsButton.addEventHandler(ActionEvent.ACTION, event -> {
+            saveUserData();
+        });
+    }
+
+    private void saveUserData() {
+
+        this.customer.setFirstName(firstName.getText());
+        this.customer.setLastName(lastName.getText());
+        this.customer.setAddress(address.getText());
+        this.customer.setPostAddress(postAddress.getText());
+        this.customer.setPostCode(postCode.getText());
+        this.customer.setEmail(email.getText());
+        this.customer.setPhoneNumber(phoneNumber.getText());
+
+        creditCard.setCardNumber(cardNumber.getText());
+
+        if (validMonth.getText().length() > 0) {
+            creditCard.setValidMonth(Integer.valueOf(validMonth.getText()));
+        }
+        if (validYear.getText().length() > 0) {
+            creditCard.setValidYear(Integer.valueOf(validYear.getText()));
+        }
+
+
+        if (mastercardCard.isSelected()) {
+            creditCard.setCardType("Mastercard");
+        }
+        if (visaCard.isSelected()) {
+            creditCard.setCardType("Visa");
+        }
+    }
+
+    public void getSavedUserData() {
+        firstName.setText(customer.getFirstName());
+        lastName.setText(customer.getLastName());
+        address.setText(customer.getAddress());
+        postAddress.setText(customer.getPostAddress());
+        postCode.setText(customer.getPostCode());
+        email.setText(customer.getEmail());
+        phoneNumber.setText(customer.getPhoneNumber());
+
+        cardNumber.setText(creditCard.getCardNumber());
+        validMonth.setText(String.valueOf(creditCard.getValidMonth()));
+        validYear.setText(String.valueOf(creditCard.getValidYear()));
+
+        if (creditCard.getCardType().equals("Mastercard")) {
+            mastercardCard.setSelected(true);
+        }
+        if (creditCard.getCardType().equals("Visa")) {
+            mastercardCard.setSelected(true);
+        }
     }
 
     @Override

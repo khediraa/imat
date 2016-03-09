@@ -79,7 +79,6 @@ public class HistoryDetailsController implements Initializable, IObservable {
 
         historyDetails.setItems(items);
 
-
     }
     @Override
     public void addObserver(PropertyChangeListener observer) {

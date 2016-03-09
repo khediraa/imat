@@ -37,6 +37,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private BasketController basketController;
     @FXML private PaymentController paymentController;
     @FXML private ShopController shopController;
+    @FXML private MyProfileController myProfileController;
     @FXML private RegistrationController registrationController;
     @FXML private ConfirmationController confirmationController;
     @FXML private LogInController logInPaneController;
@@ -52,7 +53,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private GridPane shopGrid;
     @FXML private StackPane mainContainer;
     @FXML private BorderPane logInPane;
-    @FXML private BorderPane myProfilePane;
+    @FXML private BorderPane myProfile;
     @FXML private BorderPane delivery;
     @FXML private BorderPane registration;
     @FXML private BorderPane purchaseHistory;
@@ -124,6 +125,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         deliveryController.addObserver(this);
         purchaseHistoryController.addObserver(this);
         shopController.addObserver(this);
+        myProfileController.addObserver(this);
 
 
         logoBtn.addEventHandler(ActionEvent.ACTION, event -> {
@@ -252,7 +254,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 if (headerController.isBottomPosition()) {
                     headerController.startUpAnimation();
                 }
-                myProfilePane.toFront();
+                myProfile.toFront();
                 break;
 
             case "to-delivery":

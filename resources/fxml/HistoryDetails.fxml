@@ -5,52 +5,32 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="700.0" fx:controller="controllers.HistoryDetailsController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HistoryDetailsController">
    <left>
-      <GridPane prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="354.0" prefWidth="700.0" BorderPane.alignment="CENTER">
 
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="historyDetails" prefHeight="200.0" prefWidth="340.0" maxWidth="600.0">
+            <TableView fx:id="historyDetails" maxWidth="700.0" prefHeight="200.0" prefWidth="340.0">
               <columns>
                 <TableColumn fx:id="amount" prefWidth="102.0" text="Antal:" />
                 <TableColumn fx:id="product" prefWidth="231.0" text="Vara:" />
                   <TableColumn fx:id="price" prefWidth="118.0" text="Pris:" />
-                  <TableColumn fx:id="addToCart" prefWidth="124.0" />
+                  <TableColumn fx:id="addToCart" prefWidth="226.0" />
               </columns>
             </TableView>
+            <Label fx:id="totalPrice" text="Totalpris: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </left>
-   <right>
-      <GridPane prefHeight="200.0" prefWidth="218.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label layoutX="5.0" layoutY="14.0" text="Totalpris:">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="totalPrice" layoutX="5.0" layoutY="34.0" text=" " />
-               </children>
-            </AnchorPane>
-         </children>
-      </GridPane>
-   </right>
 </BorderPane>

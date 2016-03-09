@@ -82,7 +82,7 @@ public class Utils {
         double totalPrice = 0;
 
         for (ShoppingItem item : order.getItems()) {
-            totalPrice = item.getTotal();
+            totalPrice += item.getTotal();
         }
 
         return totalPrice;

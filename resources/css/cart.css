@@ -5,6 +5,18 @@
     -fx-padding:0;
 }
 
+#toCartBtn {
+	-fx-background-color: #82A63B;
+	-fx-background-radius: 20;
+	-fx-font-weight: bold;
+	-fx-font-size: 16;
+	-fx-text-fill: white;
+}
+
+#toCartBtn:hover {
+	-fx-background-color: #A1C161;
+}
+
 #productName {
 	-fx-font-size: 14 pt;
 	-fx-font-weight: bold;
@@ -36,10 +48,6 @@
 	-fx-background-radius: 5;
 }
 
-.list-view {
-	-fx-background-insets: 0;
-    -fx-padding: 0;
-}
 
 .list-cell:even {
 	-fx-background-color: white;

@@ -13,3 +13,65 @@
 #confirmation{
 	-fx-background-color: white;
 }
+
+.arrow-button {
+	-fx-background-color: transparent;
+}
+
+.arrow-button .label {
+	-fx-text-fill: #1A5217;
+}
+
+.arrow-button .shape {
+	-fx-fill: #BDD888;
+	-fx-stroke: transparent;
+}
+
+.arrow-button:hover .shape {
+	-fx-fill: #DAEEB1;
+}
+
+.sequence-button,
+.selected-sequence-button {
+	-fx-background-color: transparent;
+}
+
+.sequence-button .shape{
+	-fx-fill: #DAEEB1;
+	-fx-stroke: transparent;
+}
+
+.sequence-button .label{
+	-fx-text-fill: #1A5217;
+}
+
+.selected-sequence-button .shape{
+	-fx-fill: #A1C161;
+	-fx-stroke: transparent;
+}
+
+.selected-sequence-button .label{
+	-fx-text-fill: white;
+}
+
+.white-shape {
+	-fx-fill: white;
+	-fx-stroke: transparent;
+}
+
+#toMainPage {
+	-fx-background-color: #9DCF9A;
+	-fx-background-radius: 30;
+	-fx-text-fill: #1A5217;
+	-fx-font-size: 22;
+	-fx-font-weight: bold;
+}
+
+#toMainPage:hover {
+	-fx-background-color: #BCDCBA;
+}
+
+
+#deliveryShop:disabled .text {
+	-fx-opacity: 0.3;
+}

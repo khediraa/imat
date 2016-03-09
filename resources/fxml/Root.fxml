@@ -31,7 +31,7 @@
             <fx:include fx:id="basket" source="BasketCentered.fxml" />
             <fx:include fx:id="payment" source="PurchaseCentered.fxml" />
             <fx:include fx:id="confirmation" source="Confirmation.fxml" />
-            <fx:include fx:id="myProfilePane" source="myProfile.fxml" />
+            <fx:include fx:id="myProfile" source="myProfile.fxml" />
             <fx:include fx:id="delivery" source="Delivery.fxml" />
             <fx:include fx:id="registration" source="registration.fxml" />
             <fx:include fx:id="purchaseHistory" source="purchaseHistory.fxml" />

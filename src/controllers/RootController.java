@@ -47,6 +47,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private Label logInLabel;
     @FXML private AnchorPane root;
     @FXML private AnchorPane mainPage;
+    @FXML private AnchorPane cartHolder;
     @FXML private BorderPane basket;
     @FXML private BorderPane payment;
     @FXML private BorderPane confirmation;
@@ -170,6 +171,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
 
             case "to-shop":
                 shopGrid.toFront();
+                cartHolder.toFront();
                 cartController.refreshView();
                 break;
 
@@ -191,30 +193,35 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 cartController.refreshView();
                 shopController.displayMeat();
                 shopGrid.toFront();
+                cartHolder.toFront();
                 break;
 
             case "set-category-greens":
                 cartController.refreshView();
                 shopController.displayGreens();
                 shopGrid.toFront();
+                cartHolder.toFront();
                 break;
 
             case "set-category-dairy":
                 cartController.refreshView();
                 shopController.displayDairy();
                 shopGrid.toFront();
+                cartHolder.toFront();
                 break;
 
             case "set-category-pantry":
                 cartController.refreshView();
                 shopController.displayPantry();
                 shopGrid.toFront();
+                cartHolder.toFront();
                 break;
 
             case "set-category-drinks":
                 cartController.refreshView();
                 shopController.displayDrinks();
                 shopGrid.toFront();
+                cartHolder.toFront();
                 break;
 
             case "set-category-sweets":
@@ -227,6 +234,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 cartController.refreshView();
                 shopController.displayMostBought();
                 shopGrid.toFront();
+                cartHolder.toFront();
                 break;
 
             case "login-modal":
@@ -275,12 +283,15 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 break;
 
             case "to-purchase-history":
+                cartController.refreshView();
                 purchaseHistoryController.refreshOrderHistory();
                 purchaseHistory.toFront();
+                cartHolder.toFront();
                 break;
 
             case "no-search-results":
                 noSearchResults.toFront();
+                cartHolder.toFront();
                 break;
         }
 

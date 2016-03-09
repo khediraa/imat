@@ -147,6 +147,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
 
         logoBtn.addEventHandler(ActionEvent.ACTION, event -> {
             headerController.reverseStartUpAnimation();
+            headerController.removeStyleClass();
         });
     }
 
@@ -161,18 +162,13 @@ public class RootController implements Initializable, PropertyChangeListener, IO
         return event -> basket.toFront();
     }
 
-    private EventHandler<ActionEvent> mainPageUpwards() {
-        return event -> {
-            //Todo...
-        };
-
-    }
-
+    //Some weird bug that doesn't let you use a button after you've searched.
     private void search() {
         if (searchBar.getText().length() > 0) {
             shopGrid.toFront();
             shopController.search(searchBar.getText());
         }
+        headerController.removeStyleClass();
     }
 
     // Button Events
@@ -187,6 +183,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
             case "to-basket":
                 basket.toFront();
                 basketController.refreshView();
+                headerController.removeStyleClass();
                 break;
 
             case "to-shop":

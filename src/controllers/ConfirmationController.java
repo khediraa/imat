@@ -13,11 +13,12 @@ import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
 import se.chalmers.ait.dat215.project.ShoppingItem;
-
-import javax.xml.soap.Text;
+import javafx.scene.control.ListView;
+import se.chalmers.ait.dat215.project.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,11 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
     @FXML private Label deliveryLocationText;
     private ObservableList<ShoppingItem> lastCart = FXCollections.observableArrayList();
     private IMatDataHandler dataHandler = IMatDataHandler.getInstance();
+    @FXML private ListView receiptList;
+    private IMatDataHandler dataInstance = IMatDataHandler.getInstance();
+    private List<Order> orders = new ArrayList<>();
+    private List<ShoppingItem> latestOrders = new ArrayList<>();
+
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -49,6 +55,13 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
                 pcs.firePropertyChange("to-main-page", true, false);
             }
         });
+
+        if (dataInstance.getOrders().size() > 0) {
+            orders.addAll(dataInstance.getOrders());
+            Order lastOrder = orders.get(orders.size() - 1);
+
+            lastOrder.getItems().forEach(item -> System.out.println(item.getProduct().getName()));
+        }
     }
 
     public void showDeliveryTime(String time, String date, boolean isHomeDelivery){

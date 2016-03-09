@@ -1,0 +1,32 @@
+.accordion {
+	-fx-background-color: transparent;
+}
+
+.titled-pane {
+	-fx-text-fill: white;
+	-fx-font-size: 14;
+	-fx-font-weight: bold;
+}
+
+.titled-pane > .title{
+	-fx-background-color: #A1C161;
+	-fx-border-color: #485F1B;
+	-fx-background-insets: 0;
+	-fx-border-width: 1 0 0 0;
+}
+
+.titled-pane .anchor-pane,
+ .border-pane {
+	-fx-background-color: #E6F3CD;
+	-fx-background-radius: 0 0 10 10;
+}
+
+.titled-pane > *.content{
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-padding: 0;
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+  -fx-background-color: #485F1B;
+}

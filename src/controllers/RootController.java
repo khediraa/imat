@@ -66,7 +66,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private BorderPane purchaseHistory;
     @FXML private TextField searchBar;
     @FXML private Button searchButton;
-    @FXML private Text noSearchResults;
+    @FXML private BorderPane noSearchResults;
     @FXML private Button logoBtn;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
@@ -312,6 +312,9 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 break;
 
             case "no-search-results":
+                if (headerController.isBottomPosition()) {
+                    headerController.startUpAnimation();
+                }
                 noSearchResults.toFront();
                 cartHolder.toFront();
                 break;

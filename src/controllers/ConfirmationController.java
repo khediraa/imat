@@ -83,6 +83,8 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
                                 controller.setPrice(item.getProduct().getPrice() * item.getAmount());
                                 controller.setProductName(item.getProduct().getName());
                                 controller.setUnit(item.getProduct().getUnitSuffix());
+                                controller.setProductImage(dataInstance.getFXImage(item.getProduct()));
+
 
                                 setGraphic(cellView);
 

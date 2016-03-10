@@ -6,9 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
@@ -17,6 +21,7 @@ import javafx.scene.control.ListView;
 import se.chalmers.ait.dat215.project.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +43,14 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
     @FXML private ListView receiptList;
     private IMatDataHandler dataInstance = IMatDataHandler.getInstance();
     private List<Order> orders = new ArrayList<>();
-    private List<ShoppingItem> latestOrders = new ArrayList<>();
-
+    private ObservableList<ShoppingItem> latestItemsBought = FXCollections.observableArrayList();
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        lastCart.setAll(dataHandler.getShoppingCart().getItems());
-        dataHandler.getShoppingCart().clear();
+        refreshOrders();
 
         toMainPage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -56,11 +59,53 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
             }
         });
 
+        receiptList.setCellFactory(new Callback<ListView<ShoppingItem>, ListCell<ShoppingItem>>() {
+            @Override
+            public ListCell<ShoppingItem> call(ListView<ShoppingItem> param) {
+                ListCell<ShoppingItem> cell = new ListCell<ShoppingItem>() {
+                    @Override
+                    protected void updateItem(ShoppingItem item, boolean empty){
+
+                        super.updateItem(item, empty);
+
+                        if (empty || item == null) {
+                            setText(null);
+                            setGraphic(null);
+                        } else {
+
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/CartCellReceipt.fxml"));
+                                AnchorPane cellView = loader.load();
+                                CartCellReceiptController controller = loader.getController();
+
+                                controller.setItem(item);
+                                controller.setAmount(item.getAmount());
+                                controller.setPrice(item.getProduct().getPrice() * item.getAmount());
+                                controller.setProductName(item.getProduct().getName());
+                                controller.setUnit(item.getProduct().getUnitSuffix());
+
+                                setGraphic(cellView);
+
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                };
+
+                return cell;
+            }
+        });
+    }
+
+    private void populateListView() {
         if (dataInstance.getOrders().size() > 0) {
             orders.addAll(dataInstance.getOrders());
             Order lastOrder = orders.get(orders.size() - 1);
+            latestItemsBought.setAll(lastOrder.getItems());
 
-            lastOrder.getItems().forEach(item -> System.out.println(item.getProduct().getName()));
+            receiptList.setItems(latestItemsBought);
+
         }
     }
 
@@ -85,6 +130,11 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
 
+    }
+
+    public void refreshOrders() {
+        this.orders = dataHandler.getOrders();
+        populateListView();
     }
 
     @Override

@@ -39,7 +39,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="200.0" fitWidth="200.0">
+                              <ImageView fitHeight="200.0" fitWidth="200.0" opacity="0.3">
                                  <image>
                                     <Image url="@../img/searchIcon.png" />
                                  </image>
@@ -48,7 +48,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                                    <Text text="Inga sökresultat hittades">
+                                    <Text text="Inga sökresultat hittades" opacity="0.5">
                                  <font>
                                     <Font size="28.0" />
                                  </font>

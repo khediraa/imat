@@ -94,7 +94,7 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color:gainsboro;
+    -fx-background-color: derive(gainsboro, -25%);
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 }

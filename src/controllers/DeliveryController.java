@@ -103,6 +103,8 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
         confirmButton.setDisable(true);
         IMatDataHandler dataHandler = IMatDataHandler.getInstance();
         dataHandler.placeOrder(true);
+        pickDate.setValue(LocalDate.now());
+
     }
 
     public boolean getIsHomeDelivery () {

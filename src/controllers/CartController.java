@@ -51,6 +51,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         this.cartInstance.addShoppingCartListener(this);
 
         refreshCart();
+        refreshEmptyState();
 
         // set CartItemCell to new cell type for our list view
         cartListView.setCellFactory(new Callback<ListView<ShoppingItem>, ListCell<ShoppingItem>>() {
@@ -102,7 +103,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
     }
 
     public void refreshEmptyState() {
-        if (this.cartListView.getItems().size() < 1) {
+        if (IMatDataHandler.getInstance().getShoppingCart().getItems().size() < 1) {
             cartEmptyState.toFront();
         } else {
             cartEmptyState.toBack();

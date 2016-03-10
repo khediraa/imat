@@ -119,8 +119,8 @@ public class RootController implements Initializable, PropertyChangeListener, IO
             if(e.getCode().equals(KeyCode.ENTER)) {
                 if (headerController.isBottomPosition()) {
                     headerController.startUpAnimation();
-                    timeline.stop();
                 }
+                timeline.stop();
                 search();
                 e.consume();
             }

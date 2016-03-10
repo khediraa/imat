@@ -66,7 +66,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     @FXML private BorderPane purchaseHistory;
     @FXML private TextField searchBar;
     @FXML private Button searchButton;
-    @FXML private Text noSearchResults;
+    @FXML private BorderPane noSearchResults;
     @FXML private Button logoBtn;
     List<AnchorPane> anchorPanes = new ArrayList<>();
 
@@ -119,12 +119,13 @@ public class RootController implements Initializable, PropertyChangeListener, IO
             if(e.getCode().equals(KeyCode.ENTER)) {
                 if (headerController.isBottomPosition()) {
                     headerController.startUpAnimation();
-                    timeline.stop();
                 }
+                timeline.stop();
                 search();
                 e.consume();
+            } else {
+                timeline.playFromStart();
             }
-            timeline.playFromStart();
         });
 
         searchButton.addEventFilter(ActionEvent.ACTION, event -> {
@@ -166,6 +167,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     private void search() {
         if (searchBar.getText().length() > 0) {
             shopGrid.toFront();
+            cartHolder.toFront();
             shopController.search(searchBar.getText());
         }
         headerController.removeStyleClass();
@@ -311,6 +313,10 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 break;
 
             case "no-search-results":
+                if (headerController.isBottomPosition()) {
+                    headerController.startUpAnimation();
+                }
+                cartController.refreshView();
                 noSearchResults.toFront();
                 cartHolder.toFront();
                 break;

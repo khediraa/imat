@@ -15,6 +15,7 @@ import se.chalmers.ait.dat215.project.ShoppingCartListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DeliveryController implements Initializable, ShoppingCartListener, IObservable {
@@ -78,6 +79,9 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
 
         shopChoice.setOnAction(event -> toggleHomeChoice(false));
         homeChoice.setOnAction(event -> toggleHomeChoice(true));
+
+        pickDate.setValue(LocalDate.now());
+
     }
 
     private void toggleHomeChoice(boolean value) {

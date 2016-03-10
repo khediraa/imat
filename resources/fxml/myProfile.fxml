@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="myProfile" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MyProfileController">
+<BorderPane fx:id="myProfile" styleClass="border-pane" stylesheets="@../css/miscellaneous.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MyProfileController">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="1000.0">
          <children>
@@ -96,7 +109,6 @@
                                     <TextField fx:id="postCode" promptText="Postnummer" />
                                  </children>
                               </VBox>
-                              <Button fx:id="toPurchaseHistoryButton" mnemonicParsing="false" text="Din köphistorik" GridPane.rowIndex="6" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -180,16 +192,43 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <RadioButton fx:id="visaCard" mnemonicParsing="false" text="Visa" />
-                                          <RadioButton fx:id="mastercardCard" mnemonicParsing="false" text="Mastercard" GridPane.columnIndex="1" />
+                                           <RadioButton fx:id="visaCard" mnemonicParsing="false" text="Visa">
+                                               <toggleGroup>
+                                                   <ToggleGroup fx:id="typeOfCard" />
+                                               </toggleGroup>
+                                               <graphic>
+                                                   <ImageView fitHeight="20.0" pickOnBounds="true" preserveRatio="true">
+                                                       <image>
+                                                           <Image url="@../img/visaIcon.png" />
+                                                       </image>
+                                                   </ImageView>
+                                               </graphic>
+                                           </RadioButton>
+                                           <RadioButton fx:id="mastercardCard" mnemonicParsing="false" text="Mastercard" toggleGroup="$typeOfCard" GridPane.columnIndex="1">
+                                               <graphic>
+                                                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                       <image>
+                                                           <Image url="@../img/masterCard.png" />
+                                                       </image>
+                                                   </ImageView>
+                                               </graphic>
+                                           </RadioButton>
                                        </children>
                                     </GridPane>
                                  </children>
                               </VBox>
-                              <Button fx:id="saveDetailsButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Spara" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                              <Button fx:id="saveDetailsButton" styleClass="big-button" alignment="CENTER_RIGHT"
+                                      mnemonicParsing="false"
+                                      text="Spara" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
-                                 </font></Button>
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Button>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

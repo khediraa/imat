@@ -1,0 +1,35 @@
+.big-button {
+	-fx-background-color: #9DCF9A;
+	-fx-background-radius: 30;
+	-fx-text-fill: #1A5217;
+	-fx-font-size: 22;
+	-fx-font-weight: bold;
+}
+
+.big-button:hover {
+	-fx-background-color: #BCDCBA;
+}
+
+.small-button {
+	-fx-background-color: derive(#BCDCBA, 25%);
+	-fx-background-radius: 15;
+	-fx-text-fill: #1A5217;
+	-fx-font-size: 13;
+}
+
+.small-button:hover {
+	-fx-background-color: derive(#BCDCBA, 50%);
+}
+
+.border-pane {
+	-fx-background-color: white;
+}
+
+.hyper-link {
+	-fx-text-fill: #7C9F36;
+}
+
+.logInModule {
+	-fx-background-color: white;
+	-fx-background-radius: 10;
+}

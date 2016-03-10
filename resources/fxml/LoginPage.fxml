@@ -19,9 +19,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="logInPane" prefHeight="435.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogInController">
+<BorderPane fx:id="logInPane" prefHeight="435.0" prefWidth="365.0" stylesheets="@../css/miscellaneous.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogInController">
     <center>
-        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="340.0" spacing="10.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="340.0" spacing="10.0" style="-fx-background-color: white;" styleClass="logInModule" BorderPane.alignment="CENTER">
             <children>
             <GridPane>
                <columnConstraints>
@@ -59,15 +59,21 @@
                 <TextField fx:id="userName" promptText="Användarnamn" />
                 <Label text="Lösenord" />
                 <PasswordField fx:id="password" promptText="**********" />
-                <Button fx:id="logInButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="300.0" text="Logga in">
+                <Button fx:id="logInButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="300.0" styleClass="big-button" text="Logga in">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
-                <Hyperlink fx:id="forgotPasswordLink" text="Glömt lösenord?" />
+                <Hyperlink fx:id="forgotPasswordLink" styleClass="hyper-link" text="Glömt lösenord?" />
                 <Region prefHeight="72.0" prefWidth="272.0" />
                 <Label text="Inget konto?" />
-                <Button fx:id="toRegistrationPaneButton" mnemonicParsing="false" text="Skapa konto" />
+                <Button fx:id="toRegistrationPaneButton" mnemonicParsing="false" styleClass="small-button" text="Skapa konto">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

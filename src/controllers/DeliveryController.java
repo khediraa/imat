@@ -97,7 +97,7 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
         deliveryRadioGroup.selectToggle(null);
         confirmButton.setDisable(true);
         IMatDataHandler dataHandler = IMatDataHandler.getInstance();
-        dataHandler.placeOrder(false);
+        dataHandler.placeOrder(true);
     }
 
     public boolean getIsHomeDelivery () {

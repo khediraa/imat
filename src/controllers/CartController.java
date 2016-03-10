@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import se.chalmers.ait.dat215.project.*;
@@ -34,6 +35,7 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
     ObservableList<ShoppingItem> cartList = FXCollections.observableArrayList();
     @FXML Text cartTotal;
     @FXML Button toCartBtn;
+    @FXML GridPane cartEmptyState;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -99,6 +101,14 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         });
     }
 
+    public void refreshEmptyState() {
+        if (this.cartListView.getItems().size() < 1) {
+            cartEmptyState.toFront();
+        } else {
+            cartEmptyState.toBack();
+        }
+    }
+
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
         refreshCart();
@@ -116,11 +126,17 @@ public class CartController implements Initializable, ShoppingCartListener, IObs
         }
 
         cartListView.refresh();
+        refreshEmptyState();
     }
 
     private void refreshCart() {
         double total = cartInstance.getTotal();
+        if (cartListView.getItems().size() < 1) {
+
+        }
         cartTotal.setText("Totalt " + Utils.getFormatedPrice(total) + " kr");
+
+        refreshEmptyState();
     }
 
     public void refreshView() {

@@ -123,8 +123,9 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 timeline.stop();
                 search();
                 e.consume();
+            } else {
+                timeline.playFromStart();
             }
-            timeline.playFromStart();
         });
 
         searchButton.addEventFilter(ActionEvent.ACTION, event -> {
@@ -315,6 +316,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 if (headerController.isBottomPosition()) {
                     headerController.startUpAnimation();
                 }
+                cartController.refreshView();
                 noSearchResults.toFront();
                 cartHolder.toFront();
                 break;

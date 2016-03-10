@@ -98,14 +98,12 @@ public class ConfirmationController implements Initializable, ShoppingCartListen
         });
     }
 
-    private void populateListView() {
+    public void populateListView() {
         if (dataInstance.getOrders().size() > 0) {
-            orders.addAll(dataInstance.getOrders());
+            receiptList.getItems().clear();
             Order lastOrder = orders.get(orders.size() - 1);
             latestItemsBought.setAll(lastOrder.getItems());
-
             receiptList.setItems(latestItemsBought);
-
         }
     }
 

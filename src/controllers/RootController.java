@@ -197,6 +197,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
 
             case "to-payment":
                 payment.toFront();
+                paymentController.refreshView();
                 break;
 
             case "back-to-basket":

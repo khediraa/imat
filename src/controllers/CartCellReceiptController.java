@@ -37,7 +37,6 @@ public class CartCellReceiptController implements Initializable {
     @FXML Label price;
     @FXML ImageView productImage;
     @FXML double amount;
-    @FXML Button addProductBtn;
     ShoppingItem item;
     ShoppingCart cartInstance = IMatDataHandler.getInstance().getShoppingCart();
 

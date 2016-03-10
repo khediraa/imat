@@ -166,6 +166,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
     private void search() {
         if (searchBar.getText().length() > 0) {
             shopGrid.toFront();
+            cartHolder.toFront();
             shopController.search(searchBar.getText());
         }
         headerController.removeStyleClass();

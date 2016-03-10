@@ -137,7 +137,7 @@ public class MyProfileController implements Initializable, IObservable {
             mastercardCard.setSelected(true);
         }
         if (creditCard.getCardType().equals("Visa")) {
-            mastercardCard.setSelected(true);
+            visaCard.setSelected(true);
         }
     }
 

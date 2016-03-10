@@ -1,5 +1,6 @@
 package controllers;
 
+import imat.LatestOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import imat.IObservable;
@@ -69,11 +70,11 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
             } else if(isHomeDelivery) {
                 time = (String) timeCombo.getValue();
                 date = pickDate.getValue().toString();
-                pcs.firePropertyChange("confirm-order", true, false);
                 completeOrder();
+                pcs.firePropertyChange("confirm-order", true, false);
             } else {
-                pcs.firePropertyChange("confirm-order", true, false);
                 completeOrder();
+                pcs.firePropertyChange("confirm-order", true, false);
             }
         });
 
@@ -101,7 +102,7 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
         deliveryRadioGroup.selectToggle(null);
         confirmButton.setDisable(true);
         IMatDataHandler dataHandler = IMatDataHandler.getInstance();
-        dataHandler.placeOrder(false);
+        dataHandler.placeOrder(true);
     }
 
     public boolean getIsHomeDelivery () {

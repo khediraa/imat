@@ -9,12 +9,13 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
-import se.chalmers.ait.dat215.project.CartEvent;
-import se.chalmers.ait.dat215.project.ShoppingCartListener;
+import se.chalmers.ait.dat215.project.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -41,10 +42,21 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
     @FXML private TextField validMonth;
     @FXML private TextField validYear;
     @FXML private TextField verificationCode;
+    @FXML private RadioButton visaCard;
+    @FXML private RadioButton mastercardCard;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    @FXML private List<TextField> formFields = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        populateFromWithCustomerData();
+
+        formFields.add(firstName); formFields.add(address); formFields.add(postAddress);
+        formFields.add(email); formFields.add(phoneNumber);formFields.add(lastName); formFields.add(postCode);
+        formFields.add(cardNumber);formFields.add(validMonth);formFields.add(validYear);
+        formFields.add(verificationCode);
+
         backToBasketButton.setOnAction(event -> {
             pcs.firePropertyChange("back-to-basket", true, false);
         });
@@ -65,7 +77,14 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
 
         int errors = 0;
 
-
+        for (TextField tf : formFields) {
+            if (tf.getText().length() < 1) {
+                addErrorToField(tf);
+                errors++;
+            } else {
+                removeErrorFromField(tf);
+            }
+        }
 
         if (errors > 0) {
             return false;
@@ -82,12 +101,36 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
     }
 
     public void populateFromWithCustomerData() {
+        Customer customer = IMatDataHandler.getInstance().getCustomer();
+        CreditCard creditCard = IMatDataHandler.getInstance().getCreditCard();
 
+        firstName.setText(customer.getFirstName());
+        lastName.setText(customer.getLastName());
+        address.setText(customer.getAddress());
+        postAddress.setText(customer.getPostAddress());
+        postCode.setText(customer.getPostCode());
+        email.setText(customer.getEmail());
+        phoneNumber.setText(customer.getPhoneNumber());
+
+        cardNumber.setText(creditCard.getCardNumber());
+        validMonth.setText(String.valueOf(creditCard.getValidMonth()));
+        validYear.setText(String.valueOf(creditCard.getValidYear()));
+
+        if (creditCard.getCardType().equals("Mastercard")) {
+            mastercardCard.setSelected(true);
+        }
+        if (creditCard.getCardType().equals("Visa")) {
+            visaCard.setSelected(true);
+        }
     }
 
     @Override
     public void shoppingCartChanged(CartEvent cartEvent) {
 
+    }
+
+    public void refreshView() {
+        populateFromWithCustomerData();
     }
 
     @Override

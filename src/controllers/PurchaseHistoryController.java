@@ -41,9 +41,11 @@ public class PurchaseHistoryController implements Initializable, IObservable {
         historyAccordion.getStylesheets().add("css/purchaseHistory.css");
         getOrders();
         addPaginationButtons();
-        displayOrdersPaginated(0);
+        if (this.orders.size() > 0) {
+            displayOrdersPaginated(0);
+            setActivePaginationButton(paginationBtns.get(0));
+        }
 
-        setActivePaginationButton(paginationBtns.get(0));
     }
 
     private void getOrders() {

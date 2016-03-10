@@ -195,6 +195,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
 
             case "to-payment":
                 payment.toFront();
+                paymentController.refreshView();
                 break;
 
             case "back-to-basket":
@@ -205,6 +206,7 @@ public class RootController implements Initializable, PropertyChangeListener, IO
                 confirmation.toFront();
                 confirmationController.showDeliveryTime(
                         deliveryController.getTime(), deliveryController.getDate(), deliveryController.getIsHomeDelivery());
+                confirmationController.refreshOrders();
                 break;
 
             case "set-category-meat":

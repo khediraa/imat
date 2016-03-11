@@ -122,6 +122,10 @@ public class PaymentController implements Initializable, ShoppingCartListener, I
         if (creditCard.getCardType().equals("Visa")) {
             visaCard.setSelected(true);
         }
+
+        if (String.valueOf(creditCard.getVerificationCode()).length() > 0) {
+            verificationCode.setText(String.valueOf(creditCard.getVerificationCode()));
+        }
     }
 
     @Override

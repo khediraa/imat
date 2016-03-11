@@ -96,7 +96,6 @@ public class MyProfileController implements Initializable, IObservable {
         }
 
 
-
     }
 
     public void displayNotice() {
@@ -132,6 +131,11 @@ public class MyProfileController implements Initializable, IObservable {
         cardNumber.setText(creditCard.getCardNumber());
         validMonth.setText(String.valueOf(creditCard.getValidMonth()));
         validYear.setText(String.valueOf(creditCard.getValidYear()));
+
+        if (String.valueOf(creditCard.getVerificationCode()).length() > 0) {
+            verificationCode.setText(String.valueOf(creditCard.getVerificationCode()));
+        }
+
 
         if (creditCard.getCardType().equals("Mastercard")) {
             mastercardCard.setSelected(true);

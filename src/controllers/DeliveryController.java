@@ -9,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-<<<<<<< HEAD
-=======
 import javafx.util.Callback;
->>>>>>> 5acec6e35c29ef31d21cf2a92ae731e52d237d61
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
@@ -105,12 +102,8 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
         shopChoice.setOnAction(event -> toggleHomeChoice(false));
         homeChoice.setOnAction(event -> toggleHomeChoice(true));
 
-<<<<<<< HEAD
-        pickDate.setValue(LocalDate.now());
-=======
         pickDate.setValue(LocalDate.now().plusDays(1));
         pickDate.setDayCellFactory(dayCellFactory);
->>>>>>> 5acec6e35c29ef31d21cf2a92ae731e52d237d61
 
     }
 

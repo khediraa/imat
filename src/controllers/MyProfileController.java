@@ -133,6 +133,14 @@ public class MyProfileController implements Initializable, IObservable {
         validMonth.setText(String.valueOf(creditCard.getValidMonth()));
         validYear.setText(String.valueOf(creditCard.getValidYear()));
 
+<<<<<<< HEAD
+=======
+        if (String.valueOf(creditCard.getVerificationCode()).length() > 0) {
+            verificationCode.setText(String.valueOf(creditCard.getVerificationCode()));
+        }
+
+
+>>>>>>> 5acec6e35c29ef31d21cf2a92ae731e52d237d61
         if (creditCard.getCardType().equals("Mastercard")) {
             mastercardCard.setSelected(true);
         }

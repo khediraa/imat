@@ -9,6 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+<<<<<<< HEAD
+=======
+import javafx.util.Callback;
+>>>>>>> 5acec6e35c29ef31d21cf2a92ae731e52d237d61
 import se.chalmers.ait.dat215.project.CartEvent;
 import se.chalmers.ait.dat215.project.IMatDataHandler;
 import se.chalmers.ait.dat215.project.ShoppingCartListener;
@@ -49,6 +53,26 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
 
             );
 
+
+    //dayCellFactory gotten from http://www.java2s.com/Tutorials/Java/JavaFX/0540__JavaFX_DatePicker.htm
+    private final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+        @Override
+        public DateCell call(final DatePicker datePicker) {
+            return new DateCell() {
+                @Override
+                public void updateItem(LocalDate item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item.isBefore(LocalDate.now().plusDays(1))) {
+                        setDisable(true);
+                        setStyle("-fx-background-color: #EEEEEE;");
+                    }
+                }
+            };
+        }
+    };
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         time = "";
@@ -81,7 +105,12 @@ public class DeliveryController implements Initializable, ShoppingCartListener, 
         shopChoice.setOnAction(event -> toggleHomeChoice(false));
         homeChoice.setOnAction(event -> toggleHomeChoice(true));
 
+<<<<<<< HEAD
         pickDate.setValue(LocalDate.now());
+=======
+        pickDate.setValue(LocalDate.now().plusDays(1));
+        pickDate.setDayCellFactory(dayCellFactory);
+>>>>>>> 5acec6e35c29ef31d21cf2a92ae731e52d237d61
 
     }
 

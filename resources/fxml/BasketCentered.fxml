@@ -168,9 +168,6 @@
                      </children>
                   </StackPane>
                </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
              <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="sequence-button" GridPane.columnIndex="1">
                  <graphic>
@@ -210,9 +207,6 @@
                          </children>
                      </StackPane>
                  </graphic>
-                 <cursor>
-                     <Cursor fx:constant="HAND" />
-                 </cursor>
              </Button>
              <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="sequence-button" GridPane.columnIndex="2">
                  <graphic>
@@ -252,9 +246,6 @@
                          </children>
                      </StackPane>
                  </graphic>
-                 <cursor>
-                     <Cursor fx:constant="HAND" />
-                 </cursor>
              </Button>
              <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="130.0" styleClass="sequence-button" GridPane.columnIndex="3">
                  <graphic>
@@ -284,9 +275,6 @@
                          </children>
                      </StackPane>
                  </graphic>
-                 <cursor>
-                     <Cursor fx:constant="HAND" />
-                 </cursor>
              </Button>
          </children>
          <BorderPane.margin>
